@@ -25,7 +25,7 @@ This project seeks to create a seamless integration of technology into the every
 Describe the requirements – i.e., what the product does and how it does it from a user point of view – at a high level.
 
 ## Conceptual Design
-Our Smart Mirror companion app integrates hardware, including a Raspberry Pi, two-way mirror, display panel, camera, and microphone, 
+The Smart Mirror and Companion App system is a unique combination of hardware and software that is designed to upgrade the concept of a mirror into an adaptable and interactive smart home device. Our Smart Mirror app integrates hardware, including a Raspberry Pi, two-way mirror, display panel, camera, and microphone, 
 with a software stack featuring Python and Java. The mirror's functions are controlled by a custom application on the Raspberry Pi, 
 which also enables user interactions. Voice recognition technology like Azure is integrated with voice commands. We incorporate the Open 
 Weather API to display real-time weather information on the mirror, providing a seamless and user-friendly experience. In addition to this, 
