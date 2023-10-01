@@ -61,7 +61,7 @@ The user:
 A user that wants to be informed on what to wear throughout the day as they are rushing to get ready to leave the house for work.
 1. They step in front of the mirror as they do their daily morning routine in the bathroom.
 2. The camera detects the user’s face with the camera and turns on the screen display behind the 2 way mirror.
-3. The mirror's Rasberry Pi retrieves data from the user's default weather app and detects a high chance of rain.
+3. The mirror's Rasberry Pi retrieves data from the Open Weather API.
 3. The mirrors widget display shows a heavy rain forecast icon in the afternoon despite being currently clear as day.
 4. The user remembers to grab their raincoat and umbrella and goes about their day avoiding the uncomfortableness of cold rain.
 
