@@ -23,6 +23,20 @@ Rainy Day Description
 
 </details>
 
+**Use Case #6  ToDo List**: A user that has a busy day full of important tasks to do wants to reference his Todo list on the cloud when they’re at home
+<details>
+<summary>
+ToDo List Description
+</summary>
+
+1. The user opens up the smart mirror companion app and fills out his important task of checking in with his family member weekly after work.
+2. The user goes about his normal routine, gets back home later on and views their mirror which reminds them of their task.
+3. After being reminded, they call their family member and see how they are doing.
+4. When the call is finished they open the companion app and check off their task for this week.
+
+![sequence diagram](https://sequencediagram.org/index.html#initialData=AoQwTgLglgxlAOIB2EBcACAqgZwKZgChRJYFk10BlAW3AnQFkowwB7MdAYVesSSlZJ0AQXjwidUnwo06jZm0IFEJONK4ALZAHNcDXAEYCOfOgC0APi48+AoaPgYA8vFxJs6GDeR30IMQTcvD6CImLmVgAiIBAgAEYgeBgAYlAANmnorACu9AAqiQDWxngcllS0kPIs7BgAalC4AO4eEBq41YroAHKsEABmsDG+YLjUUEgAJvjYBLJVTDVlViZgGABKYxOTHvE59PAagh0wIBklppZBtqEOzq72Adchj-AR0bEJSVxprHgA9Jw0rhwOhNuMpvggA)
+</details>
+
 **Database**
 
 Entity-relation diagram.
