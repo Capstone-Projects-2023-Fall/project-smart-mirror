@@ -4,20 +4,20 @@ sidebar_position: 5
 
 # Use-case descriptions
 
-## Use Case 1
-The user wants to view a custom widget on their current mirror layout.
+## Use Case 1 - Custom Widgets
+The user wants to view a custom widget on their current mirror layout so that they can view current stock quotes when they look at the mirror in the morning.
 The user:
 1. Opens the companion app.
 2. Navigates to the Widget section of the app.
 3. Presses the Add New Widget button.
-4. Selects a widget from the list of widgets available.
+4. Selects a stock-related widget from the list of widgets available.
 5. Chooses which sub-profile and where on the mirror the widget shall be added.
 6. Saves their progress.
 7. Walks up to the mirror to turn the mirror on.
 8. Observes the mirror reflecting the user's changes.
 
-## Use Case 2
-The user wants to be alerted by the mirror an hour from the present time.
+## Use Case 2 - Custom Alerts
+The user wants to be alerted by the mirror an hour from the present time so that they will be reminded to stop drying their hair.
 The user:
 1. Opens the companion app.
 2. Navigates to the Reminder section of the app.
@@ -31,7 +31,7 @@ The user:
 1. Says "Remind me in an hour from now.
 2. Repeat Step 7 from Use Case 2.
 
-## Use Case 3
+## Use Case 3 - Sub-Profiles
 The user wants to create a sub-profile for someone else who also uses the mirror at 5pm on Sundays.
 The user:
 1. Opens the companion app.
@@ -44,8 +44,8 @@ The user:
 8. Is able to view their sub-profile on the mirror at 5pm on Sundays.
 
 
-## Use Case 4
-The user wants to set a weight goal from scratch and track their height and weight.
+## Use Case 4 - Height/Weight Tracking
+The user wants to set a weight goal from scratch and track their height and weight so they will have an easy way to access the knowledge needed to work towards their ideal weight.
 The user:
 1. Opens the companion app.
 2. Navigates to the Health section of the app.
