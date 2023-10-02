@@ -1,12 +1,25 @@
 ---
 sidebar_position: 1
 ---
-
+# Design
 **Purpose**
 
 The Design Document - Part I Architecture describes the software architecture and how the requirements are mapped into the design. This document will be a combination of diagrams and text that describes what the diagrams are showing.
 
-**Sequence Diagrams**
+## Compenents
+
+### Mirror Backend
+![Alt text](image-1.png)
+***Figure 1 - Raspberry Pi Backend***
+
+Figure 1 shows a class diagram of the backend system that is on the mirror. 
+- The backend system is hosted on a Raspberry Pi.
+- The User interfaces directly with the Mirror
+- The mirror system will consistently poll for updates, and update the respective onboard systems based on the information
+
+
+
+## Sequence Diagrams
 
 **Use Case #1 Custom Widgets**: The user wants to view a custom widget on their current mirror layout so that they can view current stock quotes when they look at the mirror in the morning.
 <details>
@@ -26,6 +39,7 @@ The user:
     
 ![Use Case 1 - Custom Widgets](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/123747098/77f4e202-5f4a-4507-b4a8-98698a2a7d83)
 
+</details>
   
 **Use Case #4 Height/Weight Tracking**: A user wants to set a weight goal from scratch and track their height and weight so they will have an easy way to access the knowledge needed to work towards their ideal weight.
 
@@ -75,6 +89,7 @@ ToDo List Description
 4. When the call is finished they open the companion app and check off their task for this week.
 
 ![Use case 6](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/74268497/3af74675-8621-435a-96a1-2f9e3bbda73b)
+
 </details>
 
 **Algorithim**
@@ -96,6 +111,7 @@ Recording --> Processing
 Requesting --> Processing
 Displaying --> [Waiting]
 ```
+
 ##### Server State Diagram
 The diagram above shows the different states that Smart Mirror will operate in. First the mirror acts in the waiting state, while it idles and waits for a face to be recognized. Once a face is seen the program will start displaying and the user's default widgets will appear. When new data is to be requested, the state then moves to the processing stage where it will determine if the data is already captured in the database, if it is then it will move back to the displaying state. If the data is not in the database then the state will change to requesting, and then the required data will start to be requested. Once the new data is requested, it will be recorded in the database and then processed. Once the data is processed it will then be displayed. The mirror will move from the display state to the waiting state if a face is not recognized in a short period of time.
 
@@ -110,10 +126,32 @@ Processing --> Sending
 Requesting --> Sending
 Sending --> Waiting
 ```
+
 ##### Client State Diagram
 The diagram above shows the states for the client side companion application. Initially we begin in the waiting phase where we wait for user input. Once the user does an action in the application we move to the processing stage where we decide how to follow the user's commands. If we have the data already in our database we move to the sending to server state. Otherwise if we need to request data then we move to the requesting state. After requesting data, we then move to the recording state where we record the information in our database. Once the data is recorded we move to the sending state where we send the data the Rasberry Pi server. Then we move to the waiting state again for further instructions.
 
-**Database**
+
+**Use Case #7  Scheduling Assistant**: A user that has a strict schedule of appointments with their clients wants to view their schedule at their workshop.
+<details>
+<summary>
+Scheduling Assistant Description
+</summary>
+
+
+1. The user steps in front of their mirror at their workshop.
+2. The camera detects the user’s face with the camera and turns on the screen display behind the 2 way mirror.
+3. User glances at the calendar display widget on the screen and sees that their next appointment is in 20 minutes.
+4. They get ready for their appointment with their client.
+5. The client asks to have a followup appointment next month, the user decides to mark this in their companion app.
+6. They open their google calendar app and denote the information for this event.
+7. They will click submit and the event will appear on their smart mirror the day of the event.
+8. On the day of the next event, the event shows on the display.
+
+</details>
+
+![Alt text](image.png)
+
+## Database
 
 ```mermaid
 ---
