@@ -56,3 +56,30 @@ The user:
 7. May update their height and weight when they wish.
 9. Adds the built-in health widget to their sub-profile.
 8. Is able to view their weight goal and weight history.
+
+## Use Case 5 Rainy Day Fit
+A user that wants to be informed on what to wear throughout the day as they are rushing to get ready to leave the house for work.
+1. They step in front of the mirror as they do their daily morning routine in the bathroom.
+2. The camera detects the user’s face with the camera and turns on the screen display behind the 2 way mirror.
+3. The mirror's Rasberry Pi retrieves data from the Open Weather API.
+3. The mirrors widget display shows a heavy rain forecast icon in the afternoon despite being currently clear as day.
+4. The user remembers to grab their raincoat and umbrella and goes about their day avoiding the uncomfortableness of cold rain.
+
+## Use Case 6 Todo List
+A user that has a busy day full of important tasks to do wants to reference his Todo list on the cloud when they’re at home
+1. The user opens up the smart mirror companion app and fills out his important task of checking in with his family member weekly after work.
+2. The user goes about his normal routine, gets back home later on and views their mirror which reminds them of their task.
+3. After being reminded, they call their family member and see how they are doing.
+4. When the call is finished they open the companion app and check off their task for this week.
+
+
+## Use Case 7 Scheduling Assistant
+A user that has a strict schedule of appointments with their clients wants to view their schedule at their workshop.
+1. The user steps in front of their mirror at their workshop.
+2. The camera detects the user’s face with the camera and turns on the screen display behind the 2 way mirror.
+3. User glances at the calendar display widget on the screen and sees that their next appointment is in 20 minutes.
+4. They get ready for their appointment with their client.
+5. The client asks to have a followup appointment next month, the user decides to mark this in their companion app.
+6. They open their google calendar app and denote the information for this event.
+7. They will click submit and the event will appear on their smart mirror the day of the event.
+8. On the day of the next event, the event shows on the display.

@@ -7,41 +7,57 @@ Function Requirements
 
 **Functional**
 
-**Companion App**
-    * The App will serve to be an interface to customize what is being shown on the mirror and what data is sent to the mirror. The mirror itself, however, will mostly display information.
-* The companion app will allow the user to set personal preferences to their liking.
-    * In the settings, the app will allow the user to set them:
-    * User can set Gender
-    * User can set Age 
-    * User can set Birthdate
-    * User can set zip code 
-        * Adding the zip code will allow the app to calculate the timezone of where the mirror is and allow the mirror to correctly output the weather.
-    * Will allow the user to set up a function called the Wake-on Approach where the mirror will wake up from idle/sleep when the user walks to the mirror.
-    * Will allow the user to set dietary goals like:
-        * User can set height
-        * User can set weight
-        * User can set a weight goal
-* The companion app will allow users to create multiple account settings.
-    * Can have multiple users use the same mirror with the function of switching sub-profiles where each sub-profiles will have different adjusted settings.
+**Smart Mirror Functionalities**
+* Time Display:
+    * The mirror will showcase the time based on the user's chosen time zone within the Companion App, ensuring accuracy and relevance.
 
-**Mirror**
-    * The mirror will display information fed from the Companion App. The onboarding pi will gather data as needed in the backend.
-* The mirror will display the time
-    * The time will be dependent on the time zone based on the user preferences in the Companion App.
-* The mirror will display the weather
-    * The weather will be dependent on the zip code based on the user preferences in the Companion App.
-    * It will have a Weather-based outfit suggestion depending on the weather.
-* The mirror will have Face Detection 
-* The mirror will display Infotainment
-    * Mirror will have timers for the following items:
-        * Will have a timer for Todo List set in the companion app
-        * Will have a timer for Reminders set in the companion app
-    * Will display notifications set on the companion apps based on what the users allow.
-    * Will take data from the calendar and display events on the mirror 
-* The mirror will support widgets
-* Will have a function where the sub-profiles can be changed after a timer goes off set by the user
+* Weather Information:
+    * Weather updates, determined by the user's specified zip code in the Companion App, will be prominently displayed. Additionally, the mirror will suggest suitable outfits based on the weather forecast.
 
-**Non-functional**
-* Will have voice commands that allow the user to look at or change apps/widgets through
-* Will have hand gesture movements
-* Will have Optimized Face Detection Accuracy
+* Face Detection:
+    * Incorporating advanced face detection technology, the mirror will recognize individuals, enabling personalized interactions and features.
+
+* Infotainment Display:
+    * The mirror will provide infotainment through various features:
+        * Timers:
+            * Users can set timers for their to-do list and reminders via the Companion App, and the mirror will display these countdowns.
+        * Notifications:
+            * will display notifications set in the Companion App, granting users access to important updates and reminders.
+        * Calendar Integration:
+            * The mirror will seamlessly pull data from the calendar, showcasing upcoming events and commitments.
+
+* Sub-Profile Switching
+    * A unique function will allow the automatic switch of sub-profiles once a user-defined timer from the Companion App goes off, ensuring a personalized experience for each user.
+
+**Companion App  Functionalities**
+
+* Personalized Settings and Preferences:
+    * In the settings, you have the power to define your mirror's interactions and display.
+
+* User Profile Customization:
+    * Set your gender, age, birthdate, and zip code effortlessly. The zip code helps in calculating the correct timezone for accurate weather updates on your mirror.
+
+* Wake-on Approach Functionality:
+     * Activate the Wake-on Approach feature, ensuring your mirror awakens from idle or sleep mode the moment you approach it.
+
+* Dietary Goals and Health Management:
+    * Define dietary objectives by setting your height, weight, and weight goal, empowering you to track and manage your health goals with ease.
+
+* Multi-User Functionality:
+    * Share the magic of your mirror with loved ones. Our app enables multiple users to enjoy a tailored experience.
+
+* Switchable Sub-Profiles:
+    * Switch between sub-profiles effortlessly, each with its unique settings and preferences. Whether it's a family member or a roommate, everyone can have their personalized mirror experience.
+
+
+**Non-Functionalities**
+
+
+* Voice Command Integration:
+    * Navigate and control apps/widgets effortlessly with the power of your voice. Simply speak your commands to switch between apps or customize widgets, adding a touch of futuristic convenience to your daily routine.
+
+* Intuitive Hand Gesture Recognition:
+    * Immerse yourself in an interactive experience with our hand gesture recognition feature. Effortless and intuitive hand movements let you interact with the mirror and access its functionalities with a wave or a gesture, making your interactions with the mirror more engaging and fluid.
+
+* Advanced Facial Detection:
+    * With an impressive 80% accuracy and a swift response time of under 2 seconds, our system seamlessly recognizes faces. This ensures that the mirror is ready to cater to your personalized needs and preferences in no time, making your interactions smooth and efficient.
