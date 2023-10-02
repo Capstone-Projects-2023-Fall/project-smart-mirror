@@ -23,6 +23,21 @@ Rainy Day Description
 
 </details>
 
+**Use Case #6  ToDo List**: A user that has a busy day full of important tasks to do wants to reference his Todo list on the cloud when they’re at home
+<details>
+<summary>
+ToDo List Description
+</summary>
+
+1. The user opens up the smart mirror companion app and fills out his important task of checking in with his family member weekly after work.
+2. The user goes about his normal routine, gets back home later on and views their mirror which reminds them of their task.
+3. After being reminded, they call their family members and see how they are doing.
+4. When the call is finished they open the companion app and check off their task for this week.
+
+![Use case 6](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/74268497/3af74675-8621-435a-96a1-2f9e3bbda73b)
+</details>
+
+
 **Database**
 
 Entity-relation diagram.
