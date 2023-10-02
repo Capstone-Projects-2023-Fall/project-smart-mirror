@@ -108,6 +108,7 @@ erDiagram
 ```
 
 **Table Design**
+
 The diagram above depicts the relationship between the entities to be stored in the database. All sensitive information will be encrypted.
 ACCOUNT: Stores the account information of the user, which consists of their username, email and password.
 PROFILE: Stores the information of the one or several sub-profiles associated with the account of the user. This information includes their name, gender, age, birth date, zip code, height, weight, a chosen weight goal, a list of voice commands, and a toggle to enable motion gesture functionality.
