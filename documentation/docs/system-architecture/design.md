@@ -1,12 +1,25 @@
 ---
 sidebar_position: 1
 ---
-
+# Design
 **Purpose**
 
 The Design Document - Part I Architecture describes the software architecture and how the requirements are mapped into the design. This document will be a combination of diagrams and text that describes what the diagrams are showing.
 
-**Sequence Diagrams**
+## Compenents
+
+### Mirror Backend
+![Alt text](image-1.png)
+***Figure 1 - Raspberry Pi Backend***
+
+Figure 1 shows a class diagram of the backend system that is on the mirror. 
+- The backend system is hosted on a Raspberry Pi.
+- The User interfaces directly with the Mirror
+- The mirror system will consistently poll for updates, and update the respective onboard systems based on the information
+
+
+
+## Sequence Diagrams
 
 **Use Case #5 Rainy Day**: A user that wants to be informed on what to wear throughout the day as they are rushing to get ready to leave the house for work.
 <details>
@@ -35,7 +48,9 @@ ToDo List Description
 4. When the call is finished they open the companion app and check off their task for this week.
 
 ![Use case 6](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/74268497/3af74675-8621-435a-96a1-2f9e3bbda73b)
+
 </details>
+
 
 
 **Use Case #7  Scheduling Assistant**: A user that has a strict schedule of appointments with their clients wants to view their schedule at their workshop.
@@ -58,7 +73,7 @@ Scheduling Assistant Description
 
 ![Alt text](image.png)
 
-**Database**
+## Database
 
 Entity-relation diagram.
 
