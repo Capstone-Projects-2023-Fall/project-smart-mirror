@@ -24,7 +24,7 @@ Height/Weight Tracking Description
 7. May update their height and weight when they wish.
 9. Adds the built-in health widget to their sub-profile.
 8. Is able to view their weight goal and weight history.
-
+![Height_Weight Tracking](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/112418620/db79c4be-2220-4459-b44f-fa02a9755224)
 
 </details>
 
