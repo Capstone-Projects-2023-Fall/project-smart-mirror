@@ -8,6 +8,26 @@ The Design Document - Part I Architecture describes the software architecture an
 
 **Sequence Diagrams**
 
+**Use Case #4 Height/Weight Tracking**: A user wants to set a weight goal from scratch and track their height and weight so they will have an easy way to access the knowledge needed to work towards their ideal weight.
+
+<details>
+<summary>
+Height/Weight Tracking Description
+</summary>
+
+1. Opens the companion app.
+2. Navigates to the Health section of the app.
+3. Presses the Add Weight Goal button.
+4. Inputs their desired weight.
+5. Inputs their height and weight.
+6. Saves their progress.
+7. May update their height and weight when they wish.
+9. Adds the built-in health widget to their sub-profile.
+8. Is able to view their weight goal and weight history.
+![Height_Weight Tracking](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/112418620/db79c4be-2220-4459-b44f-fa02a9755224)
+
+</details>
+
 **Use Case #5 Rainy Day**: A user that wants to be informed on what to wear throughout the day as they are rushing to get ready to leave the house for work.
 <details>
 <summary>
