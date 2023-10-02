@@ -8,6 +8,26 @@ The Design Document - Part I Architecture describes the software architecture an
 
 **Sequence Diagrams**
 
+**Use Case #1 Custom Widgets**: The user wants to view a custom widget on their current mirror layout so that they can view current stock quotes when they look at the mirror in the morning.
+<details>
+  <summary>
+    Custom Widgets Description
+  </summary>
+  
+    The user:
+    1. Opens the companion app.
+    2. Navigates to the Widget section of the app.
+    3. Presses the Add New Widget button. 
+    4. Selects a stock-related widget from the list of widgets available.
+    5. Chooses which sub-profile and where on the mirror the widget shall be added.
+    6. Saves their progress.
+    7. Walks up to the mirror to turn the mirror on.
+    8. Observes the mirror reflecting the user's changes.
+    
+    ![Use Case 1 - Custom Widgets](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/123747098/77f4e202-5f4a-4507-b4a8-98698a2a7d83)
+
+</details>
+
 **Use Case #5 Rainy Day**: A user that wants to be informed on what to wear throughout the day as they are rushing to get ready to leave the house for work.
 <details>
 <summary>
@@ -23,7 +43,7 @@ Rainy Day Description
 
 </details>
 
-**Use Case #6  ToDo List**: A user that has a busy day full of important tasks to do wants to reference his Todo list on the cloud when they’re at home
+**Use Case #6 ToDo List**: A user that has a busy day full of important tasks to do wants to reference his Todo list on the cloud when they’re at home
 <details>
 <summary>
 ToDo List Description
