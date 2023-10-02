@@ -38,6 +38,26 @@ ToDo List Description
 </details>
 
 
+**Use Case #7  Scheduling Assistant**: A user that has a strict schedule of appointments with their clients wants to view their schedule at their workshop.
+<details>
+<summary>
+Scheduling Assistant Description
+</summary>
+
+
+1. The user steps in front of their mirror at their workshop.
+2. The camera detects the user’s face with the camera and turns on the screen display behind the 2 way mirror.
+3. User glances at the calendar display widget on the screen and sees that their next appointment is in 20 minutes.
+4. They get ready for their appointment with their client.
+5. The client asks to have a followup appointment next month, the user decides to mark this in their companion app.
+6. They open their google calendar app and denote the information for this event.
+7. They will click submit and the event will appear on their smart mirror the day of the event.
+8. On the day of the next event, the event shows on the display.
+
+</details>
+
+![Alt text](image.png)
+
 **Database**
 
 Entity-relation diagram.
