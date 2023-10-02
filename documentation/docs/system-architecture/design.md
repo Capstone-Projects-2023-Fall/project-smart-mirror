@@ -23,10 +23,42 @@ Rainy Day Description
 
 </details>
 
+**Algorithms** 
+
+**State Diagrams**
+```mermaid
+---
+title: Server State Diagram
+---
+stateDiagram-v2
+[Waiting] --> Displaying
+Displaying --> Processing
+Processing --> Requesting
+Processing --> Displaying
+Requesting --> Recording
+Recording --> Processing
+Requesting --> Processing
+Displaying --> [Waiting]
+```
+##### Server State Diagram
+The diagram above shows the different states that Smart Mirror will operate in. First the mirror acts in the waiting state, while it idles and waits for a face to be recognized. Once a face is seen the program will start displaying and the user's default widgets will appear. When new data is to be requested, the state then moves to the processing stage where it will determine if the data is already captured in the database, if it is then it will move back to the displaying state. If the data is not in the database then the state will change to requesting, and then the required data will start to be requested. Once the new data is requested, it will be recorded in the database and then processed. Once the data is processed it will then be displayed. The mirror will move from the display state to the waiting state if a face is not recognized in a short period of time.
+
+```mermaid
+---
+title: Client State Diagram
+---
+stateDiagram-v2
+Waiting --> Processing
+Processing --> Requesting
+Processing --> Sending
+Requesting --> Sending
+Sending --> Waiting
+```
+##### Client State Diagram
+The diagram above shows the states for the client side companion application. Initially we begin in the waiting phase where we wait for user input. Once the user does an action in the application we move to the processing stage where we decide how to follow the user's commands. If we have the data already in our database we move to the sending to server state. Otherwise if we need to request data then we move to the requesting state. After requesting data, we then move to the recording state where we record the information in our database. Once the data is recorded we move to the sending state where we send the data the Rasberry Pi server. Then we move to the waiting state again for further instructions.
+
 **Database**
-
 Entity-relation diagram.
-
 Table design.
 
 A check list for architecture design is attached here [architecture\_design\_checklist.pdf](https://templeu.instructure.com/courses/106563/files/16928870/download?wrap=1 "architecture_design_checklist.pdf")  and should be used as a guidance.
