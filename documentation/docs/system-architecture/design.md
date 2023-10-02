@@ -60,8 +60,60 @@ ToDo List Description
 
 **Database**
 
-Entity-relation diagram.
+```mermaid
+---
+title: Entity-Relation Diagram
+---
+erDiagram
 
-Table design.
+    ACCOUNT ||--|{ PROFILE : has
+    PROFILE ||--O{ CALENDAR : has
+    CALENDAR ||--O{ EVENT : contains
+    
+    ACCOUNT {
+        int accountID PK
+        string username
+        string email
+        string password
+    }
+    PROFILE{
+        int profileID PK
+        String name
+        String gender
+        int age
+        Date birthdate
+        int zipcode
+        int height
+        int weight
+        int weightGoal
+        String voiceCommand
+        boolean enableGesture
+        int accountID FK
+    }
+    CALENDAR{
+        int calendarID PK
+        String calendarTitle
+        int profileID FK
+    }
+    EVENT{
+        int eventID PK
+        String eventTitle
+        Date startTime
+        Date endTime
+        int repeatRate
+        Date alertTime
+        int calendarID FK
+    }
+    
+```
+
+**Table Design**
+The diagram above depicts the relationship between the entities to be stored in the database. All sensitive information will be encrypted.
+ACCOUNT: Stores the account information of the user, which consists of their username, email and password.
+PROFILE: Stores the information of the one or several sub-profiles associated with the account of the user. This information includes their name, gender, age, birth date, zip code, height, weight, a chosen weight goal, a list of voice commands, and a toggle to enable motion gesture functionality.
+CALENDAR: Stores the information of the calendars of each sub-profile, if they have one. This includes the title of the calendar.
+EVENT: Stores the information of each event of a calendar. This includes the event's title, the starting time, the ending time, the times at which the event should repeat itself, and the time to alert the user.
+
+PK: Primary Key, FK: Foreign Key
 
 A check list for architecture design is attached here [architecture\_design\_checklist.pdf](https://templeu.instructure.com/courses/106563/files/16928870/download?wrap=1 "architecture_design_checklist.pdf")  and should be used as a guidance.
