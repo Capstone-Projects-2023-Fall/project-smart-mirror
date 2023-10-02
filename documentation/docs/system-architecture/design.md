@@ -17,6 +17,10 @@ Figure 1 shows a class diagram of the backend system that is on the mirror.
 - The User interfaces directly with the Mirror
 - The mirror system will consistently poll for updates, and update the respective onboard systems based on the information
 
+![frontend diagram](frontend.png)
+***Figure 2 - Frontend***
+
+Figure 2 shows a class diagram of the front end of the companion app.
 
 
 ## Sequence Diagrams
