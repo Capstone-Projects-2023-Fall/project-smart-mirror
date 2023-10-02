@@ -31,7 +31,7 @@ ToDo List Description
 
 1. The user opens up the smart mirror companion app and fills out his important task of checking in with his family member weekly after work.
 2. The user goes about his normal routine, gets back home later on and views their mirror which reminds them of their task.
-3. After being reminded, they call their family member and see how they are doing.
+3. After being reminded, they call their family members and see how they are doing.
 4. When the call is finished they open the companion app and check off their task for this week.
 
 ![Use case 6](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/74268497/3af74675-8621-435a-96a1-2f9e3bbda73b)
