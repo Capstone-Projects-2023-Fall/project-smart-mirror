@@ -34,8 +34,9 @@ ToDo List Description
 3. After being reminded, they call their family member and see how they are doing.
 4. When the call is finished they open the companion app and check off their task for this week.
 
-![sequence diagram](image.png)
+![Use case 6](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/74268497/3af74675-8621-435a-96a1-2f9e3bbda73b)
 </details>
+
 
 **Database**
 
