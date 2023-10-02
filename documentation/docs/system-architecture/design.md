@@ -36,11 +36,30 @@ The user:
 6. Saves their progress.
 7. Walks up to the mirror to turn the mirror on.
 8. Observes the mirror reflecting the user's changes.
-    
+
 ![Use Case 1 - Custom Widgets](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/123747098/77f4e202-5f4a-4507-b4a8-98698a2a7d83)
 
 </details>
-  
+
+**Use Case #3 Sub-profiles**: A user wants to create a sub-profile for someone else who also uses the mirror at 5pm on Sundays.
+
+<details>
+<summary>
+Sub-profiles Description
+</summary>
+
+1. Opens the companion app.
+2. Navigates to the Sub-Profile section of the app.
+3. Clicks on the Create Sub-Profile button.
+4. Clicks on the title field and gives the Sub-Profile a name.
+5. Adds and customizes the elements on the mirror layout of the new Sub-Profile.
+6. Inputs Sunday and 5pm into the Scheduled Switching field.
+7. Saves their progress.
+8. Is able to view their sub-profile on the mirror at 5pm on Sundays.
+![usecase3](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/73204434/64ed78b2-2b71-4e37-a506-89d6d6119470)
+
+</details>
+
 **Use Case #4 Height/Weight Tracking**: A user wants to set a weight goal from scratch and track their height and weight so they will have an easy way to access the knowledge needed to work towards their ideal weight.
 
 <details>
