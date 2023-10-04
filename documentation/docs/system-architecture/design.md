@@ -47,6 +47,24 @@ The user:
 
 </details>
 
+**Use Case #2 Custom Alerts**: The user wants to view a custom widget on their current mirror layout so that they can view current stock quotes when they look at the mirror in the morning.
+
+<details>
+<summary>
+Custom Alerts Description
+</summary>
+
+1. Opens the companion app.
+2. Navigates to the Reminder section of the app.
+3. Presses the New Reminder button.
+4. Clicks on the title field and gives the reminder a title. (Optional) (There will be a default value.)
+5. Clicks on the time field to input the date and time that the timer should go off.
+6. Saves their progress.
+7. When the date and time of the reminder matches the current date and time, is alerted by the mirror turning on its screen, displaying the title, time and date of the alarm for 10 seconds, and playing a soft sound.
+![CustomAlerts](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/112418620/70902a24-e404-4c36-bd77-646c16b8507f)
+  
+</details>
+
 **Use Case #3 Sub-profiles**: A user wants to create a sub-profile for someone else who also uses the mirror at 5pm on Sundays.
 
 <details>
