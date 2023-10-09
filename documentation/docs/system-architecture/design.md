@@ -9,7 +9,7 @@ The Design Document - Part I Architecture describes the software architecture an
 ## Compenents
 
 ### Mirror Backend
-![Alt text](image-1.png)
+![Alt text](image-2.png)
 ***Figure 1 - Raspberry Pi Backend***
 
 Figure 1 shows a class diagram of the backend system that is on the mirror. 
@@ -258,4 +258,4 @@ EVENT: Stores the information of each event of a calendar. This includes the eve
 
 PK: Primary Key, FK: Foreign Key
 
-A check list for architecture design is attached here [architecture\_design\_checklist.pdf](https://templeu.instructure.com/courses/106563/files/16928870/download?wrap=1 "architecture_design_checklist.pdf")  and should be used as a guidance.
+A check list for architecture design is attached here [architecture\_design\_checklist.pdf](https://templeu.instructure.com/courses/106563/files/16928870/download?wrap=1 "architecture_design_checklist.pdf")  and should be used as a guidance.
