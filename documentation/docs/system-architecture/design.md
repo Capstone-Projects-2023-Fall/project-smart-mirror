@@ -1,12 +1,31 @@
 ---
 sidebar_position: 1
 ---
-
+# Design
 **Purpose**
 
 The Design Document - Part I Architecture describes the software architecture and how the requirements are mapped into the design. This document will be a combination of diagrams and text that describes what the diagrams are showing.
 
-**Sequence Diagrams**
+## Compenents
+
+### Mirror Backend
+![Alt text](image-2.png)
+***Figure 1 - Raspberry Pi Backend***
+
+Figure 1 shows a class diagram of the backend system that is on the mirror. 
+- The backend system is hosted on a Raspberry Pi.
+- The User interfaces directly with the Mirror
+- The mirror system will consistently poll for updates, and update the respective onboard systems based on the information
+
+## Mirror Frontend
+
+![frontend diagram](frontend.png)
+***Figure 2 - Frontend***
+
+Figure 2 shows a class diagram of the front end of the companion app.
+
+
+## Sequence Diagrams
 
 **Use Case #1 Custom Widgets**: The user wants to view a custom widget on their current mirror layout so that they can view current stock quotes when they look at the mirror in the morning.
 <details>
@@ -23,10 +42,48 @@ The user:
 6. Saves their progress.
 7. Walks up to the mirror to turn the mirror on.
 8. Observes the mirror reflecting the user's changes.
-    
+
 ![Use Case 1 - Custom Widgets](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/123747098/77f4e202-5f4a-4507-b4a8-98698a2a7d83)
 
+</details>
+
+**Use Case #2 Custom Alerts**: The user wants to view a custom widget on their current mirror layout so that they can view current stock quotes when they look at the mirror in the morning.
+
+<details>
+<summary>
+Custom Alerts Description
+</summary>
+
+1. Opens the companion app.
+2. Navigates to the Reminder section of the app.
+3. Presses the New Reminder button.
+4. Clicks on the title field and gives the reminder a title. (Optional) (There will be a default value.)
+5. Clicks on the time field to input the date and time that the timer should go off.
+6. Saves their progress.
+7. When the date and time of the reminder matches the current date and time, is alerted by the mirror turning on its screen, displaying the title, time and date of the alarm for 10 seconds, and playing a soft sound.
+![CustomAlerts](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/112418620/70902a24-e404-4c36-bd77-646c16b8507f)
   
+</details>
+
+**Use Case #3 Sub-profiles**: A user wants to create a sub-profile for someone else who also uses the mirror at 5pm on Sundays.
+
+<details>
+<summary>
+Sub-profiles Description
+</summary>
+
+1. Opens the companion app.
+2. Navigates to the Sub-Profile section of the app.
+3. Clicks on the Create Sub-Profile button.
+4. Clicks on the title field and gives the Sub-Profile a name.
+5. Adds and customizes the elements on the mirror layout of the new Sub-Profile.
+6. Inputs Sunday and 5pm into the Scheduled Switching field.
+7. Saves their progress.
+8. Is able to view their sub-profile on the mirror at 5pm on Sundays.
+![usecase3](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/73204434/64ed78b2-2b71-4e37-a506-89d6d6119470)
+
+</details>
+
 **Use Case #4 Height/Weight Tracking**: A user wants to set a weight goal from scratch and track their height and weight so they will have an easy way to access the knowledge needed to work towards their ideal weight.
 
 <details>
@@ -62,6 +119,7 @@ Rainy Day Description
 
 </details>
 
+
 **Use Case #6 ToDo List**: A user that has a busy day full of important tasks to do wants to reference his Todo list on the cloud when they’re at home
 <details>
 <summary>
@@ -74,14 +132,74 @@ ToDo List Description
 4. When the call is finished they open the companion app and check off their task for this week.
 
 ![Use case 6](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/74268497/3af74675-8621-435a-96a1-2f9e3bbda73b)
+
 </details>
 
-**Algorithim**
+**Use Case #7  Scheduling Assistant**: A user that has a strict schedule of appointments with their clients wants to view their schedule at their workshop.
+<details>
+<summary>
+Scheduling Assistant Description
+</summary>
+
+
+1. The user steps in front of their mirror at their workshop.
+2. The camera detects the user’s face with the camera and turns on the screen display behind the 2 way mirror.
+3. User glances at the calendar display widget on the screen and sees that their next appointment is in 20 minutes.
+4. They get ready for their appointment with their client.
+5. The client asks to have a followup appointment next month, the user decides to mark this in their companion app.
+6. They open their google calendar app and denote the information for this event.
+7. They will click submit and the event will appear on their smart mirror the day of the event.
+8. On the day of the next event, the event shows on the display.
+
+![Alt text](image.png)
+
+</details>
+
+
+
+## Algorithm
+
 A smart mirror employing face recognition to enable user access follows a straightforward process. Equipped with an embedded camera, the mirror captures live video of individuals in its vicinity. This video feed is then processed to detect faces, utilizing algorithms like Haar cascades or deep learning-based face detection models. Once a face is detected, a pre-trained face recognition model compares the facial features extracted from the detected face with those of authorized users stored in a database. If a match is found within an acceptable confidence level, the system authenticates the user and unlocks the smart mirror, granting access to personalized information such as calendar events, weather updates, or other tailored data. The mirror automatically locks when it no longer detects a recognized face, enhancing security and privacy. In cases where face recognition might not work optimally, a fallback mechanism such as a PIN code or traditional key could be provided for authentication, ensuring a reliable and secure user experience.
 
 
+## State Diagrams
+```mermaid
+---
+title: Server State Diagram
+---
+stateDiagram-v2
+[Waiting] --> Displaying
+Displaying --> Processing
+Processing --> Requesting
+Processing --> Displaying
+Requesting --> Recording
+Recording --> Processing
+Requesting --> Processing
+Displaying --> [Waiting]
+```
 
-**Database**
+##### Server State Diagram
+The diagram above shows the different states that Smart Mirror will operate in. First the mirror acts in the waiting state, while it idles and waits for a face to be recognized. Once a face is seen the program will start displaying and the user's default widgets will appear. When new data is to be requested, the state then moves to the processing stage where it will determine if the data is already captured in the database, if it is then it will move back to the displaying state. If the data is not in the database then the state will change to requesting, and then the required data will start to be requested. Once the new data is requested, it will be recorded in the database and then processed. Once the data is processed it will then be displayed. The mirror will move from the display state to the waiting state if a face is not recognized in a short period of time.
+
+```mermaid
+---
+title: Client State Diagram
+---
+stateDiagram-v2
+Waiting --> Processing
+Processing --> Requesting
+Processing --> Sending
+Requesting --> Sending
+Sending --> Waiting
+```
+
+##### Client State Diagram
+The diagram above shows the states for the client side companion application. Initially we begin in the waiting phase where we wait for user input. Once the user does an action in the application we move to the processing stage where we decide how to follow the user's commands. If we have the data already in our database we move to the sending to server state. Otherwise if we need to request data then we move to the requesting state. After requesting data, we then move to the recording state where we record the information in our database. Once the data is recorded we move to the sending state where we send the data the Rasberry Pi server. Then we move to the waiting state again for further instructions.
+
+
+
+
+## Database
 
 ```mermaid
 ---
@@ -140,4 +258,4 @@ EVENT: Stores the information of each event of a calendar. This includes the eve
 
 PK: Primary Key, FK: Foreign Key
 
-A check list for architecture design is attached here [architecture\_design\_checklist.pdf](https://templeu.instructure.com/courses/106563/files/16928870/download?wrap=1 "architecture_design_checklist.pdf")  and should be used as a guidance.
+A check list for architecture design is attached here [architecture\_design\_checklist.pdf](https://templeu.instructure.com/courses/106563/files/16928870/download?wrap=1 "architecture_design_checklist.pdf")  and should be used as a guidance.
