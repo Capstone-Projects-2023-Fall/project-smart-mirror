@@ -20,3 +20,8 @@ By providing an open-source platform, this project also encourages further innov
 ## Conceptual Design 
 
 The Smart Mirror and Companion App system is a unique combination of hardware and software that is designed to upgrade the concept of a mirror into an adaptable and interactive smart home device. Our Smart Mirror app integrates hardware, including a Raspberry Pi, two-way mirror, display panel, camera, and microphone, with a software stack featuring Python and Java. The mirror's functions are controlled by a custom application on the Raspberry Pi, which also enables user interactions. Voice recognition technology like Azure is integrated with voice commands. We incorporate the Open Weather API to display real-time weather information on the mirror, providing a seamless and user-friendly experience. In addition to this, we utilize Next.js for front-end development, creating a dynamic and responsive UI with real-time updates and interactive features. 
+
+## General Overview of Architecture
+
+The architecture of our Smart Mirror system contains three core components: the backend, the frontend, and the database. The backend handles data processing, user management, and external service communication through APIs. It serves as the center hub that corresponds to data and provides a smooth user experience. The front end is represented by a web application that provides the user interface and interaction. Users can customize their mirror, give voice commands, and access current information. Finally, the database enhances personalization by storing user profiles, preferences, and widget configurations.
+
