@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # Database Schema Diagram
 
-[Schema Diagram.pdf](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/files/12842345/Schema.Diagram.pdf)
+![Schema Diagram](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/74268497/c423f79b-a622-4fee-830b-6e822cae8ce7)
 
 
 ## Summary 
