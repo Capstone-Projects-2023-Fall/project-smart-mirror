@@ -61,3 +61,74 @@ DeleteEvent(int):
 EditEvent(int, int, String):
 - Edits an event from the list of events in the calendar using the target event's event ID, an integer which determines the field to overwrite, and a String representation of what to overwrite the field with.
 
+### `Event` Class
+
+`Event` holds information pertaining to a single event from a Calendar object.
+
+**Properties**
+
+eventID: int
+- The event's ID.
+
+eventTitle: String
+- The event's title.
+
+eventDesc: String
+- A description of the event.
+
+startTIme: DateTime
+- The time and date at which the event starts.
+
+endTime: DateTime
+- The time and date at which the event ends.
+
+repeatRate: int
+- The number of days that must pass for the event to be repeated.
+
+alertTime: DateTime
+- The time and date at which the user will receive an alert about the event.
+
+**Methods**
+
+GetID(): int
+- Returns the event's ID.
+
+GetTitle(): String
+- Returns the event's title.
+
+GetDesc(): String
+- Returns the event's description.
+
+GetStartTime(): DateTime
+- Returns the event's starting time.
+
+GetEndTime(): DateTime
+- Returns the event's ending time.
+
+GetRepeatRate(): int
+- Returns the repeat rate of the event.
+
+GetAlertTime(): DateTime
+- Returns the alert time.
+
+SetTitle(String):
+- Sets the title attribute to the given string.
+
+SetDesc(String):
+- Sets the description attribute to the given string.
+
+SetStartTime(DateTime):
+- Sets the starting time attribute to the given DateTime object.
+
+SetEndTime(DateTime):
+- Sets the ending time attribute to the given DateTime object.
+
+SetRepeatTime(int):
+- Sets the repeat time attribute to the given integer.
+  
+SetAlertTime(DateTIme):
+- Sets the alert time attribute to the given DateTime object.
+
+
+
+
