@@ -7,6 +7,6 @@ def calculate_bmi(height, weight):
     return bmi
 
 
-def getsteps(steps):
+def get_steps(steps):
     print(steps)
     return steps
