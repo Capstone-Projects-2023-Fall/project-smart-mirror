@@ -21,6 +21,22 @@ The user:
 - The stock-related Widget shall appears in the selected sub-profile's widget list.
 - The Widget shall be placed in the correct position on the mirror.
 
+## Use Case 2 - Custom Alerts
+The user wants to view a custom widget on their current mirror layout so that they can view current stock quotes when they look at the mirror in the morning.
+The user:
+1. Opens the companion app.
+2. Navigates to the Reminder section of the app.
+3. Presses the New Reminder button.
+4. Clicks on the title field and gives the reminder a title. (Optional) (There will be a default value.)
+5. Clicks on the time field to input the date and time that the timer should go off.
+6. Saves their progress.
+7. When the date and time of the reminder matches the current date and time, is alerted by the mirror turning on its screen, displaying the title, time and date of the alarm for 10 seconds, and playing a soft sound.
+
+### Assertions
+- The smart mirror will turn on at the time of the alert
+- The smart mirror will display the title, time, and date of the alert
+- The smart mirror will play a soft sound at the time of the alert
+
 ## Use Case 3 - Sub-Profiles
 A user wants to create a sub-profile for someone else who also uses the mirror at 5 p.m. on Sundays.
 1. Opens the companion app.
