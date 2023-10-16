@@ -585,3 +585,124 @@ Expected Result:
 
 **Expected Result:**
 - Refresh and update the module's data and write current refresh time to the system's unix tick.
+
+# Display Handler class 
+
+**Purpose:**
+
+## `UpdateInformationDisplay()`
+
+**User Action/Input:**
+- User enters Infotainment value such as temperature. 
+
+**Expected Result:**
+- Temperature is displayed on the smart Mirror.
+
+## `WakeDisplay()`
+
+**User Action/Input:**
+- Display is triggered by calling the function.
+
+**Expected Result:**
+- Smart Mirror will be turned on or made visible again.
+
+## `SortDisplay()`
+
+**User Action/Input:**
+- User wants to sort the display.
+
+**Expected Result:**
+- Display will be sorted based on user preference.
+
+## `PendAlert()`
+
+**User Action/Input:**
+- Stores alert message for later display.
+
+**Expected Result:** 
+- Pending alert for future display.
+
+## `CreateNotification()`
+
+**User Action/Input:**
+- Message to display in the notification.
+
+**Expected Result:** 
+- Notification to display in the Smart Mirror.
+
+# System Core class 
+
+**Purpose:**
+
+## `SystemActionLoop()`
+
+**User Action/Input:**
+- List of system actions needs to process in the loop.
+
+**Expected Result:**
+- Perform each action and provide result for each action.
+
+## `WaitOnActivation()`
+
+**User Action/Input:**
+- Condition or event that is entered by user. 
+
+**Expected Result:**
+- Perform action once the condition is met.
+
+## `ProcessUpdateInformation()`
+
+**User Action/Input:**
+- Information to be processed and updated. 
+
+**Expected Result:**
+- Update information and display it depending on specific use case.  
+
+## `SwitchUser()`
+
+**User Action/Input:**
+- User identifier and switch information.
+
+**Expected Result:**
+- Switch user and display new user context.
+
+## `SwitchUserProfile()`
+
+**User Action/Input:**
+- User profile identifier such as profile ID. 
+
+**Expected Result:**
+- Switch the user profile to the one specified in the input.
+
+# SystemUpdateHandler class 
+
+**Purpose:**
+
+## `IntializeUpdater()`
+
+**User Action/Input:**
+- Initialize the updater to manage updates. 
+
+**Expected Result:**
+- The updater is initialized and ready to manage system updates.
+
+## `PullData()`
+
+**User Action/Input:**
+- User request to pull data to update calendar information, weather data.
+
+**Expected Result:**
+- Calendar information is updated.
+- Weather data is updated.
+- User preferences are updated.
+
+## `PullData()`
+
+**User Action/Input:**
+- User request to update of calendar information, weather data, and user preferences.
+
+**Expected Result:**
+- update process for calendar information.
+- retrieves and updates weather data.
+- user preferences are refreshed and up-to-date.
+
