@@ -41,6 +41,20 @@ The Smart Mirror project is similar to other tools such as [MagicMirror](https:/
 - Python
 - Possible use of ScyllaDB
 
+## [SmartMirror](https://capstone-projects-2023-fall.github.io/project-smart-mirror/) GitHub Stats
+
+### Number of opened pull requests made by each team member
+
+![SmartMirror pull requests](https://courses.ianapplebaum.com/api/pull-requests/Capstone-Projects-2023-Fall/project-smart-mirror)
+
+### Number of code reviews made by each team member
+
+![SmartMirror reviews](https://courses.ianapplebaum.com/api/reviews/Capstone-Projects-2023-Fall/project-smart-mirror)
+
+### Number of commits made by each team member
+
+![SmartMirror commits](https://courses.ianapplebaum.com/api/commits/Capstone-Projects-2023-Fall/project-smart-mirror)
+
 ## Collaborators
 
 [//]: # ( readme: collaborators -start )
