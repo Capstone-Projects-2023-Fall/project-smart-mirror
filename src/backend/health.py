@@ -10,3 +10,7 @@ def calculate_bmi(height, weight):
 def get_steps(steps):
     print(steps)
     return steps
+
+def displayBMI(height, weight):
+    bmi = calculate_bmi(height, weight)
+    return bmi
