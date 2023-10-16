@@ -17,6 +17,6 @@ The user:
 7. Walks up to the mirror to turn the mirror on.
 8. Observes the mirror reflecting the user's changes.
 
-## Assertions
+### Assertions
 - The stock-related Widget shall appears in the selected sub-profile's widget list.
 - The Widget shall be placed in the correct position on the mirror.
