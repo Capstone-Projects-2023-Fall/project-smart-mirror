@@ -8,3 +8,4 @@
 /dataSources.local.xml
 # Pycache stuff
 /tests/__pycache__
+/src/backend/__pycache__
