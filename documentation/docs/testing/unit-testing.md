@@ -696,7 +696,7 @@ Expected Result:
 - Weather data is updated.
 - User preferences are updated.
 
-## `PullData()`
+## `ForceUpdate()`
 
 **User Action/Input:**
 - User request to update of calendar information, weather data, and user preferences.

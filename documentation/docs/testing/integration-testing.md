@@ -21,6 +21,23 @@ The user:
 - The stock-related Widget shall appears in the selected sub-profile's widget list.
 - The Widget shall be placed in the correct position on the mirror.
 
+## Use Case 3 - Sub-Profiles
+A user wants to create a sub-profile for someone else who also uses the mirror at 5 p.m. on Sundays.
+1. Opens the companion app.
+2. Navigates to the Sub-Profile section of the app.
+3. Clicks on the Create Sub-Profile button.
+4. Clicks on the title field and gives the Sub-Profile a name.
+5. Adds and customizes the elements on the mirror layout of the new Sub-Profile.
+6. Inputs Sunday and 5pm into the Scheduled Switching field.
+7. Saves their progress.
+8. Is able to view their sub-profile on the mirror at 5pm on Sundays.
+
+### Assertions
+- After clicking the "Create Sub-Profile" button, a new sub-profile should generated and user can assign a name to the sub-profile. 
+- The new sub-profile should be successfully customized and saved. 
+- When the user inputs "Sunday" and "5 p.m." into the Scheduled Switching field, it should accept and save this schedule for the sub-profile without errors.
+- After making changes, the user can save their progress and at 5 p.m. on a Sunday, the mirror should automatically switch to the newly created sub-profile.
+
 
 ## Use Case 7 - Scheduling Assistant
 **Description**: A user with a busy schedule of appointments at their workshop wants to efficiently view and manage their appointments using the smart mirror.
