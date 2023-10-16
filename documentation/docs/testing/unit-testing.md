@@ -368,3 +368,341 @@ Input / User Action:
 
 Expected Result: 
 * BMI is calculated and stored in `bmi`
+
+# Weather Module
+
+## `SetLocation(zipCode: str)`
+
+**User Action:**
+1. User enters the desired ZIP code on the mirror companion app.
+
+**Expected Result:**
+- The mirror's location is updated to the new ZIP code.
+
+## `GetCurrentForecast() -> dict`
+
+**User Action:**
+1. User activates the mirror.
+2. User has weather forecast in active module preference
+
+**Expected Result:**
+- The mirror displays the current weather conditions.
+
+## `GetDailyForecast() -> dict`
+
+**User Action:**
+1. User activates the mirror.
+2. User has weather forecast in active module preferences. 
+3. User specifies daily forecast in their weather widget preferences
+
+**Expected Result:**
+- The mirror displays the expected weather forecast for that day.
+
+## `GetWeeklyForecast() -> dict`
+
+**User Action:**
+1. User activates the mirror.
+2. User has weather forecast in active module preferences. 
+3. User specifies weekly forecast in their weather widget preferences
+
+**Expected Result:**
+- The mirror displays the weekly weather forecast.
+
+## `GetAirQuality() -> str`
+
+**User Action:**
+1. User activates the mirror.
+2. User has weather forecast in active module preferences. 
+
+**Expected Result:**
+- The mirror displays the current air quality index (AQI).
+
+## `GetWindSpeed() -> float`
+
+**User Action:**
+1. User activates the mirror.
+2. User has weather forecast in active module preferences. 
+
+**Expected Result:**
+- The mirror displays the current wind speed.
+
+## `GetWeatherIcon() -> str`
+
+**User Action:**
+1. User activates the mirror.
+2. User has weather forecast in active module preferences. 
+3. Mirror displays weather and uses an appropiate icon to display with information.
+
+**Expected Result:**
+- The mirror returns the URL/filepath of the weather icon.
+
+## `GetDateTime() -> str`
+
+**User Action:**
+1. User activates the mirror.
+2. User has weather forecast in active module preferences. 
+3. The mirror tries to get data for a particular time period and requires the date and time.
+
+**Expected Result:**
+- The mirror displays the current date and time.
+
+## `GetHumidity() -> int`
+
+**User Action:**
+1. User activates the mirror.
+2. User has weather forecast in active module preferences. 
+
+**Expected Result:**
+- The mirror displays the current humidity level.
+
+## `RecommendOutfit() -> str`
+
+**User Action:**
+1. User activates the mirror.
+2. User has weather forecast in active module preferences. 
+2. User has outfit reccomendations enabled. 
+
+**Expected Result:**
+- The mirror generates a clothing outfit recommendation and suggests it to the user.
+
+# Weather Alert Class
+
+## `GetWeatherAlerts() -> list`
+
+**User Action:**
+1. User activates the mirror.
+2. User has weather forecast in active module preferences. 
+
+**Expected Result:**
+- The mirror displays a list of weather alerts.
+
+# WeatherAlert Class 
+
+**Purpose:**
+
+## `Create(AlertData: object) -> WeatherAlert`
+
+**User Action:**
+1. User activates the mirror.
+2. User accesses weather alerts in the active module preferences.
+3. An active weather alert is in the User's region
+
+**Expected Result:**
+- The system creates an alert based off active alerts.
+
+### `GetAlertType() -> str`
+
+**User Action:**
+1. User activates the mirror.
+2. User accesses weather alerts in the active module preferences.
+3. User selects a specific weather alert.
+
+**Expected Result:**
+- The mirror displays the type of the selected weather alert.
+
+## `GetDescription() -> str`
+
+**User Action:**
+1. User activates the mirror.
+2. User accesses weather alerts in the active module preferences.
+3. User selects a specific weather alert.
+
+**Expected Result:**
+- The mirror displays the description of the selected weather alert.
+
+## `GetTimestamp() -> Date`
+
+**User Action:**
+1. User activates the mirror.
+2. User accesses weather alerts in the active module preferences.
+3. User selects a specific weather alert.
+
+**Expected Result:**
+- The mirror displays the timestamp of when the selected weather alert was issued. 
+
+# Module Class
+
+## `PullUserProfile()`
+
+**User Action/Input:**
+1. System Initiates the process to pull the user profile data with appropriate access permissions.
+
+**Expected Result:**
+- Successfully pull the user profile data and unpacks inside respective module.
+
+## `GetStatus() -> str`
+
+**User Action/Input:**
+1. System request the current status of the module.
+
+**Expected Result:**
+- Return the current status as a string.
+
+## `Initialize()`
+
+**User Action/Input:**
+1. System attemps to initialize the module if it's not already initialized.
+
+**Expected Result:**
+- Successfully initialize the module and returns an 'OK' status code.
+
+## `GetType() -> str`
+
+**User Action/Input:**
+1. Request the type of the module.
+
+**Expected Result:**
+- Return the type as a string.
+
+## `PauseModule()`
+
+**User Action/Input:**
+1. Request to pause the module if it's currently active.
+
+**Expected Result:**
+- Pause the module's operations and returns 'PAUSED' status code.
+
+## `ResumeModule()`
+
+**User Action/Input:**
+1. Request to resume the module if it's currently paused.
+
+**Expected Result:**
+- Resume the module's operations and returns 'RUNNING' status code.
+
+## `DisableModule()`
+
+**User Action/Input:**
+1. Request to disable the module if it's initialized.
+
+**Expected Result:**
+- Successfully disable the module and return 'INACTIVE' status code.
+
+## `Refresh()`
+
+**User Action/Input:**
+1. Request to refresh the module's data if it's active and initialized.
+
+**Expected Result:**
+- Refresh and update the module's data and write current refresh time to the system's unix tick.
+
+# Display Handler class 
+
+**Purpose:**
+
+## `UpdateInformationDisplay()`
+
+**User Action/Input:**
+- User enters Infotainment value such as temperature. 
+
+**Expected Result:**
+- Temperature is displayed on the smart Mirror.
+
+## `WakeDisplay()`
+
+**User Action/Input:**
+- Display is triggered by calling the function.
+
+**Expected Result:**
+- Smart Mirror will be turned on or made visible again.
+
+## `SortDisplay()`
+
+**User Action/Input:**
+- User wants to sort the display.
+
+**Expected Result:**
+- Display will be sorted based on user preference.
+
+## `PendAlert()`
+
+**User Action/Input:**
+- Stores alert message for later display.
+
+**Expected Result:** 
+- Pending alert for future display.
+
+## `CreateNotification()`
+
+**User Action/Input:**
+- Message to display in the notification.
+
+**Expected Result:** 
+- Notification to display in the Smart Mirror.
+
+# System Core class 
+
+**Purpose:**
+
+## `SystemActionLoop()`
+
+**User Action/Input:**
+- List of system actions needs to process in the loop.
+
+**Expected Result:**
+- Perform each action and provide result for each action.
+
+## `WaitOnActivation()`
+
+**User Action/Input:**
+- Condition or event that is entered by user. 
+
+**Expected Result:**
+- Perform action once the condition is met.
+
+## `ProcessUpdateInformation()`
+
+**User Action/Input:**
+- Information to be processed and updated. 
+
+**Expected Result:**
+- Update information and display it depending on specific use case.  
+
+## `SwitchUser()`
+
+**User Action/Input:**
+- User identifier and switch information.
+
+**Expected Result:**
+- Switch user and display new user context.
+
+## `SwitchUserProfile()`
+
+**User Action/Input:**
+- User profile identifier such as profile ID. 
+
+**Expected Result:**
+- Switch the user profile to the one specified in the input.
+
+# SystemUpdateHandler class 
+
+**Purpose:**
+
+## `IntializeUpdater()`
+
+**User Action/Input:**
+- Initialize the updater to manage updates. 
+
+**Expected Result:**
+- The updater is initialized and ready to manage system updates.
+
+## `PullData()`
+
+**User Action/Input:**
+- User request to pull data to update calendar information, weather data.
+
+**Expected Result:**
+- Calendar information is updated.
+- Weather data is updated.
+- User preferences are updated.
+
+## `PullData()`
+
+**User Action/Input:**
+- User request to update of calendar information, weather data, and user preferences.
+
+**Expected Result:**
+- update process for calendar information.
+- retrieves and updates weather data.
+- user preferences are refreshed and up-to-date.
+
