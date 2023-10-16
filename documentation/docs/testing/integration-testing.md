@@ -54,6 +54,17 @@ A user wants to create a sub-profile for someone else who also uses the mirror a
 - When the user inputs "Sunday" and "5 p.m." into the Scheduled Switching field, it should accept and save this schedule for the sub-profile without errors.
 - After making changes, the user can save their progress and at 5 p.m. on a Sunday, the mirror should automatically switch to the newly created sub-profile.
 
+## Use Case 6 - Todo List
+A user that has a busy day full of important tasks to do wants to reference his Todo list on the cloud when they’re at home.
+1. Opens up the smart mirror companion app and fills out his important task of checking in with his family member weekly after work.
+2. Goes about his normal routine, gets back home later on and views their mirror which reminds them of their task.
+3. Is reminded to call their family member, so they call to see how they are doing.
+4. Checks off their task for this week in the PWA.
+
+### Assertions
+- After the user adds all his task through the CompanionApp, it will display on the Smart Mirror
+- Task will be deleted when completed
+- The list will be deleted when the user completes all the tasks.
 
 ## Use Case 7 - Scheduling Assistant
 **Description**: A user with a busy schedule of appointments at their workshop wants to efficiently view and manage their appointments using the smart mirror.
