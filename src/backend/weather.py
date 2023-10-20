@@ -26,10 +26,9 @@ def get_current_temp(response):
     if "current" in data.keys():
         if "temperature_2m" in data["current"]:
             current_temp = data["current"]["temperature_2m"]
-            print(current_temp)
             return current_temp
     else:
-        print("ERROR: not found")
+        print("ERROR: Current temp not found")
 
 
 # Returns the current WMO weathercode
@@ -42,10 +41,10 @@ def get_current_weather_code(response):
             weather_code = data["current"]["weathercode"]
             return weather_code
     else:
-        print("ERROR: not found")
+        print("ERROR: Weather code not found")
 
 
-# Translates weather code integer to weather conditions
+# Translates weather code integer to weather conditions english
 # Ex: 0 = clear sky, 1 = mainly clear, 2 = partly cloudly, etc
 def translate_weather_code(weather_code):
     if weather_code == 0:
@@ -133,10 +132,27 @@ def get_temp(response):
     return currentTemp
 
 
+# Parses today's uv from the response variable
+def get_uv(response):
+    data = response.json()
+
+    if "daily" in data.keys():
+        if "uv_index_max" in data["daily"]:
+            uv = data["daily"]["uv_index_max"][0]
+            #print(uv)
+            return uv
+    else:
+        print("ERROR: UV not found")
+
+
 if __name__ == "__main__":
     response = get_weather_data()
     if response:
+        uv = get_uv(response)
         weather_code = get_current_weather_code(response)
         weather = translate_weather_code(weather_code)
-        print(weather)
-        get_current_temp(response)
+        current_temp = get_current_temp(response)
+
+        #print(weather)
+        #print(uv)
+        #print(current_temp)
