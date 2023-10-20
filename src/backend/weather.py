@@ -4,21 +4,23 @@ import datetime
 import time
 import json
 
-# Replace 'YOUR_API_KEY' with your actual OpenWeatherMap API key
-api_key = 'YOUR_API_KEY'
-
-# Replace 'YOUR_CITY' and 'YOUR_COUNTRY' with the desired location
-city = 'YOUR_CITY'
-country = 'YOUR_COUNTRY'
-
 # API documentation: https://open-meteo.com/en/docs
 # API URLs for daily and weekly forecasts. (hard coded for now)
-meteo_forecast_url = "https://api.open-meteo.com/v1/forecast?latitude=39.9523&longitude=-75.1638&hourly=temperature_2m&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime"
 meteo_weather_url = "https://api.open-meteo.com/v1/forecast?latitude=39.9523&longitude=-75.1638&current=temperature_2m,precipitation,rain,weathercode&hourly=temperature_2m&daily=temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_probability_max&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime&timezone=America%2FNew_York"
 
 
-def get_current_temp():
+# Gets all weather data from weather API and populates response json for us to parse
+def get_weather_data():
     response = requests.get(meteo_weather_url)
+    if response.status_code == 200:
+        return response
+    else:
+        print("Error connecting to API: ", response.status_code)
+
+
+# Gets the current temperature from response in degrees farenheit
+def get_current_temp(response):
+    # response = requests.get(meteo_weather_url)
     data = response.json()
 
     if "current" in data.keys():
@@ -31,20 +33,19 @@ def get_current_temp():
 
 
 # Returns the current WMO weathercode
-def get_current_weather_code():
-    response = requests.get(meteo_weather_url)
+def get_current_weather_code(response):
+    # response = requests.get(meteo_weather_url)
     data = response.json()
 
     if "current" in data.keys():
         if "weathercode" in data["current"]:
             weather_code = data["current"]["weathercode"]
-            print(weather_code)
             return weather_code
     else:
         print("ERROR: not found")
 
 
-# Translates weather code integer to string representation
+# Translates weather code integer to weather conditions
 # Ex: 0 = clear sky, 1 = mainly clear, 2 = partly cloudly, etc
 def translate_weather_code(weather_code):
     if weather_code == 0:
@@ -98,11 +99,11 @@ def translate_weather_code(weather_code):
     elif weather_code == 99:
         return "Heavy hail thunderstorm"
     else:
-        return "Unknown"
+        return ""
 
 
-def get_temp():
-    response = requests.get(meteo_forecast_url)
+# What was I cooking here
+def get_temp(response):
     data = response.json()
     # print(data)
 
@@ -133,7 +134,9 @@ def get_temp():
 
 
 if __name__ == "__main__":
-    weather_code = get_current_weather_code()
-    #weather = translate_weather_code(weather_code)
-    #print(weather)
-    #get_current_temp()
+    response = get_weather_data()
+    if response:
+        weather_code = get_current_weather_code(response)
+        weather = translate_weather_code(weather_code)
+        print(weather)
+        get_current_temp(response)
