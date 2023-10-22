@@ -54,6 +54,18 @@ A user wants to create a sub-profile for someone else who also uses the mirror a
 - When the user inputs "Sunday" and "5 p.m." into the Scheduled Switching field, it should accept and save this schedule for the sub-profile without errors.
 - After making changes, the user can save their progress and at 5 p.m. on a Sunday, the mirror should automatically switch to the newly created sub-profile.
 
+## Use Case 5 - Rainy Day Fit​
+A user that wants to be informed on what to wear throughout the day as they are rushing to get ready to leave the house for work.
+1. Steps in front of the mirror as they do their daily morning routine in the bathroom.
+2. Is detected by the camera, which turns on the screen display behind the 2 way mirror.
+3. Sees a heavy rain forecast in the afternoon displayed by the weather widget, despite being currently clear as day.
+4. Remembers to grab their raincoat and umbrella and goes about their day avoiding the uncomfortableness of cold rain.
+
+### Assertions
+- When a user stands in front of the mirror, the camera detects their face and triggers the display to turn on. 
+- The Raspberry Pi, which controls the mirror, successfully retrieves weather data from the Open Weather API and displays a heavy rain forecast for the afternoon, even if the current   weather is clear. 
+- The user remembers to grab their raincoat and umbrella before heading out. 
+
 ## Use Case 6 - Todo List
 A user that has a busy day full of important tasks to do wants to reference his Todo list on the cloud when they’re at home.
 1. Opens up the smart mirror companion app and fills out his important task of checking in with his family member weekly after work.
