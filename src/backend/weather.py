@@ -144,6 +144,11 @@ def get_uv(response):
     else:
         print("ERROR: UV not found")
 
+def displayForecast(weather, current_temp, uv):
+    print(f'Weather forecast:')
+    print(f'Description: {weather}')
+    print(f'Temperature: {current_temp}°F')
+    print(f'UV Index: {uv}')
 
 if __name__ == "__main__":
     response = get_weather_data()
@@ -153,6 +158,7 @@ if __name__ == "__main__":
         weather = translate_weather_code(weather_code)
         current_temp = get_current_temp(response)
 
+        displayForecast(weather, current_temp, uv)
         #print(weather)
         #print(uv)
         #print(current_temp)
