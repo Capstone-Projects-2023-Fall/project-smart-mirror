@@ -223,3 +223,172 @@ Retrieve a list of events from a specific calendar.
 ## Module Class API Documentation
 **Description:**    
 The Module class API allows the system to interface with subsequent submodules and widgets. 
+
+## Attributes
+
+- `status (str)`: The current status of the module.
+- `lastUpdate (int)`: The timestamp of the last update.
+- `type (str)`: The type of the module.
+- `permissionLevel (int const)`: The permission level of the module (constant).
+
+### POST/module/create
+**Description:**    
+Create a new module and initialize it.
+
+**Valid Request Body:**     
+```json
+{
+    "title": String,
+}
+```
+
+**Successful call:**
+```json
+{
+    "status": 201,
+    "body": "A new module has been successfully created and initialized."
+}
+```
+
+**Failed call:**
+```json
+{
+    "status": 400,
+    "body": "Invalid request body."
+}
+```
+
+### GET/module/status
+**Description:**    
+Retrieve the current status of the module.
+
+**Valid Request Body:**     
+```json
+{
+    "title": No request body is required.
+}
+```
+
+**Successful call:**
+```json
+{
+    "status": 200,
+    "body": "The current status of the module is: {status}"
+}
+```
+
+**Failed call:**
+```json
+{
+    "status": 400,
+    "body": "Invalid request body."
+}
+```
+
+### PUT/module/pause
+**Description:**    
+Pause the module's operations.
+
+**Valid Request Body:**     
+```json
+{
+    "title": No request body is required.
+}
+```
+
+**Successful call:**
+```json
+{
+    "status": 200,
+    "body": "Module operations have been paused."
+}
+```
+
+**Failed call:**
+```json
+{
+    "status": 400,
+    "body": "Module operations are already paused."
+}
+```
+
+### PUT/module/resume
+**Description:**    
+Resume the module's operations.
+
+**Valid Request Body:**     
+```json
+{
+    "title": No request body is required.
+}
+```
+
+**Successful call:**
+```json
+{
+    "status": 200,
+    "body": "Module operations have been resumed."
+}
+```
+
+**Failed call:**
+```json
+{
+    "status": 400,
+    "body": "Module operations are already active."
+}
+```
+
+### DELETE/module/disable
+**Description:**    
+Disable the module.
+
+**Valid Request Body:**     
+```json
+{
+    "title": No request body is required.
+}
+```
+
+**Successful call:**
+```json
+{
+    "status": 200,
+    "body": "The module has been disabled."
+}
+```
+
+**Failed call:**
+```json
+{
+    "status": 400,
+    "body": "The module is already disabled."
+}
+```
+
+### PUT/module/refresh
+**Description:**    
+Refresh the module's data.
+
+**Valid Request Body:**     
+```json
+{
+    "title": No request body is required.
+}
+```
+
+**Successful call:**
+```json
+{
+    "status": 200,
+    "body": "Module data has been refreshed."
+}
+```
+
+**Failed call:**
+```json
+{
+    "status": 400,
+    "body": "Module is not active or initialized."
+}
+```
