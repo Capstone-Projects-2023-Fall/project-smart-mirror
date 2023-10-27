@@ -3,35 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Information Box</title>
+    <title>Smart Mirror</title>
     <style>
-        
         .center {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh; /* viewport height */
+            height: 100vh;
         }
 
-       
+        .title {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
         .info-box {
-            width: 300px; /* Adjust width as needed */
-            height: 150px; /* Adjust height as needed */
+            width: 300px;
+            height: 150px;
             border: 1px solid #ccc;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px; /* Spacing between the box and buttons */
-            background-color: #f9f9f9; /* Light gray background */
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
         }
 
-    
         button {
-            margin-right: 10px; /* Space between the buttons */
+            margin-right: 10px;
         }
 
-     
         button:last-child {
             margin-right: 0;
         }
@@ -39,9 +40,8 @@
 </head>
 <body>
     <div class="center">
-        <div class="info-box">
-            Information goes here
-        </div>
+        <div class="title">Smart Mirror</div>
+        <div class="info-box">Information goes here</div>
         <button>Show Temperature</button>
         <button>Show Time</button>
     </div>
