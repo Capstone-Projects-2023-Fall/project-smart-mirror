@@ -3,17 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Temperature and Time Buttons</title>
+    <title>Information Box</title>
     <style>
+        
+        .center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* viewport height */
+        }
+
+       
+        .info-box {
+            width: 300px; /* Adjust width as needed */
+            height: 150px; /* Adjust height as needed */
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px; /* Spacing between the box and buttons */
+            background-color: #f9f9f9; /* Light gray background */
+        }
+
+    
         button {
-            margin-right: 10px;
+            margin-right: 10px; /* Space between the buttons */
+        }
+
+     
+        button:last-child {
+            margin-right: 0;
         }
     </style>
 </head>
 <body>
-
-<button>Show Temperature</button>
-<button>Show Time</button>
-
+    <div class="center">
+        <div class="info-box">
+            Information goes here
+        </div>
+        <button>Show Temperature</button>
+        <button>Show Time</button>
+    </div>
 </body>
 </html>
