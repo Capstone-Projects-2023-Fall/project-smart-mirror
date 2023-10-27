@@ -5,7 +5,7 @@ from src.backend.module import Module
 
 @pytest.fixture
 def module():
-    return Module('WidgetTest')
+    return Module("WidgetTest")
 
 def test_get_status(module):
     # Initially, the status should be 'Uninitialized'
@@ -18,13 +18,17 @@ def test_pauseModule(module):
 
 def test_widgetCreation(module):
     widget = module.get_widgetInstance()
-    print("T")
-    assert widget != 'NULL'
+    assert widget != None
 
 def test_widgetInitialization(module):
     # Test pausing the module
     
-    assert module.widgetInstance.TestValue == 'Set'
+    assert module.widgetInstance.testValue == 'Set'
+
+def test_ModuleRestart(module):
+    # Test pausing the module
+    module.restartModule()
+    assert module.get_status() == 'OK'
 
 
 def test_Initialize(module):
