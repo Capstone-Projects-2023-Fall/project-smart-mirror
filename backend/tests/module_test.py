@@ -1,7 +1,7 @@
 import time
 import pytest
 
-from src.backend.module import Module
+from module import Module
 
 @pytest.fixture
 def module():

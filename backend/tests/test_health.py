@@ -1,6 +1,6 @@
 import pytest
-from src.backend.health import calculate_bmi, displayBMI
-from src.backend.health import get_steps
+from health import calculate_bmi, displayBMI
+from health import get_steps
 
 def test_bmi():
     assert calculate_bmi(70, 165) == 23.7

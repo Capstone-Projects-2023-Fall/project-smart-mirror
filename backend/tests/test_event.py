@@ -1,6 +1,6 @@
 import pytest
 
-from src.backend.event import Event
+from event import Event
 
 def test_getTitle():
     testObj = Event('Test')
