@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 import requests
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='gui/templates')
 
 # API URLs for daily and weekly forecasts. (hard coded for now)
 meteo_weather_url = "https://api.open-meteo.com/v1/forecast?latitude=39.9523&longitude=-75.1638&current=temperature_2m,precipitation,rain,weathercode&hourly=temperature_2m&daily=temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_probability_max&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime&timezone=America%2FNew_York"
@@ -99,11 +99,19 @@ def get_uv(response):
 @app.route('/')
 def index():
     response = get_weather_data()
+    
     if response:
         uv = get_uv(response)
         weather_code = get_current_weather_code(response)
         weather = translate_weather_code(weather_code)
         current_temp = get_current_temp(response)
+
+        
+        print(response)
+        print(weather)
+        print(current_temp)
+        print(uv)
+
         return render_template('index.html', weather=weather, current_temp=current_temp, uv=uv)
     else:
         return "Unable to fetch weather data."
