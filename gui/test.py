@@ -113,7 +113,7 @@ def index():
         print(current_temp)
         print(uv)
 
-        return render_template('index.html', weather=weather, current_temp=current_temp, uv=uv)
+        return render_template('demo.html', weather=weather, current_temp=current_temp, uv=uv)
     else:
         return "Unable to fetch weather data."
 
