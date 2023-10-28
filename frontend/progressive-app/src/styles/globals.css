@@ -4,6 +4,8 @@
 
 :root { 
     --primary: #554ACC;
+    --secondary: #4A3733;
     --background: #FEFEFE;
     --text: #262825;
+    --error: #EF5350;
 }

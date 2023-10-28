@@ -7,8 +7,10 @@ export default {
     extend: {
       colors: {
         primary: "var(--primary)",
+        secondary: "var(--secondary)",
         background: "var(--background)",
         text: "var(--text)",
+        error: "var(--error)",
       },
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],

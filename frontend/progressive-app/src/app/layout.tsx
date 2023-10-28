@@ -1,6 +1,8 @@
 import "~/styles/globals.css";
-
 import localFont from "next/font/local";
+import { ReactNode } from "react";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { cookies } from "next/headers";
 
 const satoshi = localFont({
   src: [
@@ -44,11 +46,16 @@ export const metadata = {
   icons: [{ rel: "apple-touch-icon", url: "/icon.png" }],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
+  const supabase = createServerComponentClient({ cookies });
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
   return (
     <html lang="en">
       <body className={satoshi.className}>{children}</body>
