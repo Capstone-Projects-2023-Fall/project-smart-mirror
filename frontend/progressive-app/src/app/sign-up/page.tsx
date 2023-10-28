@@ -12,7 +12,11 @@ const SignUpSchema = Yup.object().shape({
   email: Yup.string()
     .email("Invalid email")
     .required("Enter an email/username"),
-  password: Yup.string().required("Enter a password"),
+  password: Yup.string()
+    .test("len", "Password must be greater than 5 characters", (val) => {
+      if (val) val.length <= 5;
+    })
+    .required("Enter a password"),
 });
 
 async function signUp(formData: { email: string; password: string }) {
@@ -21,7 +25,7 @@ async function signUp(formData: { email: string; password: string }) {
     email: formData.email,
     password: formData.password,
     options: {
-      emailRedirectTo: `${location.origin}/auth/callback`,
+      emailRedirectTo: `${location.origin}`,
     },
   });
 
@@ -32,7 +36,8 @@ export default function page({}: Props) {
   return (
     <main className="flex h-screen flex-col items-center justify-center p-4">
       <div className="flex h-full w-full flex-col items-center justify-center sm:h-2/3 sm:w-1/3">
-        <h1 className="text-text mb-16 text-3xl font-black">Sign Up</h1>
+        <h1 className="text-text mb-2 text-3xl font-black">Sign Up</h1>
+        <div className="bg-primary mb-16 h-0.5 w-2/3"></div>
         <Formik
           initialValues={{ email: "", password: "" }}
           validationSchema={SignUpSchema}
@@ -92,7 +97,7 @@ export default function page({}: Props) {
                 type="submit"
                 className="bg-primary text-background h-12 w-1/2 rounded-xl font-bold hover:scale-110"
               >
-                Submit
+                Create account
               </button>
             </Form>
           )}
