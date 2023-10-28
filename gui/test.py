@@ -116,6 +116,11 @@ def index():
         return render_template('demo.html', weather=weather, current_temp=current_temp, uv=uv)
     else:
         return "Unable to fetch weather data."
+    
+@app.route('/hello')
+def hello_world():
+    return "Hello, World!"
+
 
 if __name__ == "__main__":
     app.run(debug=True)
