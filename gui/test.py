@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 import requests
 
-app = Flask(__name__, template_folder='gui/templates')
+app = Flask(__name__, template_folder='templates')
 
 
 # API URLs for daily and weekly forecasts. (hard coded for now)
