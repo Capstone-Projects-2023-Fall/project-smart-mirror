@@ -3,15 +3,21 @@
  * for Docker builds.
  */
 
-await import("./src/env.mjs");
 
+import next from 'next';
 /** @type {import("next").NextConfig} */
 import withPWA from 'next-pwa'
 
-const config = withPWA({
+
+const config = {
+    ...withPWA({
     dest: 'public',
     register: true,
     skipWaiting: true,
-})
+    }), 
+    experimental: {
+        serverActions: true
+    }
+}
 
 export default config;
