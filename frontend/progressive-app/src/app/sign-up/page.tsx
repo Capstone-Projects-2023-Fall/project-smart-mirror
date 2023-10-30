@@ -23,7 +23,7 @@ async function signUp(formData: { email: string; password: string }) {
     email: formData.email,
     password: formData.password,
     options: {
-      emailRedirectTo: `${location.origin}/auth/callback`,
+      emailRedirectTo: `${location.origin}`,
     },
   });
 
