@@ -24,7 +24,6 @@ export default async function Settings({}: Props) {
         .from("profiles")
         .upsert({
           id: user.data.user?.id,
-          nickname: "test",
           location: JSON.stringify({
             lat: position.coords.latitude,
             lon: position.coords.longitude,
