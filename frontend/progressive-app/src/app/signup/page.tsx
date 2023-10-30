@@ -3,8 +3,6 @@ import React from "react";
 import * as Yup from "yup";
 import { Field, Form, Formik } from "formik";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { motion } from "framer-motion";
-import { isErrored } from "stream";
 
 type Props = {};
 
@@ -23,7 +21,7 @@ async function signUp(formData: { email: string; password: string }) {
     email: formData.email,
     password: formData.password,
     options: {
-      emailRedirectTo: `${location.origin}/auth/callback`,
+      emailRedirectTo: `${location.origin}`,
     },
   });
 
