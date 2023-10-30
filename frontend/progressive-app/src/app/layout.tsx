@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { ReactNode } from "react";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
+import Navbar from "~/components/navbar/navbar";
 
 const satoshi = localFont({
   src: [
@@ -58,7 +59,10 @@ export default async function RootLayout({
   } = await supabase.auth.getUser();
   return (
     <html lang="en">
-      <body className={satoshi.className}>{children}</body>
+      <body className={satoshi.className}>
+        <Navbar user={user}></Navbar>
+        <main className="flex h-screen flex-col bg-background">{children}</main>
+      </body>
     </html>
   );
 }

@@ -1,5 +1,9 @@
 export default function Home() {
   return (
-    <main className="bg-background flex min-h-screen flex-col items-center justify-center"></main>
+    <div>
+      <h1 className="text-3xl font-bold text-text">
+        Welcome to <span className="font-black text-primary">Smart Mirror</span>
+      </h1>
+    </div>
   );
 }
