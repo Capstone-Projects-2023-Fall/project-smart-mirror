@@ -1,46 +1,45 @@
 "use client";
 import React from "react";
 import * as Yup from "yup";
-import { Field, Form, Formik } from "formik";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { motion } from "framer-motion";
-import { isErrored } from "stream";
+import { Formik, Form, Field } from "formik";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
-const SignUpSchema = Yup.object().shape({
+const SignInSchema = Yup.object().shape({
   email: Yup.string()
     .email("Invalid email")
     .required("Enter an email/username"),
-  password: Yup.string()
-    .min(6, "Password must be at least 6 characters")
-    .required("Enter a password"),
+  password: Yup.string().required("Enter a password"),
 });
 
-async function signUp(formData: { email: string; password: string }) {
+async function signIn(formData: { email: string; password: string }) {
   const supabase = createClientComponentClient();
-  const { error } = await supabase.auth.signUp({
+  const { error } = await supabase.auth.signInWithPassword({
     email: formData.email,
     password: formData.password,
-    options: {
-      emailRedirectTo: `${location.origin}/auth/callback`,
-    },
   });
-
-  console.log(error);
+  return error;
 }
 
 export default function page({}: Props) {
+  const router = useRouter();
+
   return (
     <div className="flex h-screen w-screen flex-col items-center">
       <div className="flex h-full w-full flex-col items-center justify-center sm:h-2/3 sm:w-1/3">
-        <h1 className="mb-2 text-3xl font-black text-text">Sign Up</h1>
+        <h1 className="mb-2 text-3xl font-black text-text">Sign In</h1>
         <div className="mb-16 h-0.5 w-2/3 bg-primary"></div>
         <Formik
           initialValues={{ email: "", password: "" }}
-          validationSchema={SignUpSchema}
+          validationSchema={SignInSchema}
           onSubmit={(values) => {
-            signUp(values);
+            const error = signIn(values);
+            console.log(error);
+            if (error !== null) {
+              router.push(`${location.origin}/dashboard`);
+            }
           }}
         >
           {({ errors, touched, values }) => (
@@ -54,7 +53,7 @@ export default function page({}: Props) {
                       : "top-3 group-focus-within:-top-2 group-focus-within:text-sm"
                   }`}
                 >
-                  Username/Email
+                  Email
                 </label>
                 <Field
                   name="email"
@@ -95,7 +94,7 @@ export default function page({}: Props) {
                 type="submit"
                 className="h-12 w-1/2 rounded-xl bg-primary font-bold text-background hover:scale-110"
               >
-                Create account
+                Sign in
               </button>
             </Form>
           )}

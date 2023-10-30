@@ -9,6 +9,7 @@ export default {
         primary: "var(--primary)",
         secondary: "var(--secondary)",
         background: "var(--background)",
+        "background-secondary": "var(--background-secondary)",
         text: "var(--text)",
         error: "var(--error)",
       },

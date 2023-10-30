@@ -5,7 +5,21 @@
 :root { 
     --primary: #554ACC;
     --secondary: #4A3733;
-    --background: #FEFEFE;
+    --background-secondary: #FEFEFE;
+    --background: #e8eff1;
     --text: #262825;
     --error: #EF5350;
 }
+
+body::-webkit-scrollbar {
+    width: 0.25rem;
+}
+
+body::-webkit-scrollbar-track {
+    background: var(--background);
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background: var(--text);
+    border-radius: 100px;
+  }
