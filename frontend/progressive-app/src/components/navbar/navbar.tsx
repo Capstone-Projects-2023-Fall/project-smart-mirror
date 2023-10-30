@@ -1,17 +1,16 @@
 "use client";
 import React, { useState } from "react";
 import Logo from "./logo";
-import { mobileNav, navData, dashboardButton } from "~/lib/data";
+import { mobileNav } from "~/lib/data";
 import Link from "next/link";
-import type { User } from "@supabase/supabase-js";
+import type { NavItem } from "~/lib/data";
 
 type Props = {
-  user: User | null;
+  items: NavItem[];
 };
 
-export default function Navbar({ user }: Props) {
+export default function Navbar({ items }: Props) {
   const [isOpen, setIsOpen] = useState(false);
-  console.log("user: ", user);
 
   return (
     <nav
@@ -24,7 +23,9 @@ export default function Navbar({ user }: Props) {
           <Logo></Logo>
           <div
             className={`ml-auto mr-4 md:hidden`}
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => {
+              setIsOpen(!isOpen);
+            }}
           >
             {isOpen ? (
               <svg
@@ -58,53 +59,28 @@ export default function Navbar({ user }: Props) {
               : "hidden md:mr-8 md:flex md:w-1/2 md:flex-row md:items-center md:justify-end"
           }`}
         >
-          {!user
-            ? Object.entries(navData).map(([key, value]) => (
-                <li
-                  className="hover:bg-gray group flex w-full flex-row border-b-2 border-text px-8 py-4 md:justify-center md:border-none md:px-2"
-                  key={key}
+          {items.map((item, index) => (
+            <li
+              className="hover:bg-gray flex w-full flex-row border-b-2 border-text px-8 py-4 md:justify-center md:border-none md:px-2"
+              key={index}
+            >
+              <Link
+                href={item.route}
+                className="group flex flex-row font-bold text-text duration-300 ease-in-out hover:text-primary"
+              >
+                <svg
+                  className="mr-2 hover:text-primary"
+                  aria-hidden="false"
+                  xmlns="https://www.w3.org/2000/svg"
+                  viewBox={item.viewBox}
+                  height="1.5em"
                 >
-                  <Link
-                    href={value.route}
-                    className="flex flex-row font-bold text-text group-hover:text-primary"
-                  >
-                    <svg
-                      className="mr-2 hover:text-primary"
-                      aria-hidden="false"
-                      xmlns="https://www.w3.org/2000/svg"
-                      data-icon={value.dataIcon}
-                      viewBox={value.viewBox}
-                      height="1.5em"
-                    >
-                      <path fill="currentColor" d={value.icon} />
-                    </svg>
-                    {value.name}
-                  </Link>
-                </li>
-              ))
-            : Object.entries(dashboardButton).map(([key, value]) => (
-                <li
-                  className="hover:bg-gray group flex max-w-full flex-row border-b-2 border-text px-8 py-4 md:justify-center md:border-none md:px-2"
-                  key={key}
-                >
-                  <Link
-                    href={value.route}
-                    className="flex flex-row font-bold text-text group-hover:text-primary"
-                  >
-                    <svg
-                      className="mr-2 hover:text-primary"
-                      aria-hidden="false"
-                      xmlns="https://www.w3.org/2000/svg"
-                      data-icon={value.dataIcon}
-                      viewBox={value.viewBox}
-                      height="1.5em"
-                    >
-                      <path fill="currentColor" d={value.icon} />
-                    </svg>
-                    {value.name}
-                  </Link>
-                </li>
-              ))}
+                  <path fill="currentColor" d={item.svg} />
+                </svg>
+                {item.label}
+              </Link>
+            </li>
+          ))}
         </ul>
       </div>
     </nav>

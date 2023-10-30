@@ -4,8 +4,8 @@ type Props = {};
 
 export default function Searchbar({}: Props) {
   return (
-    <div className="h-full w-full">
-      <div className="bg-background-secondary h-12 w-96 rounded-full border-4"></div>
+    <div className="bg-background-secondary h-full w-full rounded-xl p-4">
+      <div className="bg-background-secondary h-8 w-full rounded-full border-2 p-4"></div>
     </div>
   );
 }

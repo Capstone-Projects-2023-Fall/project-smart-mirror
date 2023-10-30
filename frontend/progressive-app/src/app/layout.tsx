@@ -4,6 +4,9 @@ import { ReactNode } from "react";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import Navbar from "~/components/navbar/navbar";
+import { navDataLoggedIn, navDataLoggedOut } from "~/lib/data";
+
+export const revalidate = 0;
 
 const satoshi = localFont({
   src: [
@@ -60,7 +63,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={satoshi.className}>
-        <Navbar user={user}></Navbar>
+        <Navbar items={user ? navDataLoggedIn : navDataLoggedOut}></Navbar>
         <main className="flex h-screen flex-col bg-background">{children}</main>
       </body>
     </html>

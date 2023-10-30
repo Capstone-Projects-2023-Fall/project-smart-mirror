@@ -1,11 +1,15 @@
-"use client";
 import React from "react";
 import { motion } from "framer-motion";
 import Sidebar from "./components/navbar/sidebar";
-import Searchbar from "./components/navbar/searchbar";
+import Settings from "./components/settings/settings";
 
 type Props = {};
 
 export default function page({}: Props) {
-  return <Sidebar></Sidebar>;
+  return (
+    <div className="my-20 flex flex-row justify-between">
+      <Sidebar></Sidebar>
+      <Settings></Settings>
+    </div>
+  );
 }

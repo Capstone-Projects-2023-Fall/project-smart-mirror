@@ -43,7 +43,11 @@ export default function page({}: Props) {
           }}
         >
           {({ errors, touched, values }) => (
-            <Form className="flex w-full flex-col items-center">
+            <Form
+              className="flex w-full flex-col items-center"
+              action="/auth/login"
+              method="post"
+            >
               <div className="username-field group relative mb-8 flex w-full flex-col">
                 <label
                   htmlFor="email"
