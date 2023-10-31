@@ -56,12 +56,12 @@ export default function Navbar({ items }: Props) {
           className={`w-full ${
             isOpen
               ? ""
-              : "hidden md:mr-8 md:flex md:w-1/2 md:flex-row md:items-center md:justify-end"
+              : "hidden md:mr-8 md:flex md:max-w-xl md:flex-row md:items-center md:justify-end"
           }`}
         >
           {items.map((item, index) => (
             <li
-              className="hover:bg-gray flex w-full flex-row border-b-2 border-text px-8 py-4 md:justify-center md:border-none md:px-2"
+              className="hover:bg-gray flex w-full flex-row border-b-2 border-text px-8 py-4 md:justify-end md:border-none md:px-2"
               key={index}
             >
               <Link
