@@ -1,6 +1,7 @@
 import requests
 from datetime import datetime
 import datetime
+import urllib.parse
 import time
 import json
 
@@ -9,9 +10,50 @@ import json
 meteo_weather_url = "https://api.open-meteo.com/v1/forecast?latitude=39.9523&longitude=-75.1638&current=temperature_2m,precipitation,rain,weathercode&hourly=temperature_2m&daily=temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_probability_max&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime&timezone=America%2FNew_York"
 
 
+# Gets the coordinates from a search term, can be a city name or a zip code
+def get_coords_from_API(name):
+    url = "https://geocoding-api.open-meteo.com/v1/search?"
+    params = {
+        "name": name,
+        "count": 1,
+        "language": "en",
+        "format": "json"
+    }
+    url = url + urllib.parse.urlencode(params)
+    return url
+
+
+# Builds api URL from a given location
+# Doesn't work with evil time zones yet
+def build_url_from_coords(lat, long):
+    base_url = "https://api.open-meteo.com/v1/forecast?"
+    params = {
+        "latitude": lat,
+        "longitude": long,
+        "current": "temperature_2m,precipitation,rain,weathercode",
+        "hourly": "temperature_2m",
+        "daily": "temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_probability_max",
+        "temperature_unit": "fahrenheit",
+        "windspeed_unit": "mph",
+        "precipitation_unit": "inch",
+        "timeformat": "unixtime",
+        "timezone": "America/New_York",
+    }
+    url = base_url + urllib.parse.urlencode(params)
+    return url
+
+
+# Check if an argument is a decimal or float
+def is_float(string):
+    if string.replace(".", "").isnumeric():
+        return True
+    else:
+        return False
+
+
 # Gets all weather data from weather API and populates response json for us to parse
-def get_weather_data():
-    response = requests.get(meteo_weather_url)
+def get_weather_data(URL):
+    response = requests.get(URL)
     if response.status_code == 200:
         return response
     else:
@@ -139,10 +181,11 @@ def get_uv(response):
     if "daily" in data.keys():
         if "uv_index_max" in data["daily"]:
             uv = data["daily"]["uv_index_max"][0]
-            #print(uv)
+            # print(uv)
             return uv
     else:
         print("ERROR: UV not found")
+
 
 def displayForecast(weather, current_temp, uv):
     print(f'Weather forecast:')
@@ -150,15 +193,17 @@ def displayForecast(weather, current_temp, uv):
     print(f'Temperature: {current_temp}°F')
     print(f'UV Index: {uv}')
 
+
 if __name__ == "__main__":
-    response = get_weather_data()
+    #city_search = get_coords_from_API("19128")
+    philly_lat = 39.9523
+    philly_long = -75.1638
+
+    URL = build_url_from_coords(philly_lat, philly_long)
+    response = get_weather_data(URL)
     if response:
         uv = get_uv(response)
         weather_code = get_current_weather_code(response)
         weather = translate_weather_code(weather_code)
         current_temp = get_current_temp(response)
-
         displayForecast(weather, current_temp, uv)
-        #print(weather)
-        #print(uv)
-        #print(current_temp)
