@@ -159,7 +159,7 @@ def get_uv(response):
         print("ERROR: UV not found")
 
 
-def extract_name(response):
+def parse_geocode_response(response):
     data = response.json()
     retVal = {
         "name": "",
@@ -219,7 +219,7 @@ def display_forecast(weather, current_temp, uv):
 if __name__ == "__main__":
     city_search = get_coords_from_API("19128")
     if city_search:
-        parsed_values = extract_name(city_search)
+        parsed_values = parse_geocode_response(city_search)
         if parsed_values:
             lat = parsed_values["latitude"]
             long = parsed_values["longitude"]
