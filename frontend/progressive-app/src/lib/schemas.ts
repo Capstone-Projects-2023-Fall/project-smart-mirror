@@ -5,7 +5,10 @@ export const SignUpSchema = Yup.object().shape({
     .email("Invalid email")
     .required("Enter an email/username"),
   password: Yup.string()
-    .min(6, "Password must be at least 6 characters")
+    .matches(
+      /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+      "Password must contain at least 8 characters, one uppercase, one number and one special case character.",
+    )
     .required("Enter a password"),
   confirmPassword: Yup.string().oneOf(
     [Yup.ref("password")],

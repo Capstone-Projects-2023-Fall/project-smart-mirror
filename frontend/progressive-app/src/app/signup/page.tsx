@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Field, Form, Formik } from "formik";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { motion } from "framer-motion";
-import { SignUpSchema } from "~/lib/schemas";
+import SignUpForm from "./sign_up_form";
 
 type Props = {};
 
@@ -48,9 +48,7 @@ export default function SignUp({}: Props) {
       >
         <h1 className="font-black text-text">Sign Up</h1>
         <div className="m-8 h-1 w-1/2 bg-primary" />
-        <>
-          
-        </>
+        <SignUpForm handleSubmit={handleSubmit}></SignUpForm>
       </motion.div>
     </main>
   );
