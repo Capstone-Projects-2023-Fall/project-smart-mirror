@@ -69,7 +69,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={satoshi.className}>
         <Navbar items={user ? navDataLoggedIn : navDataLoggedOut}></Navbar>
-        <main className="flex h-screen flex-col bg-background">{children}</main>
+        {children}
       </body>
     </html>
   );

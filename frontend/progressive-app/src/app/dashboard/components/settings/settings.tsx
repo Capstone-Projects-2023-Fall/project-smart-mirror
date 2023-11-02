@@ -5,7 +5,7 @@ import { useState } from "react";
 
 type Props = {};
 
-export default async function Settings({}: Props) {
+export default function Settings({}: Props) {
   const [checked, setChecked] = useState(false);
   const supabase = createClientComponentClient();
 

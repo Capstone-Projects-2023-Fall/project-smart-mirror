@@ -9,7 +9,7 @@ type Props = {};
 
 async function login(formData: { email: string; password: string }) {
   const supabase = createClientComponentClient();
-  const { error } = await supabase.auth.signInWithPassword({
+  const { error } = await supabase.signInWithPassword({
     email: formData.email,
     password: formData.password,
   });
