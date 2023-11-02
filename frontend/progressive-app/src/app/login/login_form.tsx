@@ -10,7 +10,7 @@ type Props = {
   }) => Promise<void>;
 };
 
-export default function SignUpForm({ handleSubmit }: Props) {
+export default function LoginForm({ handleSubmit }: Props) {
   return (
     <>
       <Formik
@@ -74,44 +74,6 @@ export default function SignUpForm({ handleSubmit }: Props) {
                 </span>
               </label>
             </section>
-
-            {/* CONFIRMED PASSWORD FIELD */}
-            {!errors.password && values.password ? (
-              <motion.section
-                className="group relative mb-4 w-4/5 md:w-2/5"
-                initial={{ opacity: 0, top: -20 }}
-                animate={{ opacity: 100, top: 0 }}
-              >
-                <Field
-                  className="h-12 w-full rounded-xl border-4 border-text bg-background pl-4 outline-none focus-within:border-primary"
-                  type="text"
-                  name="confirmPassword"
-                  autocomplete="new-password"
-                />
-                <div
-                  className={`select-none font-bold text-error ${
-                    errors.confirmPassword && touched.confirmPassword
-                      ? "opacity-100"
-                      : "opacity-0"
-                  }`}
-                >
-                  {errors.confirmPassword
-                    ? errors.confirmPassword
-                    : "placeholder text"}
-                </div>
-                <label
-                  className={`pointer-events-none absolute left-4 bg-background px-3 text-base font-medium duration-300 ease-in-out group-focus-within:-top-3 group-focus-within:text-sm group-focus-within:text-primary ${
-                    values.confirmPassword !== ""
-                      ? "-top-3 text-sm text-text"
-                      : "top-3"
-                  }`}
-                >
-                  <span className="border-text ease-in group-focus-within:border-b-2 ">
-                    Confirm your password
-                  </span>
-                </label>
-              </motion.section>
-            ) : null}
 
             {/* SUBMIT BUTTON */}
             <section className="flex w-4/5 flex-col items-center font-bold md:w-2/5 md:items-end">
