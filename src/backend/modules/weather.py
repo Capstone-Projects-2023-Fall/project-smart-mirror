@@ -216,6 +216,29 @@ def display_forecast(weather, current_temp, uv):
     print(f'UV Index: {uv}')
 
 
+def find_key_in_dict(d, key_to_find):
+    if isinstance(d, dict):
+        for key, value in d.items():
+            if key == key_to_find:
+                return value
+            elif isinstance(value, dict):
+                result = find_key_in_dict(value, key_to_find)
+                if result is not None:
+                    return result
+    return None
+
+
+def find_keys_in_dict(dictionary, key_to_find):
+    found_values = []
+    if isinstance(dictionary, dict):
+        for key, value in dictionary.items():
+            if key == key_to_find:
+                found_values.append(value)
+            elif isinstance(value, dict):
+                found_values.extend(find_keys_in_dict(value, key_to_find))
+
+    return found_values
+
 if __name__ == "__main__":
     city_search = get_coords_from_API("19128")
     if city_search:
@@ -225,14 +248,18 @@ if __name__ == "__main__":
             long = parsed_values["longitude"]
             city = parsed_values["name"]
 
+
             print(city)
             URL = build_url_from_coords(lat, long)
             response = get_weather_data(URL)
             if response:
                 uv = get_uv(response)
+                #uv = find_key_in_dict(response.json(), "uv_index_max")
                 weather_code = get_current_weather_code(response)
                 weather = translate_weather_code(weather_code)
                 current_temp = get_current_temp(response)
+                max_temps = find_keys_in_dict(response.json(), "temperature_2m_max")
+                min_temps = find_keys_in_dict(response.json(), "temperature_2m_min")
                 display_forecast(weather, current_temp, uv)
         else:
             print("Error")
