@@ -1,0 +1,53 @@
+#root {
+  max-width: 1280px;
+  margin: 10px auto;
+  padding: 1rem;
+  text-align: center;
+  background-color: #000; /* Black background for the root element */
+  color: #fff; /* White text color */
+}
+
+.App-header {
+  border: none;
+  border-radius: 15px; 
+  padding: 10;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Lighter shadow for contrast */
+  background-color: #000000; /* Darker background for the header */
+  color: #fff; /* Ensure text in the header is white */
+  border: 2px solid #fff; 
+  
+}
+
+.temperature-display {
+
+  margin: 20px;
+  padding: px;
+  border: none; 
+  border-radius: 10px; 
+  background-color: #000000; /* Darker background for temperature display */
+  color: #fff; /* White text for readability */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  transition: transform 0.3s ease-in-out;
+   
+  
+}
+
+.temperature-display:hover {
+  transform: translateY(-5px); 
+}
+
+.temperature-display p {
+  margin: 10px 0;
+  font-size: 1.2rem; 
+  line-height: 1.5; 
+}
+
+.temperature-display p:first-child {
+  font-size: 1.5rem; 
+  font-weight: bold; 
+}
+
+/* Additional styles to ensure all text is white for better contrast */
+body, p, h1, h2, h3, h4, h5, h6, a, button {
+  color: #fff; /* White text color */
+}
