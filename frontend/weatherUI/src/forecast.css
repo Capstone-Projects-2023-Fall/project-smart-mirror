@@ -1,0 +1,25 @@
+.weekly-forecast {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+    justify-content: center;
+    align-items: stretch;
+  }
+  
+  
+  .weekly-forecast .temperature-display {
+    background-color: #222; 
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  
+  @media (max-width: 768px) {
+    .weekly-forecast {
+      grid-template-columns: 1fr; 
+    }
+  }
+  
