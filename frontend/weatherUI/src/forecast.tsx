@@ -3,12 +3,11 @@ import TemperatureDisplay from './weather';
 import './forecast.css';
 
 const WeeklyForecast = () => {
-  const [displayWeekly, setDisplayWeekly] = useState(false);
   const [forecastData, setForecastData] = useState([]);
 
   useEffect(() => {
     async function fetchWeeklyForecast() {
-      const url = "https://api.open-meteo.com/v1/forecast?latitude=39.9523&longitude=-75.1638&daily=temperature_2m_max,temperature_2m_min,weathercode,precipitation_sum&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime&timezone=America/New_York";
+      const url = "https://api.open-meteo.com/v1/forecast?latitude=39.9523&longitude=-75.1638&hourly=temperature_2m,uv_index&daily=weather_code&temperature_unit=fahrenheit&timezone=America%2FNew_York";
       try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -28,24 +27,24 @@ const WeeklyForecast = () => {
           };
         });
         setForecastData(sevenDayForecast);
-        setDisplayWeekly(true);
       } catch (error) {
-        console.error("There was a problem fetching the weather data:", error);
+        console.error("There was a problem fetching the weekly forecast:", error);
       }
     }
     fetchWeeklyForecast();
   }, []);
 
-  if (!displayWeekly) {
+  if (!forecastData.length) {
     return <div>Loading weekly forecast...</div>;
   }
 
   return (
-    <div className="weekly-forecast">
-      {forecastData.map((dayForecast, index) => (
-        <TemperatureDisplay key={index} weatherData={dayForecast} />
-      ))}
-    </div>
+<div className="weekly-forecast">
+  {forecastData.map((dayForecast, index) => (
+    <DayForecast key={index} weatherData={dayForecast} />
+  ))}
+</div>
+
   );
 };
 

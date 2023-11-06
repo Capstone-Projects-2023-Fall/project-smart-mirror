@@ -31,7 +31,7 @@ const TemperatureDisplay = () => {
 
   useEffect(() => {
     async function fetchWeatherData() {
-      const url = "https://api.open-meteo.com/v1/forecast?latitude=39.9523&longitude=-75.1638&current=temperature_2m,precipitation,rain,weathercode&hourly=temperature_2m&daily=temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_probability_max&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime&timezone=America%2FNew_York";
+      const url = "YOUR_API_ENDPOINT";
       try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -48,31 +48,16 @@ const TemperatureDisplay = () => {
     }
 
     fetchWeatherData();
-    const intervalId = setInterval(fetchWeatherData, 60000);
-
-    const switchToForecastTimer = setTimeout(() => {
-      setShowWeeklyForecast(true);
-    }, 10000);
+    const fetchIntervalId = setInterval(fetchWeatherData, 60000);
+    const toggleViewIntervalId = setInterval(() => {
+      setShowWeeklyForecast(prev => !prev);
+    }, 60000);
 
     return () => {
-      clearInterval(intervalId);
-      clearTimeout(switchToForecastTimer);
+      clearInterval(fetchIntervalId);
+      clearInterval(toggleViewIntervalId);
     };
   }, []);
-
-  useEffect(() => {
-    let switchBackToCurrentWeatherTimer;
-
-    if (showWeeklyForecast) {
-      switchBackToCurrentWeatherTimer = setTimeout(() => {
-        setShowWeeklyForecast(false);
-      }, 10000);
-    }
-
-    return () => {
-      clearTimeout(switchBackToCurrentWeatherTimer);
-    };
-  }, [showWeeklyForecast]);
 
   if (showWeeklyForecast) {
     return <WeeklyForecast />;
