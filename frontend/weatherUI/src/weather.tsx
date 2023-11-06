@@ -31,7 +31,7 @@ const TemperatureDisplay: React.FC = () => {
     uvIndex: 0,
   });
 
-  const hardcodedWeatherCode = 3; 
+  const hardcodedWeatherCode = 2; 
   const hardcodedWeatherDescription = 'Rainy'; 
   const WeatherSVG = getWeatherSVG(hardcodedWeatherCode);
 
