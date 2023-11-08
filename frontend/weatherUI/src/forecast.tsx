@@ -1,50 +1,40 @@
-import { useState, useEffect } from 'react';
-import TemperatureDisplay from './weather';
-import './forecast.css';
+import React from 'react';
+
+const DailyForecast = ({ day, minTemp, maxTemp }) => (
+  <div className="daily-forecast">
+    <p className="day">{day}</p>
+    <div className="temperatures">
+      <p className="temperature min-temp">{minTemp}°F</p>
+      <p className="temperature max-temp">{maxTemp}°F</p>
+    </div>
+  </div>
+);
 
 const WeeklyForecast = () => {
-  const [forecastData, setForecastData] = useState([]);
-
-  useEffect(() => {
-    async function fetchWeeklyForecast() {
-      const url = "https://api.open-meteo.com/v1/forecast?latitude=39.9523&longitude=-75.1638&hourly=temperature_2m,uv_index&daily=weather_code&temperature_unit=fahrenheit&timezone=America%2FNew_York";
-      try {
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        const dailyData = data.daily;
-        const sevenDayForecast = dailyData.time.slice(0, 7).map((time, index) => {
-          const date = new Date(time * 1000);
-          const dayOfWeek = date.toLocaleDateString('en-US', { weekday: 'long' });
-          return {
-            day: dayOfWeek,
-            maxTemp: dailyData.temperature_2m_max[index],
-            minTemp: dailyData.temperature_2m_min[index],
-            weatherCode: dailyData.weathercode[index],
-            precipitation: dailyData.precipitation_sum[index]
-          };
-        });
-        setForecastData(sevenDayForecast);
-      } catch (error) {
-        console.error("There was a problem fetching the weekly forecast:", error);
-      }
-    }
-    fetchWeeklyForecast();
-  }, []);
-
-  if (!forecastData.length) {
-    return <div>Loading weekly forecast...</div>;
-  }
+  const weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  
+  // Placeholder temperature data
+  const tempData = {
+    Mon: { min: 'Min --', max: 'Max --' },
+    Tue: { min: 'Min --', max: 'Max --' },
+    Wed: { min: 'Min --', max: 'Max --' },
+    Thu: { min: 'Min --', max: 'Max --' },
+    Fri: { min: 'Min --', max: 'Max --' },
+    Sat: { min: 'Min --', max: 'Max --' },
+    Sun: { min: 'Min --', max: 'Max --' },
+  };
 
   return (
-<div className="weekly-forecast">
-  {forecastData.map((dayForecast, index) => (
-    <DayForecast key={index} weatherData={dayForecast} />
-  ))}
-</div>
-
+    <div className="weekly-forecast">
+      {weekDays.map(day => (
+        <DailyForecast 
+          key={day} 
+          day={day} 
+          minTemp={tempData[day].min} 
+          maxTemp={tempData[day].max} 
+        />
+      ))}
+    </div>
   );
 };
 

@@ -3,17 +3,17 @@
   margin: 10px auto;
   padding: 1rem;
   text-align: center;
-  background-color: #000; /* Black background for the root element */
-  color: #fff; /* White text color */
+  background-color: #000; 
+  color: #fff; 
 }
 
 .App-header {
   border: none;
   border-radius: 15px; 
   padding: 10;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Lighter shadow for contrast */
-  background-color: #000000; /* Darker background for the header */
-  color: #fff; /* Ensure text in the header is white */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
+  background-color: #000000; 
+  color: #fff; 
   border: 2px solid #fff; 
   
 }
@@ -24,9 +24,9 @@
   padding: px;
   border: none; 
   border-radius: 10px; 
-  background-color: #000000; /* Darker background for temperature display */
-  color: #fff; /* White text for readability */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  background-color: #000000; 
+  color: #fff; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
   transition: transform 0.3s ease-in-out;
    
   
@@ -47,7 +47,36 @@
   font-weight: bold; 
 }
 
-/* Additional styles to ensure all text is white for better contrast */
+
 body, p, h1, h2, h3, h4, h5, h6, a, button {
-  color: #fff; /* White text color */
+  color: #fff; 
+}
+.weekly-forecast {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0;
+}
+
+.daily-forecast {
+  border: 1px solid #ddd; 
+  padding: 10px;
+  margin: 5px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-radius: 4px;
+  flex-grow: 1;
+}
+
+
+.daily-forecast {
+  width: calc(100% / 7 - 10px);
+}
+
+.day {
+  font-weight: bold; 
+}
+
+.temperature {
+  font-size: 1.2em; 
 }

@@ -51,7 +51,7 @@ const TemperatureDisplay = () => {
     const fetchIntervalId = setInterval(fetchWeatherData, 60000);
     const toggleViewIntervalId = setInterval(() => {
       setShowWeeklyForecast(prev => !prev);
-    }, 60000);
+    }, 10000);
 
     return () => {
       clearInterval(fetchIntervalId);
