@@ -80,3 +80,12 @@ body, p, h1, h2, h3, h4, h5, h6, a, button {
 .temperature {
   font-size: 1.2em; 
 }
+.black-button {
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
