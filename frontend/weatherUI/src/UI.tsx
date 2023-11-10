@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import TemperatureDisplay from './weather'; // Ensure TemperatureDisplay is exported correctly
+import CalendarUI from './calendar';
 
 
 const UI = () => {
@@ -11,7 +12,7 @@ const UI = () => {
         <button className="black-button" onClick={() => setView('calendar')}>Calendar</button>
   
         {view === 'weather' && <TemperatureDisplay />}
-        {/* view === 'calendar' && <CalendarComponent /> */}
+        {view === 'calendar' && <CalendarUI/>}
       </div>
     );
   };

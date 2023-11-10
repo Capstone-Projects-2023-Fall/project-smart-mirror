@@ -89,3 +89,42 @@ body, p, h1, h2, h3, h4, h5, h6, a, button {
   border-radius: 5px;
   cursor: pointer;
 }
+
+.calendar {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Arial', sans-serif;
+}
+
+.calendar-header {
+  display: flex;
+  background-color: #333;
+  color: white;
+}
+
+.calendar-header-day {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  border-right: 1px solid #444;
+}
+
+.calendar-header-day:last-child {
+  border-right: none;
+}
+
+.calendar-week {
+  display: flex;
+}
+
+.calendar-day {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+
+.calendar-day:last-child {
+  border-right: none;
+}
