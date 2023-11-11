@@ -4,7 +4,7 @@
   padding: 1rem;
   text-align: center;
   background-color: #000; 
-  color: #fff; 
+  color: #000000; 
 }
 
 .App-header {
@@ -127,4 +127,8 @@ body, p, h1, h2, h3, h4, h5, h6, a, button {
 
 .calendar-day:last-child {
   border-right: none;
+}
+
+html {
+  background-color: black
 }
