@@ -3,45 +3,12 @@ import localFont from "next/font/local";
 import { ReactNode } from "react";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
-import Navbar from "~/components/navbar/navbar";
+import Navbar from "~/components/navbar";
 import { navDataLoggedIn, navDataLoggedOut } from "~/lib/data";
+import React from "react";
+import { satoshi } from "~/lib/font";
 
 export const revalidate = 0;
-
-const satoshi = localFont({
-  src: [
-    {
-      path: "../../public/font/Satoshi-Regular.woff2",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../../public/font/Satoshi-Bold.woff2",
-      weight: "700",
-      style: "normal",
-    },
-    {
-      path: "../../public/font/Satoshi-Black.woff2",
-      weight: "900",
-      style: "normal",
-    },
-    {
-      path: "../../public/font/Satoshi-BoldItalic.woff2",
-      weight: "700",
-      style: "italic",
-    },
-    {
-      path: "../../public/font/Satoshi-BlackItalic.woff2",
-      weight: "900",
-      style: "italic",
-    },
-    {
-      path: "../../public/font/Satoshi-Italic.woff2",
-      weight: "400",
-      style: "italic",
-    },
-  ],
-});
 
 export const metadata = {
   title: "Smart Mirror",
@@ -56,15 +23,15 @@ export default async function RootLayout({
   children: ReactNode;
 }) {
   const supabase = createServerComponentClient({ cookies });
-
   const {
     data: { user },
   } = await supabase.auth.getUser();
+
   return (
     <html lang="en">
       <body className={satoshi.className}>
         <Navbar items={user ? navDataLoggedIn : navDataLoggedOut}></Navbar>
-        <main className="flex h-screen flex-col bg-background">{children}</main>
+        {children}
       </body>
     </html>
   );

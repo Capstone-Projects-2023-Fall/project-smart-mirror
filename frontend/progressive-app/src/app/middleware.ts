@@ -1,5 +1,4 @@
 import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
-import nextPWA from "next-pwa";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
