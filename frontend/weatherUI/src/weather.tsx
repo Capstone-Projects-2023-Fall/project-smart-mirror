@@ -22,28 +22,34 @@ const TemperatureDisplay = () => {
   const [weatherData, setWeatherData] = useState({
     temperature: 0,
     uvIndex: 0,
+    weatherCode: 0,
+    weatherDescription: 'Loading...',
   });
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [showWeeklyForecast, setShowWeeklyForecast] = useState(false);
-
-  const hardcodedWeatherCode = 2; 
-  const hardcodedWeatherDescription = 'Rainy'; 
-  const WeatherSVG = getWeatherSVG(hardcodedWeatherCode);
 
   useEffect(() => {
     async function fetchWeatherData() {
-      const url = "YOUR_API_ENDPOINT";
+      setIsLoading(true);
+      setError(null);
       try {
-        const response = await fetch(url);
+        const response = await fetch("http://localhost:5000/weather/19128");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
         setWeatherData({
-          temperature: data.current.temperature_2m,
-          uvIndex: data.daily.uv_index_max[0],
+          temperature: data.temperature,
+          uvIndex: data.uvIndex,
+          weatherCode: data.weatherCode,
+          weatherDescription: data.weatherDescription
         });
       } catch (error) {
         console.error("There was a problem fetching the weather data:", error);
+        setError(error.toString());
+      } finally {
+        setIsLoading(false);
       }
     }
 
@@ -59,15 +65,25 @@ const TemperatureDisplay = () => {
     };
   }, []);
 
+  const WeatherSVG = getWeatherSVG(weatherData.weatherCode);
+
   if (showWeeklyForecast) {
     return <WeeklyForecast />;
   }
 
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="temperature-display">
-      <img src={WeatherSVG} alt={hardcodedWeatherDescription} width="100" height="100" />
+      <img src={WeatherSVG} alt={weatherData.weatherDescription} width="100" height="100" />
       <p>The current temperature is: {weatherData.temperature}°F</p>
-      <p>Weather Condition: {hardcodedWeatherDescription}</p>
+      <p>Weather Condition: {weatherData.weatherDescription}</p>
       <p>UV Index: {weatherData.uvIndex}</p>
     </div>
   );
