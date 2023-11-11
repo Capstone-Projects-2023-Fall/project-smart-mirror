@@ -1,9 +1,9 @@
 "use client";
-import React, { useState } from "react";
-import { Field, Form, Formik } from "formik";
+import React from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { motion } from "framer-motion";
 import SignUpForm from "./sign_up_form";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
@@ -22,21 +22,24 @@ const variants = {
   },
 };
 
-const handleSubmit = async (formData: { email: string; password: string }) => {
-  const supabase = createClientComponentClient();
-  const { error } = await supabase.auth.signUp({
-    email: formData.email,
-    password: formData.password,
-    options: {
-      emailRedirectTo: `${location.origin}`,
-    },
-  });
-
-  console.log(error);
-};
-
 export default function SignUp({}: Props) {
-  const [selectedPassword, setSelectedPassword] = useState(false);
+  const router = useRouter();
+
+  const handleSubmit = async (formData: {
+    email: string;
+    password: string;
+  }) => {
+    const supabase = createClientComponentClient();
+    const { error } = await supabase.auth.signUp({
+      email: formData.email,
+      password: formData.password,
+      options: {
+        emailRedirectTo: `${location.origin}/auth/callback`,
+      },
+    });
+    router.refresh();
+    console.log(error);
+  };
 
   return (
     <main className="flex h-screen flex-col bg-background">
