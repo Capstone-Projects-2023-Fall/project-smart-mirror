@@ -45,11 +45,11 @@ export default function Login({}: Props) {
         console.log("User: ", data.user);
         console.log("Session: ", data.session);
         router.push(`${location.origin}/dashboard`);
+        router.refresh();
       }
     } catch (error) {
       console.error(error);
     }
-    router.refresh();
   };
   return (
     <main className="flex h-screen flex-col bg-background">
