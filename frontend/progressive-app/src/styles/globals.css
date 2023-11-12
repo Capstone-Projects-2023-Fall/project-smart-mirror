@@ -4,8 +4,8 @@
 
 :root { 
     --primary: #716D6E;
-    --secondary: #d7d7d9;
-    --background: #EFEFEF;
+    --background: #d7d7d9;
+    --secondary: #EFEFEF;
     --text: #262825;
     --error: #EF5350;
     overflow-x: hidden;
@@ -38,7 +38,17 @@ body::-webkit-scrollbar-track {
     background: var(--background);
   }
   
-  body::-webkit-scrollbar-thumb {
-    background: var(--text);
-    border-radius: 100px;
-  }
+body::-webkit-scrollbar-thumb {
+  background: var(--text);
+  border-radius: 100px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-background-clip: var(--background);
+  -webkit-text-fill-color: var(--text) !important;
+
+}

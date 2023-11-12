@@ -7,5 +7,5 @@ import React from "react";
 type Props = {};
 
 export default function Settings({}: Props) {
-  return <></>;
+  return <>settings</>;
 }
