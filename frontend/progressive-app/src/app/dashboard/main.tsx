@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Home from "./home";
 import ModuleView from "./module_view";
 import Analytics from "./analytics";
 import Notifications from "./notifications";
 import Settings from "./settings";
+import { User } from "@supabase/supabase-js";
 
 type Props = {
   page: string | null;
+  user: User | null;
 };
 
-export default function MainDisplay({ page }: Props) {
+export default function MainDisplay({ page, user }: Props) {
   const renderPage = () => {
     switch (page) {
       case "home":
@@ -21,15 +23,11 @@ export default function MainDisplay({ page }: Props) {
       case "notifications":
         return <Notifications />;
       case "settings":
-        return <Settings />;
+        return <Settings user={user} />;
       default:
         return null;
     }
   };
-  return (
-    <div className="h-full w-full">
-      <nav></nav>
-      {renderPage()}
-    </div>
-  );
+
+  return <div className="h-full w-full">{renderPage()}</div>;
 }

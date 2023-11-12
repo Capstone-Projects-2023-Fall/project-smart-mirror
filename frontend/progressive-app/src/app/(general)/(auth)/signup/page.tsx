@@ -4,6 +4,7 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { motion } from "framer-motion";
 import SignUpForm from "./sign_up_form";
 import { useRouter } from "next/navigation";
+import generateUsername from "~/utils/usernameGenerator";
 
 type Props = {};
 
@@ -35,6 +36,9 @@ export default function SignUp({}: Props) {
       password: formData.password,
       options: {
         emailRedirectTo: `${location.origin}/auth/callback`,
+        data: {
+          username: generateUsername(),
+        },
       },
     });
     router.refresh();
@@ -49,7 +53,7 @@ export default function SignUp({}: Props) {
         animate="visible"
         className="flex h-screen w-screen flex-col items-center justify-center"
       >
-        <h1 className="font-black text-text">Sign Up</h1>
+        <h1 className="font-black text-black">Sign Up</h1>
         <div className="m-8 h-1 w-1/2 bg-primary" />
         <SignUpForm handleSubmit={handleSubmit}></SignUpForm>
       </motion.div>

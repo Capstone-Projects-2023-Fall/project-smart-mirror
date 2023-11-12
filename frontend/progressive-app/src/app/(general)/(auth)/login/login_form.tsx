@@ -36,7 +36,7 @@ export default function LoginForm({ handleSubmit, error }: Props) {
               {/* EMAIL FIELD */}
               <section className="group relative mb-4 w-4/5 md:w-2/5">
                 <Field
-                  className="h-12 w-full rounded-xl border-4 border-text bg-background pl-4 font-medium outline-none focus-within:border-primary"
+                  className="h-12 w-full rounded-xl border-4 border-black bg-background pl-4 font-medium outline-none focus-within:border-primary"
                   type="text"
                   name="email"
                 />
@@ -49,10 +49,10 @@ export default function LoginForm({ handleSubmit, error }: Props) {
                 </div>
                 <label
                   className={`pointer-events-none absolute left-4 bg-background px-3 text-base font-medium duration-300 ease-in-out group-focus-within:-top-3 group-focus-within:text-sm group-focus-within:text-primary ${
-                    values.email !== "" ? "-top-3 text-sm text-text" : "top-3"
+                    values.email !== "" ? "-top-3 text-sm text-black" : "top-3"
                   }`}
                 >
-                  <span className="border-text ease-in group-focus-within:border-b-2 ">
+                  <span className="border-black ease-in group-focus-within:border-b-2 ">
                     Enter an email or phone number
                   </span>
                 </label>
@@ -61,7 +61,7 @@ export default function LoginForm({ handleSubmit, error }: Props) {
               {/* PASSWORD FIELD */}
               <section className="group relative mb-4 w-4/5 md:w-2/5">
                 <Field
-                  className="h-12 w-full rounded-xl border-4 border-text bg-background pl-4 outline-none focus-within:border-primary"
+                  className="h-12 w-full rounded-xl border-4 border-black bg-background pl-4 outline-none focus-within:border-primary"
                   type="password"
                   name="password"
                   autoComplete="new-password"
@@ -78,11 +78,11 @@ export default function LoginForm({ handleSubmit, error }: Props) {
                 <label
                   className={`pointer-events-none absolute left-4 bg-background px-3 text-base font-medium duration-300 ease-in-out group-focus-within:-top-3 group-focus-within:text-sm group-focus-within:text-primary ${
                     values.password !== ""
-                      ? "-top-3 text-sm text-text"
+                      ? "-top-3 text-sm text-black"
                       : "top-3"
                   }`}
                 >
-                  <span className="border-text ease-in group-focus-within:border-b-2 ">
+                  <span className="border-black ease-in group-focus-within:border-b-2 ">
                     Enter a password
                   </span>
                 </label>
