@@ -3,15 +3,37 @@ import CloudBoltSVG from "./svg/cloud-bolt-svgrepo-com.svg";
 import CloudRainAltSVG from "./svg/cloud-rain-alt-svgrepo-com.svg";
 import CloudSunAltSVG from "./svg/cloud-sun-alt-svgrepo-com.svg";
 import CloudsSVG from "./svg/clouds-svgrepo-com.svg";
+import SunSVG from "./svg/sun-svgrepo-com.svg"
 import SnowAltSVG from "./svg/snow-alt-svgrepo-com.svg";
+import Freezing_Sleet from "./svg/cloud-sleet-svgrepo-com.svg";
+import RainSVG from "./svg/cloud-rain-svgrepo-com.svg";
+
 import WeeklyForecast from './forecast';
 
 const weatherCodeToSVG = {
-  0: CloudsSVG,
-  1: CloudSunAltSVG,
-  2: CloudRainAltSVG,
-  3: SnowAltSVG,
-  4: CloudBoltSVG,
+  0: SunSVG,
+  1: SunSVG,
+  2: CloudSunAltSVG,
+  3: CloudsSVG,
+  51: CloudRainAltSVG,
+  53: CloudRainAltSVG,
+  55: CloudRainAltSVG,
+  61: RainSVG,
+  63: RainSVG,
+  65: RainSVG,
+  66: Freezing_Sleet,
+  67: Freezing_Sleet,
+  71: SnowAltSVG,
+  73: SnowAltSVG,
+  75: SnowAltSVG,
+  77: SnowAltSVG,
+  80: RainSVG,
+  82: RainSVG,
+  85: RainSVG,
+  86: RainSVG,
+  95: CloudBoltSVG,
+  96: CloudBoltSVG,
+  99: CloudBoltSVG
 };
 
 const getWeatherSVG = (weatherCode) => {
@@ -55,6 +77,7 @@ const TemperatureDisplay = () => {
 
     fetchWeatherData();
     const fetchIntervalId = setInterval(fetchWeatherData, 60000);
+    
     const toggleViewIntervalId = setInterval(() => {
       setShowWeeklyForecast(prev => !prev);
     }, 10000);

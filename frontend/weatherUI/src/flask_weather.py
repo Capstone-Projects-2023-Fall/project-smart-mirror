@@ -310,8 +310,7 @@ def weekly_forecast(zip_code):
 
             forecast_data = get_weekly_forecast(lat, long)
             if forecast_data:
-                # Process and return the weekly forecast data
-                # Adjust the return statement based on how you want to format the data
+               
                 return jsonify(forecast_data)
             else:
                 return jsonify({"error": "Forecast data not found"}), 404
