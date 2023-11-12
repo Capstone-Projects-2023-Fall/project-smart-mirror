@@ -4,16 +4,19 @@ import datetime
 import urllib.parse
 import time
 import json
-from src.backend.module import Module
-
-# API documentation: https://open-meteo.com/en/docs
-# API URLs for daily and weekly forecasts. (hard coded for now)
-meteo_weather_url = "https://api.open-meteo.com/v1/forecast?latitude=39.9523&longitude=-75.1638&current=temperature_2m,precipitation,rain,weathercode&hourly=temperature_2m&daily=temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_probability_max&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime&timezone=America%2FNew_York"
 
 
-class weather(Module):
-    def __init__(self,moduleName="weather"):
-        super().__init__(moduleName="weather")
+class Widget:
+    status = None
+    testValue = ''
+    def __init__(self):
+        # API documentation: https://open-meteo.com/en/docs
+        # API URLs for daily and weekly forecasts. (hard coded for now)
+        meteo_weather_url = "https://api.open-meteo.com/v1/forecast?latitude=39.9523&longitude=-75.1638&current=temperature_2m,precipitation,rain,weathercode&hourly=temperature_2m&daily=temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_probability_max&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime&timezone=America%2FNew_York"
+        self.testValue = "Set"
+
+    def getTitle(self):
+        return self.eventTitle
 
     def get_coords_from_API(self, name):
         URL = "https://geocoding-api.open-meteo.com/v1/search?"
@@ -230,7 +233,7 @@ class weather(Module):
         return found_values
 
 if __name__ == "__main__":
-    weather = weather()
+    weather = Widget()
     print(help(weather))
     #city_search = weather.get_coords_from_API("19128")
     # if city_search:
