@@ -43,8 +43,22 @@ body {
 .temperature-display p:first-child {
   font-size: 1.5rem; 
   font-weight: bold; 
+
+
 }
 
+.temperature-display .temperature {
+  font-size: 2.5rem; 
+  font-weight: bold; 
+}
+
+.temperature-display .weather-condition {
+  font-size: 1.8rem; 
+}
+
+.temperature-display .uv-index {
+  font-size: 1rem; 
+}
 .weekly-forecast-container {
   color: white;
   background-color: #000;
@@ -181,12 +195,11 @@ html {
   flex: 1; 
   margin: 10px; 
   padding: 20px; 
-  border-radius: 10px; 
   background-color: #000000; 
   border: 1px solid #000000; 
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
   background-color: #000; 
-  border: 2px solid #fff;
+  
 }
 .calendar-box {
   flex: 1; 
@@ -197,7 +210,7 @@ html {
   border: 1px solid #000000; 
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
   background-color: #000; 
-  border: 2px solid #fff;
+
 }
 
 

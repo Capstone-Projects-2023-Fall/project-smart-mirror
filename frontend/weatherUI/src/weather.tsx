@@ -42,6 +42,7 @@ const getWeatherSVG = (weatherCode) => {
 
 const TemperatureDisplay = () => {
   const [weatherData, setWeatherData] = useState({
+    city: '',
     temperature: 0,
     uvIndex: 0,
     weatherCode: 0,
@@ -62,6 +63,7 @@ const TemperatureDisplay = () => {
         }
         const data = await response.json();
         setWeatherData({
+          city: data.city,
           temperature: data.temperature,
           uvIndex: data.uvIndex,
           weatherCode: data.weatherCode,
@@ -101,11 +103,11 @@ const TemperatureDisplay = () => {
 
   return (
     <div className="temperature-display">
-      <h2 className="title">Weather</h2>
+      <h2 className="title">{weatherData.city}</h2>
       <img src={WeatherSVG} alt={weatherData.weatherDescription} width="100" height="100" />
-      <p>The current temperature is: {weatherData.temperature}°F</p>
-      <p>Weather Condition: {weatherData.weatherDescription}</p>
-      <p>UV Index: {weatherData.uvIndex}</p>
+      <p className="temperature">{weatherData.temperature}°F</p>
+      <p className="weather-condition">{weatherData.weatherDescription}</p>
+      <p className="uv-index">UV Index: {weatherData.uvIndex}</p>
     </div>
   );
 };
