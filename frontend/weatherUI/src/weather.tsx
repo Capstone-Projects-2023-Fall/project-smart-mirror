@@ -3,12 +3,11 @@ import CloudBoltSVG from "./svg/cloud-bolt-svgrepo-com.svg";
 import CloudRainAltSVG from "./svg/cloud-rain-alt-svgrepo-com.svg";
 import CloudSunAltSVG from "./svg/cloud-sun-alt-svgrepo-com.svg";
 import CloudsSVG from "./svg/clouds-svgrepo-com.svg";
-import SunSVG from "./svg/sun-svgrepo-com.svg"
+import SunSVG from "./svg/sun-svgrepo-com.svg";
 import SnowAltSVG from "./svg/snow-alt-svgrepo-com.svg";
 import Freezing_Sleet from "./svg/cloud-sleet-svgrepo-com.svg";
 import RainSVG from "./svg/cloud-rain-svgrepo-com.svg";
-import './App.css'; 
-
+import './App.css';
 import WeeklyForecast from './forecast';
 
 const weatherCodeToSVG = {
@@ -38,7 +37,7 @@ const weatherCodeToSVG = {
 };
 
 const getWeatherSVG = (weatherCode) => {
-  return weatherCodeToSVG[weatherCode] || CloudsSVG; 
+  return weatherCodeToSVG[weatherCode] || CloudsSVG;
 };
 
 const TemperatureDisplay = () => {
@@ -69,37 +68,31 @@ const TemperatureDisplay = () => {
           weatherDescription: data.weatherDescription
         });
       } catch (error) {
-        console.error("There was a problem fetching the weather data:", error);
         setError(error.toString());
       } finally {
         setIsLoading(false);
       }
     }
-
     fetchWeatherData();
     const fetchIntervalId = setInterval(fetchWeatherData, 60000);
-    
+    return () => clearInterval(fetchIntervalId);
+  }, []);
+
+  useEffect(() => {
     const toggleViewIntervalId = setInterval(() => {
       setShowWeeklyForecast(prev => !prev);
     }, 10000);
-
-    return () => {
-      clearInterval(fetchIntervalId);
-      clearInterval(toggleViewIntervalId);
-    };
+    return () => clearInterval(toggleViewIntervalId);
   }, []);
 
   const WeatherSVG = getWeatherSVG(weatherData.weatherCode);
 
   if (showWeeklyForecast) {
-    if (isLoading) {
-      return <div className="loading-box">Loading...</div>;
-    }
-    return <WeeklyForecast />;
+    return isLoading ? <div className="loading-box">Loading Weekly Forecast...</div> : <WeeklyForecast />;
   }
 
   if (error) {
-    return <div className="error-box">Error: {error}</div>; // Ensure you have styles for this
+    return <div className="error-box">Error: {error}</div>;
   }
 
   if (isLoading) {
@@ -108,6 +101,7 @@ const TemperatureDisplay = () => {
 
   return (
     <div className="temperature-display">
+      <h2 className="title">Weather</h2>
       <img src={WeatherSVG} alt={weatherData.weatherDescription} width="100" height="100" />
       <p>The current temperature is: {weatherData.temperature}°F</p>
       <p>Weather Condition: {weatherData.weatherDescription}</p>

@@ -15,23 +15,26 @@ const CalendarUI = () => {
   };
 
   return (
-    <div className="calendar">
-      <div className="calendar-header">
-        {mockData.weekDays.map((day) => (
-          <div key={day} className="calendar-header-day">
-            {day}
-          </div>
-        ))}
-      </div>
-      {mockData.weeks.map((week, index) => (
-        <div key={index} className="calendar-week">
-          {week.map((day, dayIndex) => (
-            <div key={dayIndex} className="calendar-day">
-              {day || ''}
+    <div className="calendar-container">
+      <h2 className="calendar-title">Calendar</h2>
+      <div className="calendar">
+        <div className="calendar-header">
+          {mockData.weekDays.map((day) => (
+            <div key={day} className="calendar-header-day">
+              {day}
             </div>
           ))}
         </div>
-      ))}
+        {mockData.weeks.map((week, index) => (
+          <div key={index} className="calendar-week">
+            {week.map((day, dayIndex) => (
+              <div key={dayIndex} className="calendar-day">
+                {day || ''}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
