@@ -1,0 +1,182 @@
+#root {
+  max-width: 1280px;
+  margin: 10px auto;
+  padding: 1rem;
+  text-align: center;
+  background-color: #000; 
+  color: #000000; 
+}
+
+.App-header {
+  border: none;
+  border-radius: 15px; 
+  padding: 10;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
+  background-color: #000000; 
+  color: #fff; 
+  border: 2px solid #fff; 
+  
+}
+
+.temperature-display {
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #000000;
+  color: #fff; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  border: 2px solid #fff; 
+  display: inline-block; 
+}
+
+.temperature-display p {
+  margin: 10px 0;
+  font-size: 1.2rem; 
+  line-height: 1.5; 
+}
+
+.temperature-display p:first-child {
+  font-size: 1.5rem; 
+  font-weight: bold; 
+}
+
+
+body, p, h1, h2, h3, h4, h5, h6, a, button {
+  color: #fff; 
+}
+
+.loading-box {
+  color: white;
+  background-color: #000000; 
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px; 
+  border: 1px solid #000000; 
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  text-align: center;
+  font-size: 1.5rem;
+  
+}
+
+.weekly-forecast {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  margin: 20px auto; 
+  background-color: #000; 
+  border: 2px solid #fff;
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.daily-forecast {
+  border: 1px solid #ddd; 
+  padding: 10px;
+  margin: 5px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-radius: 4px;
+  flex-grow: 1;
+}
+
+
+.daily-forecast {
+  width: calc(100% / 7 - 10px);
+}
+
+.day {
+  font-weight: bold; 
+}
+
+.temperature {
+  font-size: 1.2em; 
+}
+.black-button {
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.calendar {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Arial', sans-serif;
+  color: white;
+  border: 2px solid white;
+  border-radius: 10px;
+}
+
+.calendar-header {
+  display: flex;
+  background-color: #000000;
+  color: white;
+}
+
+.calendar-header-day {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  border-right: 1px solid #000000;
+}
+
+.calendar-header-day:last-child {
+  border-right: none;
+}
+
+.calendar-week {
+  display: flex;
+}
+
+.calendar-day {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+
+.calendar-day:last-child {
+  border-right: none;
+}
+
+html {
+  background-color: black
+}
+.ui-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px; 
+  padding: 20px;
+  height: calc(100% - 40px);
+}
+
+
+.weather-box,
+.calendar-box {
+  flex: 1; 
+  margin: 10px; 
+  padding: 20px; 
+  border-radius: 10px; 
+  background-color: #000000; 
+  border: 1px solid #000000; 
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
+}
+
+
+@media (max-width: 768px) {
+  .ui-container {
+    flex-direction: column;
+    align-items: center; 
+  }
+
+  .weather-box,
+  .calendar-box {
+    width: 80%; 
+    margin-bottom: 20px; 
+  }
+}
