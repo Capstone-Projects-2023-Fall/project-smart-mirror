@@ -1,20 +1,19 @@
 import React from 'react';
-import './App.css';
-import TemperatureDisplay from './weather'; 
-import UI from './UI';
+import TemperatureDisplay from './weather';
+import CalendarUI from './calendar';
+import './App.css'; // Ensure this is the path to your CSS file
 
-const App: React.FC = () => {
-  
-
+const UI = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Smart Mirror</h1>
-        {/* Render TemperatureDisplay without passing props */}
-        <UI />
-      </header>
+    <div className="ui-container">
+      <div className="weather-box">
+        <TemperatureDisplay />
+      </div>
+      <div className="calendar-box">
+        <CalendarUI />
+      </div>
     </div>
   );
 };
 
-export default App;
+export default UI;

@@ -19,21 +19,14 @@
 }
 
 .temperature-display {
-
   margin: 20px;
-  padding: px;
-  border: none; 
-  border-radius: 10px; 
-  background-color: #000000; 
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #000000;
   color: #fff; 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-  transition: transform 0.3s ease-in-out;
-   
-  
-}
-
-.temperature-display:hover {
-  transform: translateY(-5px); 
+  border: 2px solid #fff; 
+  display: inline-block; 
 }
 
 .temperature-display p {
@@ -51,11 +44,29 @@
 body, p, h1, h2, h3, h4, h5, h6, a, button {
   color: #fff; 
 }
+
+.loading-box {
+  color: white;
+  background-color: #000000; 
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px; 
+  border: 1px solid #000000; 
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  text-align: center;
+  font-size: 1.5rem;
+  
+}
+
 .weekly-forecast {
   display: flex;
   justify-content: space-between;
-  padding: 0;
-  margin: 0;
+  padding: 20px;
+  margin: 20px auto; 
+  background-color: #000; 
+  border: 2px solid #fff;
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 .daily-forecast {
@@ -94,11 +105,14 @@ body, p, h1, h2, h3, h4, h5, h6, a, button {
   display: flex;
   flex-direction: column;
   font-family: 'Arial', sans-serif;
+  color: white;
+  border: 2px solid white;
+  border-radius: 10px;
 }
 
 .calendar-header {
   display: flex;
-  background-color: #333;
+  background-color: #000000;
   color: white;
 }
 
@@ -106,7 +120,7 @@ body, p, h1, h2, h3, h4, h5, h6, a, button {
   flex: 1;
   padding: 10px;
   text-align: center;
-  border-right: 1px solid #444;
+  border-right: 1px solid #000000;
 }
 
 .calendar-header-day:last-child {
@@ -131,4 +145,38 @@ body, p, h1, h2, h3, h4, h5, h6, a, button {
 
 html {
   background-color: black
+}
+.ui-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px; 
+  padding: 20px;
+  height: calc(100% - 40px);
+}
+
+
+.weather-box,
+.calendar-box {
+  flex: 1; 
+  margin: 10px; 
+  padding: 20px; 
+  border-radius: 10px; 
+  background-color: #000000; 
+  border: 1px solid #000000; 
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
+}
+
+
+@media (max-width: 768px) {
+  .ui-container {
+    flex-direction: column;
+    align-items: center; 
+  }
+
+  .weather-box,
+  .calendar-box {
+    width: 80%; 
+    margin-bottom: 20px; 
+  }
 }

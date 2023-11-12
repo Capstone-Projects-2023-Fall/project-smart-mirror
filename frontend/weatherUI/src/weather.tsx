@@ -7,6 +7,7 @@ import SunSVG from "./svg/sun-svgrepo-com.svg"
 import SnowAltSVG from "./svg/snow-alt-svgrepo-com.svg";
 import Freezing_Sleet from "./svg/cloud-sleet-svgrepo-com.svg";
 import RainSVG from "./svg/cloud-rain-svgrepo-com.svg";
+import './App.css'; 
 
 import WeeklyForecast from './forecast';
 
@@ -91,15 +92,18 @@ const TemperatureDisplay = () => {
   const WeatherSVG = getWeatherSVG(weatherData.weatherCode);
 
   if (showWeeklyForecast) {
+    if (isLoading) {
+      return <div className="loading-box">Loading...</div>;
+    }
     return <WeeklyForecast />;
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div className="error-box">Error: {error}</div>; // Ensure you have styles for this
   }
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div className="loading-box">Loading...</div>;
   }
 
   return (

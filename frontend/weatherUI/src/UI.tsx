@@ -1,21 +1,19 @@
-import React, { useState } from 'react';
-import TemperatureDisplay from './weather'; // Ensure TemperatureDisplay is exported correctly
+import React from 'react';
+import TemperatureDisplay from './weather';
 import CalendarUI from './calendar';
-
+import './App.css'; // Assuming you have a CSS file for styling
 
 const UI = () => {
-    const [view, setView] = useState('');
-  
-    return (
-      <div>
-        <button className="black-button" onClick={() => setView('weather')}>Weather</button>
-        <button className="black-button" onClick={() => setView('calendar')}>Calendar</button>
-  
-        {view === 'weather' && <TemperatureDisplay />}
-        {view === 'calendar' && <CalendarUI/>}
+  return (
+    <div className="ui-container">
+      <div className="weather-box">
+        <TemperatureDisplay />
       </div>
-    );
-  };
-  
-  export default UI;
-  
+      <div className="calendar-box">
+        <CalendarUI />
+      </div>
+    </div>
+  );
+};
+
+export default UI;
