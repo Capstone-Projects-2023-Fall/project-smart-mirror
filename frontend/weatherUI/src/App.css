@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+body {
+  font-family: 'Nunito', sans-serif;
+}
+
 #root {
   max-width: 1280px;
   margin: 10px auto;
@@ -25,7 +31,6 @@
   background-color: #000000;
   color: #fff; 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-  border: 2px solid #fff; 
   display: inline-block; 
 }
 
@@ -38,7 +43,37 @@
 .temperature-display p:first-child {
   font-size: 1.5rem; 
   font-weight: bold; 
+
+
 }
+
+.temperature-display .temperature {
+  font-size: 2.5rem; 
+  font-weight: bold; 
+}
+
+.temperature-display .weather-condition {
+  font-size: 1.8rem; 
+}
+
+.temperature-display .uv-index {
+  font-size: 1rem; 
+}
+.weekly-forecast-container {
+  color: white;
+  background-color: #000;
+  padding: 20px;
+  margin: 20px auto; 
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.weekly-forecast-title {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+
+}
+
 
 
 body, p, h1, h2, h3, h4, h5, h6, a, button {
@@ -63,8 +98,6 @@ body, p, h1, h2, h3, h4, h5, h6, a, button {
   justify-content: space-between;
   padding: 20px;
   margin: 20px auto; 
-  background-color: #000; 
-  border: 2px solid #fff;
   border-radius: 10px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
@@ -106,8 +139,7 @@ body, p, h1, h2, h3, h4, h5, h6, a, button {
   flex-direction: column;
   font-family: 'Arial', sans-serif;
   color: white;
-  border: 2px solid white;
-  border-radius: 10px;
+
 }
 
 .calendar-header {
@@ -137,6 +169,8 @@ body, p, h1, h2, h3, h4, h5, h6, a, button {
   text-align: center;
   border-bottom: 1px solid #ddd;
   border-right: 1px solid #ddd;
+  background-color: #000; 
+  border: 2px solid #fff;
 }
 
 .calendar-day:last-child {
@@ -156,7 +190,17 @@ html {
 }
 
 
-.weather-box,
+.weather-box
+{
+  flex: 1; 
+  margin: 10px; 
+  padding: 20px; 
+  background-color: #000000; 
+  border: 1px solid #000000; 
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
+  background-color: #000; 
+  
+}
 .calendar-box {
   flex: 1; 
   margin: 10px; 
@@ -165,6 +209,8 @@ html {
   background-color: #000000; 
   border: 1px solid #000000; 
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
+  background-color: #000; 
+
 }
 
 
@@ -179,4 +225,13 @@ html {
     width: 80%; 
     margin-bottom: 20px; 
   }
+}
+.calendar-container {
+  text-align: center;
+  color: white;
+
+}
+.calendar-title {
+  text-align: center;
+  margin-bottom: 20px; 
 }
