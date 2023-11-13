@@ -11,7 +11,7 @@ export default function Sidebar({ update }: Props) {
   const [selected, setSelected] = useState<string | null>(null);
 
   return (
-    <div className="mr-5 flex h-full w-1/5 flex-col items-center bg-secondary">
+    <div className="sticky top-0 mr-5 flex h-full w-1/5 flex-col items-center bg-secondary">
       <Logo />
       <ul className="mt-48 flex w-full flex-col items-center justify-center">
         {sidebarData.map((item) => (

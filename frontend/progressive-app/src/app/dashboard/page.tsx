@@ -1,7 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { motion } from "framer-motion";
-import Settings from "./settings";
 import Sidebar from "./sidebar";
 import Navbar from "./navbar";
 import MainDisplay from "./main";

@@ -5,7 +5,7 @@ import Location from "./_components/settings/location";
 import UserSettings from "./_components/settings/user";
 import { User } from "@supabase/auth-helpers-nextjs";
 import Mirror from "./_components/settings/mirror";
-import DataPrivacy from "./_components/settings/dataprivacy";
+import DataPrivacy from "./_components/settings/data_privacy";
 import Time from "./_components/settings/time";
 import Widget from "./_components/settings/widget";
 import Notifications from "./notifications";
@@ -21,7 +21,7 @@ export default function Settings({ user }: Props) {
         <Location />
         <UserSettings user={user} />
         <Mirror />
-        <Time />
+        <Time user={user} />
         <Widget />
         <Notifications />
         <DataPrivacy />

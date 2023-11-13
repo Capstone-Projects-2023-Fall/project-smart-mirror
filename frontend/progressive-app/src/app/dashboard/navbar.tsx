@@ -1,3 +1,4 @@
+"use client";
 import { User } from "@supabase/supabase-js";
 import React from "react";
 
