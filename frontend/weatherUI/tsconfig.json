@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["src", "../mirror-frontend/src/components/App.tsx", "../mirror-frontend/src/components/calendar.tsx", "../mirror-frontend/src/components/forecast.tsx", "../mirror-frontend/src/components/main.tsx", "../mirror-frontend/src/components/svg.d.ts", "../mirror-frontend/src/components/UI.tsx", "../mirror-frontend/src/components/vite-env.d.ts", "../mirror-frontend/src/components/weather.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
