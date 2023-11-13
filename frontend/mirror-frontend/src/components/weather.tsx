@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
+import { createClient } from '@supabase/supabase-js';
 import CloudBoltSVG from "../svg/cloud-bolt-svgrepo-com.svg";
 import CloudRainAltSVG from "../svg/cloud-rain-alt-svgrepo-com.svg";
 import CloudSunAltSVG from "../svg/cloud-sun-alt-svgrepo-com.svg";
@@ -9,7 +10,6 @@ import Freezing_Sleet from "../svg/cloud-sleet-svgrepo-com.svg";
 import RainSVG from "../svg/cloud-rain-svgrepo-com.svg";
 import './App.css';
 import WeeklyForecast from './forecast';
-
 const weatherCodeToSVG = {
   0: SunSVG,
   1: SunSVG,
@@ -36,6 +36,11 @@ const weatherCodeToSVG = {
   99: CloudBoltSVG
 };
 
+const supabaseURL = process.env.SUPABASE_URL;
+const supabaseKEY = process.env.SUPERBASE_KEY;
+
+export const supabase = createClient(supabaseURL, supabaseKEY);
+
 const getWeatherSVG = (weatherCode) => {
   return weatherCodeToSVG[weatherCode] || CloudsSVG;
 };
@@ -52,38 +57,61 @@ const TemperatureDisplay = () => {
   const [error, setError] = useState(null);
   const [showWeeklyForecast, setShowWeeklyForecast] = useState(false);
 
-  useEffect(() => {
-    async function fetchWeatherData() {
-      setIsLoading(true);
-      setError(null);
-      try {
-        const response = await fetch("http://localhost:5000/weather/19128");
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        setWeatherData({
-          city: data.city,
-          temperature: data.temperature,
-          uvIndex: data.uvIndex,
-          weatherCode: data.weatherCode,
-          weatherDescription: data.weatherDescription
-        });
-      } catch (error) {
-        setError(error.toString());
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    fetchWeatherData();
-    const fetchIntervalId = setInterval(fetchWeatherData, 60000);
-    return () => clearInterval(fetchIntervalId);
-  }, []);
+  const userId = localStorage.getItem('user_id');
 
+  useEffect(() => {
+    if (userId) {
+      fetchWeatherDataForUser(userId);
+    }
+  }, [userId]);
+
+  async function fetchWeatherDataForUser(userId) {
+    setIsLoading(true);
+    setError(null);
+
+    const hardCoded= '76066fc0-7811-4bb1-9652-8f68403bcff4';
+  
+    try {
+      // Fetch the user location from Supabase
+      let { data: user, error: userError } = await supabase
+        .from('users') // Replace with your actual table name
+        .select('location') // Assuming 'location' is the column with the lat/lon data
+        .eq('id', hardCoded) // Match the user id
+        .single(); 
+  
+      if (userError) throw new Error(userError.message);
+
+      const userLocation = JSON.parse(user.location); 
+      
+      // Construct the weather API URL with the user's location
+      const weatherApiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${user.location.lat}&longitude=${user.location.lon}&current=temperature_2m,precipitation,rain,weathercode&hourly=temperature_2m&daily=temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_probability_max&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime&timezone=America%2FNew_York`;
+      
+      const weatherResponse = await fetch(weatherApiUrl);
+      
+      if (!weatherResponse.ok) {
+        throw new Error(`HTTP error! status: ${weatherResponse.status}`);
+      }
+      
+      const weatherData = await weatherResponse.json();
+      setWeatherData({
+        city: weatherData.city, 
+        temperature: weatherData.temperature, 
+        uvIndex: weatherData.uvIndex, 
+        weatherCode: weatherData.weatherCode, 
+        weatherDescription: weatherData.weatherDescription 
+      });
+      
+    } catch (error) {
+      setError(`Failed to fetch user location or weather data: ${error.toString()}`);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+  
   useEffect(() => {
     const toggleViewIntervalId = setInterval(() => {
       setShowWeeklyForecast(prev => !prev);
-    }, 10000);
+    }, 60000);
     return () => clearInterval(toggleViewIntervalId);
   }, []);
 
@@ -105,7 +133,7 @@ const TemperatureDisplay = () => {
     <div className="temperature-display">
       <h2 className="title">{weatherData.city}</h2>
       <img src={WeatherSVG} alt={weatherData.weatherDescription} width="100" height="100" />
-      <p className="temperature">{weatherData.temperature}°F</p>
+      <p className="temperature">{weatherData.temperature}Â°F</p>
       <p className="weather-condition">{weatherData.weatherDescription}</p>
       <p className="uv-index">UV Index: {weatherData.uvIndex}</p>
     </div>
