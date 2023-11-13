@@ -22,9 +22,6 @@ export default function Settings({ user }: Props) {
         <UserSettings user={user} />
         <Mirror />
         <Time user={user} />
-        <Widget />
-        <Notifications />
-        <DataPrivacy />
       </section>
     </>
   );
