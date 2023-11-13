@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import CloudBoltSVG from "./svg/cloud-bolt-svgrepo-com.svg";
-import CloudRainAltSVG from "./svg/cloud-rain-alt-svgrepo-com.svg";
-import CloudSunAltSVG from "./svg/cloud-sun-alt-svgrepo-com.svg";
-import CloudsSVG from "./svg/clouds-svgrepo-com.svg";
-import SunSVG from "./svg/sun-svgrepo-com.svg";
-import SnowAltSVG from "./svg/snow-alt-svgrepo-com.svg";
-import Freezing_Sleet from "./svg/cloud-sleet-svgrepo-com.svg";
-import RainSVG from "./svg/cloud-rain-svgrepo-com.svg";
+import CloudBoltSVG from "../svg/cloud-bolt-svgrepo-com.svg";
+import CloudRainAltSVG from "../svg/cloud-rain-alt-svgrepo-com.svg";
+import CloudSunAltSVG from "../svg/cloud-sun-alt-svgrepo-com.svg";
+import CloudsSVG from "../svg/clouds-svgrepo-com.svg";
+import SunSVG from "../svg/sun-svgrepo-com.svg";
+import SnowAltSVG from "../svg/snow-alt-svgrepo-com.svg";
+import Freezing_Sleet from "../svg/cloud-sleet-svgrepo-com.svg";
+import RainSVG from "../svg/cloud-rain-svgrepo-com.svg";
 import './App.css';
 import WeeklyForecast from './forecast';
 
