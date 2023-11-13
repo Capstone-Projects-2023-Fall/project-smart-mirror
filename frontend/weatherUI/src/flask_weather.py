@@ -6,12 +6,30 @@ import time
 import json
 from flask import Flask, jsonify
 from flask_cors import CORS
+import os
+from supabase import create_client, Client
+from dotenv import load_dotenv
+import uuid
 
 # API documentation: https://open-meteo.com/en/docs
 # API URLs for daily and weekly forecasts. (hard coded for now)
 meteo_weather_url = "https://api.open-meteo.com/v1/forecast?latitude=39.9523&longitude=-75.1638&current=temperature_2m,precipitation,rain,weathercode&hourly=temperature_2m&daily=temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_probability_max&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime&timezone=America%2FNew_York"
 app = Flask(__name__)
 CORS(app)
+
+def get_location_from_supa(user):
+    user = '76066fc0-7811-4bb1-9652-8f68403bcff4'
+    load_dotenv()
+    url: str = os.getenv("SUPABASE_URL")
+    key: str = os.getenv("SUPABASE_KEY")
+    supabase: Client = create_client(url, key)
+    
+    response = supabase.table('profiles').select("location").eq('id', user).execute()
+    if response:
+       retval = response.data[0]
+       return retval['location']
+    return None
+
 
 # Gets the coordinates from a search term, can be a city name or a zip code
 def get_coords_from_API(name):
@@ -249,29 +267,34 @@ def find_keys_in_dict(dictionary, key_to_find):
     return found_values
 
 if __name__ == "__main__":
-    city_search = get_coords_from_API("19128")
-    if city_search:
-        parsed_values = parse_geocode_response(city_search)
-        if parsed_values:
-            lat = parsed_values["latitude"]
-            long = parsed_values["longitude"]
-            city = parsed_values["name"]
+    coords = get_location_from_supa('user_token')
+    if coords:
+        lat = coords['lat']
+        lon = coords['lon']
+        print(lat)
+        print(lon)
+    # city_search = get_coords_from_API("19128")
+    # if city_search:
+    #     parsed_values = parse_geocode_response(city_search)
+    #     if parsed_values:
+    #         lat = parsed_values["latitude"]
+    #         long = parsed_values["longitude"]
+    #         city = parsed_values["name"]
 
 
-            print(city)
-            URL = build_url_from_coords(lat, long)
-            response = get_weather_data(URL)
-            if response:
-                uv = get_uv(response)
-                #uv = find_key_in_dict(response.json(), "uv_index_max")
-                weather_code = get_current_weather_code(response)
-                weather = translate_weather_code(weather_code)
-                current_temp = get_current_temp(response)
-                max_temps = find_keys_in_dict(response.json(), "temperature_2m_max")
-                min_temps = find_keys_in_dict(response.json(), "temperature_2m_min")
-                display_forecast(weather, current_temp, uv)
-        else:
-            print("Error")
+    #         print(city)
+    #         URL = build_url_from_coords(lat, long)
+    #         response = get_weather_data(URL)
+    #         if response:
+    #             uv = get_uv(response)
+    #             weather_code = get_current_weather_code(response)
+    #             weather = translate_weather_code(weather_code)
+    #             current_temp = get_current_temp(response)
+    #             max_temps = find_keys_in_dict(response.json(), "temperature_2m_max")
+    #             min_temps = find_keys_in_dict(response.json(), "temperature_2m_min")
+    #             display_forecast(weather, current_temp, uv)
+    #     else:
+    #         print("Error")
             
 @app.route('/weather/<zip_code>')
 def weather(zip_code):
