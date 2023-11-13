@@ -392,3 +392,221 @@ Refresh the module's data.
     "body": "Module is not active or initialized."
 }
 ```
+## Weather Class API  
+**Description:**    
+The Weather class provides functionality to retrieve weather-related information for a specific location.
+
+### GET/weather/forecast/{zipCpde}
+**Description:**    
+Get Weather forecast 
+
+**Valid Request Body:**     
+```json
+{
+    "title": String,
+}
+```
+
+**Successful call:**
+```json
+{
+    "status": 200,
+    "body": "Weather forecast data for the specified location."
+}
+```
+
+**Failed call:**
+```json
+{
+    "status": 400,
+    "body": "Invalid request body."
+}
+```
+### GET/weather/location/{zipCode}
+**Description:**    
+Get Current Weather
+
+**Valid Request Body:**     
+```json
+{
+    "title": String,
+}
+```
+
+**Successful call:**
+```json
+{
+    "status": 200,
+    "body": "Current weather data for the specified location"
+}
+```
+
+**Failed call:**
+```json
+{
+    "status": 400,
+    "body": "Invalid request body."
+}
+```
+
+### PUT/weather/setLocation/{zipCode}
+**Description:**    
+Set Location 
+
+**Valid Request Body:**     
+```json
+{
+    "title": String,
+}
+```
+
+**Successful call:**
+```json
+{
+    "status": 200,
+    "body": "Location set to the specified ZIP code."
+}
+```
+
+**Failed call:**
+```json
+{
+    "status": 400,
+    "body": "Invalid request body."
+}
+```
+
+### Delete/weather/location/{zipCode}
+**Description:**    
+Delete Location 
+
+**Valid Request Body:**     
+```json
+{
+    "title": String,
+}
+```
+
+**Successful call:**
+```json
+{
+    "status": 200,
+    "body": "Location deleted successfully"
+}
+```
+
+**Failed call:**
+```json
+{
+    "status": 400,
+    "body": "Invalid request body."
+}
+```
+
+### GET/weather/daily/{zipCpde}
+**Description:**    
+Get Daily Weather Forecast
+
+**Valid Request Body:**     
+```json
+{
+    "title": String,
+}
+```
+
+**Successful call:**
+```json
+{
+    "status": 200,
+    "body": "Daily weather forecast data for the specified location."
+}
+```
+
+**Failed call:**
+```json
+{
+    "status": 400,
+    "body": "Invalid request body."
+}
+```
+
+### GET/weather/weekly/{zipCpde}
+**Description:**    
+Get weekly Weather Forecast
+
+**Valid Request Body:**     
+```json
+{
+    "title": String,
+}
+```
+
+**Successful call:**
+```json
+{
+    "status": 200,
+    "body": "Weekly weather forecast data for the specified location."
+}
+```
+
+**Failed call:**
+```json
+{
+    "status": 400,
+    "body": "Invalid request body."
+}
+```
+
+### GET/weather/alerts/{zipCpde}
+**Description:**    
+Get Weather alerts
+
+**Valid Request Body:**     
+```json
+{
+    "title": String,
+}
+```
+
+**Successful call:**
+```json
+{
+    "status": 200,
+    "body": "Weather alerts for the specified location."
+}
+```
+
+**Failed call:**
+```json
+{
+    "status": 400,
+    "body": "Invalid request body."
+}
+```
+
+### DELETE/weather/alerts/{zipCpde}
+**Description:**    
+Delete Weather alerts
+
+**Valid Request Body:**     
+```json
+{
+    "title": String,
+}
+```
+
+**Successful call:**
+```json
+{
+    "status": 200,
+    "body": "Weather alerts deleted successfully."
+}
+```
+
+**Failed call:**
+```json
+{
+    "status": 400,
+    "body": "Invalid request body."
+}
+```

@@ -4,11 +4,14 @@ import datetime
 import urllib.parse
 import time
 import json
+from flask import Flask, jsonify
+from flask_cors import CORS
 
 # API documentation: https://open-meteo.com/en/docs
 # API URLs for daily and weekly forecasts. (hard coded for now)
 meteo_weather_url = "https://api.open-meteo.com/v1/forecast?latitude=39.9523&longitude=-75.1638&current=temperature_2m,precipitation,rain,weathercode&hourly=temperature_2m&daily=temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_probability_max&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime&timezone=America%2FNew_York"
-
+app = Flask(__name__)
+CORS(app)
 
 # Gets the coordinates from a search term, can be a city name or a zip code
 def get_coords_from_API(name):
@@ -45,7 +48,13 @@ def build_url_from_coords(lat, long):
     }
     url = base_url + urllib.parse.urlencode(params)
     return url
-
+def get_weekly_forecast(lat, long):
+    url = f"https://api.open-meteo.com/v1/forecast?latitude=39.9523&longitude=-75.1638&current=temperature_2m,precipitation,rain,weathercode&hourly=temperature_2m&daily=temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_probability_max&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime&timezone=America%2FNew_York"
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return None
 
 # Check if an argument is a decimal or float
 def is_float(string):
@@ -263,3 +272,49 @@ if __name__ == "__main__":
                 display_forecast(weather, current_temp, uv)
         else:
             print("Error")
+            
+@app.route('/weather/<zip_code>')
+def weather(zip_code):
+    city_search = get_coords_from_API(zip_code)
+    if city_search:
+        parsed_values = parse_geocode_response(city_search)
+        if parsed_values:
+            lat = parsed_values["latitude"]
+            long = parsed_values["longitude"]
+            city = parsed_values["name"]
+
+            URL = build_url_from_coords(lat, long)
+            response = get_weather_data(URL)
+            if response:
+                uv = get_uv(response)
+                weather_code = get_current_weather_code(response)
+                weather = translate_weather_code(weather_code)
+                current_temp = get_current_temp(response)
+                return jsonify({
+                    "city": city,
+                    "temperature": current_temp,
+                    "uvIndex": uv,
+                    "weatherCode": weather_code,
+                    "weatherDescription": weather
+                })
+    return jsonify({"error": "Data not found"}), 404
+
+@app.route('/weather/weekly/<zip_code>')
+def weekly_forecast(zip_code):
+    city_search = get_coords_from_API(zip_code)
+    if city_search:
+        parsed_values = parse_geocode_response(city_search)
+        if parsed_values:
+            lat = parsed_values["latitude"]
+            long = parsed_values["longitude"]
+
+            forecast_data = get_weekly_forecast(lat, long)
+            if forecast_data:
+               
+                return jsonify(forecast_data)
+            else:
+                return jsonify({"error": "Forecast data not found"}), 404
+    return jsonify({"error": "Data not found"}), 404
+
+if __name__ == '__main__':
+    app.run(debug=True)

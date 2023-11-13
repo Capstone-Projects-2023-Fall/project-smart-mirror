@@ -25,7 +25,7 @@
     "formik": "^2.4.5",
     "framer-motion": "^10.16.4",
     "lodash.debounce": "^4.0.8",
-    "next": "^13.5.4",
+    "next": "^13.5.6",
     "next-pwa": "^5.6.0",
     "react": "18.2.0",
     "react-autosave": "^0.4.3",
