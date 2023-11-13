@@ -23,11 +23,11 @@ export default function UserSettings({ user }: Props) {
             Toggle to save user's location
         */}
             <label className="">
-              {"Change your username"}
+              <p>Change your username</p>
               <Field
                 type="text"
                 name="username"
-                className="ml-2 appearance-none rounded-md border-2 border-primary bg-background outline-none"
+                className="mt-1 appearance-none rounded-md border-2 border-primary bg-background px-2 outline-none"
               />
               <p className="text-black-light text-sm">
                 Smart Mirror chooses a random name for you when you create your

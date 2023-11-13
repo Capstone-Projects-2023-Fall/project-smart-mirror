@@ -4,6 +4,11 @@ import React from "react";
 import Location from "./_components/settings/location";
 import UserSettings from "./_components/settings/user";
 import { User } from "@supabase/auth-helpers-nextjs";
+import Mirror from "./_components/settings/mirror";
+import DataPrivacy from "./_components/settings/dataprivacy";
+import Time from "./_components/settings/time";
+import Widget from "./_components/settings/widget";
+import Notifications from "./notifications";
 
 type Props = {
   user: User | null;
@@ -12,9 +17,14 @@ type Props = {
 export default function Settings({ user }: Props) {
   return (
     <>
-      <section className="mt-8">
+      <section className="mt-8 font-medium">
         <Location />
         <UserSettings user={user} />
+        <Mirror />
+        <Time />
+        <Widget />
+        <Notifications />
+        <DataPrivacy />
       </section>
     </>
   );
