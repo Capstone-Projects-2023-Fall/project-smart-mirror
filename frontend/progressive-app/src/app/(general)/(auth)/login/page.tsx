@@ -59,7 +59,7 @@ export default function Login({}: Props) {
         animate="visible"
         className="flex h-screen w-screen flex-col items-center justify-center"
       >
-        <h1 className="font-black text-text">Welcome Back!</h1>
+        <h1 className="font-black text-black">Welcome Back!</h1>
         <div className="m-8 h-1 w-1/2 bg-primary" />
         <LoginForm handleSubmit={handleSubmit} error={error}></LoginForm>
       </motion.div>

@@ -21,6 +21,9 @@
   h3 {
     @apply text-2xl
   }
+  h4 {
+    @apply text-lg
+  }
   p, div {
     @apply text-base
   }
@@ -41,6 +44,16 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background: var(--text);
   border-radius: 100px;
+}
+
+::-moz-selection {
+  background-color: var(--primary);
+  color: var(--background)
+}
+
+::selection {
+  background-color: var(--primary);
+  color: var(--background)
 }
 
 input:-webkit-autofill,

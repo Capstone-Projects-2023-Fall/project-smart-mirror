@@ -1,12 +1,10 @@
 import "~/styles/globals.css";
-import localFont from "next/font/local";
 import { ReactNode } from "react";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
 import Navbar from "~/components/navbar";
 import { navDataLoggedIn, navDataLoggedOut } from "~/lib/data";
 import React from "react";
 import { satoshi } from "~/lib/font";
+import { supabase } from "~/lib/supabase-server";
 
 export const revalidate = 0;
 
@@ -22,7 +20,6 @@ export default async function RootLayout({
 }: {
   children: ReactNode;
 }) {
-  const supabase = createServerComponentClient({ cookies });
   const {
     data: { user },
   } = await supabase.auth.getUser();

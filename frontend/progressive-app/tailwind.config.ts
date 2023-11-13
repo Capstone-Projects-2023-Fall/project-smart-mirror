@@ -10,7 +10,7 @@ export default {
         secondary: "var(--secondary)",
         background: "var(--background)",
         "background-secondary": "var(--background-secondary)",
-        text: "var(--text)",
+        black: { DEFAULT: "var(--text)", light: "#727274" },
         error: "var(--error)",
       },
       fontFamily: {

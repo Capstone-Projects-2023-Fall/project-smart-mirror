@@ -11,14 +11,14 @@ export default function Sidebar({ update }: Props) {
   const [selected, setSelected] = useState<string | null>(null);
 
   return (
-    <div className="mr-5 flex h-full w-1/5 flex-col items-center bg-secondary">
+    <div className="sticky top-0 mr-5 flex h-full w-1/5 flex-col items-center bg-secondary">
       <Logo />
       <ul className="mt-48 flex w-full flex-col items-center justify-center">
         {sidebarData.map((item) => (
           <li
             key={item.state}
             className={`flex h-20 w-1/2 cursor-pointer flex-row items-center duration-500 ease-in-out ${
-              item.state === selected ? "text-primary" : "text-text"
+              item.state === selected ? "text-primary" : "text-black"
             }`}
             onMouseEnter={() => setSelected(item.state)}
             onClick={() => update(item.state)}
@@ -32,7 +32,7 @@ export default function Sidebar({ update }: Props) {
                 animate={{
                   transition: { type: "spring", bounce: 0.25, duration: 0.5 },
                 }}
-                className="accent absolute left-12 h-12 w-2 rounded-full bg-primary"
+                className="accent absolute left-10 h-10 w-2 rounded-full bg-primary"
               ></motion.div>
             )}
           </li>
