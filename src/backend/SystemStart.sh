@@ -15,3 +15,5 @@ echo "Starting mirror"
 npm run dev
 
 echo "System initialized"
+echo "Opening browser"
+chromium-browser --kiosk --disable-infobars --incognito http://localhost:5173/
