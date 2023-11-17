@@ -12,7 +12,7 @@ echo "Loading screen"
 export FONTCONFIG_PATH=/etc/fonts
 python -m http.server
 export DISPLAY=:0
-chromium-browser --kiosk --disable-infobars --incognito http://localhost:5173/ & PID=$!
+chromium-browser --kiosk --disable-infobars --incognito http://localhost:8000/ & PID=$!
 
 echo "Installing packages"
 cd /home/smartmirror/Desktop/project-smart-mirror/frontend/mirror-frontend
