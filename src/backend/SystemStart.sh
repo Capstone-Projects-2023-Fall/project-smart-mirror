@@ -12,9 +12,14 @@ npm update
 npm i
 
 echo "Starting mirror"
-chromium-browser --kiosk --disable-infobars --incognito http://localhost:5173/
-npm run dev 
+npm run dev &
 
+while ! nc -z localhost 5173; do
+  sleep 1
+done
+
+# Once the server is ready, open Chromium in kiosk mode
+chromium-browser --kiosk --disable-infobars --incognito http://localhost:5173/
 echo "System initialized"
 echo "Opening browser"
 
