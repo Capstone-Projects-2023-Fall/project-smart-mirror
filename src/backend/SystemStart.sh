@@ -19,6 +19,7 @@ while ! nc -z localhost 5173; do
 done
 
 # Once the server is ready, open Chromium in kiosk mode
+export DISPLAY=:0
 chromium-browser --kiosk --disable-infobars --incognito http://localhost:5173/
 echo "System initialized"
 echo "Opening browser"
