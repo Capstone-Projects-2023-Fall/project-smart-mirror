@@ -11,6 +11,7 @@ git pull origin SM-161
 
 echo "Installing packages"
 cd /home/smartmirror/Desktop/project-smart-mirror/frontend/mirror-frontend
+npm update
 npm i
 
 echo "Starting mirror"
