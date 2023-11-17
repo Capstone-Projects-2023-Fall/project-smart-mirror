@@ -5,6 +5,13 @@ cd /home/smartmirror/Desktop/project-smart-mirror
 git stash
 git pull origin LoadingScreen
 
+cd /home/smartmirror/Desktop/project-smart-mirror/src/backend/LoadingScreen
+
+
+python -m http.server
+chromium-browser --kiosk --disable-infobars --incognito http://localhost:8000/ &
+PID=$!
+
 echo "Installing packages"
 cd /home/smartmirror/Desktop/project-smart-mirror/frontend/mirror-frontend
 npm update
@@ -16,6 +23,7 @@ npm run dev &
 while ! ncat -z localhost 5173; do
   sleep 1
 done
+kill $PID
 sudo unclutter -idle 0 &
 # Once the server is ready, open Chromium in kiosk mode
 export DISPLAY=:0
