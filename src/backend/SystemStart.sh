@@ -8,9 +8,10 @@ git pull origin LoadingScreen
 cd /home/smartmirror/Desktop/project-smart-mirror/src/backend/LoadingScreen
 
 echo "Loading screen"
+
+export FONTCONFIG_PATH=/etc/fonts
 python -m http.server
 export DISPLAY=:0
-export FONTCONFIG_PATH=/etc/fonts
 chromium-browser --kiosk --disable-infobars --incognito http://localhost:8000/ &
 PID=$! &
 
@@ -32,4 +33,5 @@ export DISPLAY=:0
 chromium-browser --kiosk --disable-infobars --incognito http://localhost:5173/
 echo "System initialized"
 echo "Opening browser"
+
 
