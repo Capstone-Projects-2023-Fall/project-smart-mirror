@@ -25,11 +25,12 @@ npm run dev &
 while ! ncat -z localhost 5173; do
   sleep 1
 done
-kill $PID
 # Once the server is ready, open Chromium in kiosk mode
 export DISPLAY=:0
 # sudo unclutter -idle 0 &
-chromium-browser --kiosk --disable-infobars --incognito http://localhost:5173/
+kill $PID &
+chromium-browser --kiosk --disable-infobars --incognito http://localhost:5173/ 
+
 echo "System initialized"
 echo "Opening browser"
 
