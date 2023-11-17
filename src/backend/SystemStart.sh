@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "Starting Mirror"
-
+unclutter -idle 0
 echo "Updating git repo"
 cd /home/smartmirror/Desktop/project-smart-mirror
 git stash
