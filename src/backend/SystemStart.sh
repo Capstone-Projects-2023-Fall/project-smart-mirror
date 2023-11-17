@@ -11,6 +11,9 @@ echo "Loading screen"
 
 export FONTCONFIG_PATH=/etc/fonts
 python -m http.server &
+while ! ncat -z localhost 8000; do
+  sleep 1
+done
 export DISPLAY=:0
 chromium-browser --kiosk --disable-infobars --incognito http://localhost:8000/ & PID=$!
 
