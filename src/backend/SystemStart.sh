@@ -9,6 +9,7 @@ cd /home/smartmirror/Desktop/project-smart-mirror/src/backend/LoadingScreen
 
 echo "Loading screen"
 python -m http.server
+export DISPLAY=:0
 chromium-browser --kiosk --disable-infobars --incognito http://localhost:8000/ &
 PID=$!
 
