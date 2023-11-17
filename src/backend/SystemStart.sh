@@ -1,3 +1,4 @@
+#!/bin/bash
 echo "Starting Mirror"
 
 echo "Updating git repo"
