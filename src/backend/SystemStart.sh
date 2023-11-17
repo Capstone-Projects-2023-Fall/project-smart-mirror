@@ -12,7 +12,8 @@ npm update
 npm i
 
 echo "Starting mirror"
-npm run dev && chromium-browser --kiosk --disable-infobars --incognito http://localhost:5173/
+chromium-browser --kiosk --disable-infobars --incognito http://localhost:5173/
+npm run dev 
 
 echo "System initialized"
 echo "Opening browser"
