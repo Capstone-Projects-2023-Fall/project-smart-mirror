@@ -12,8 +12,7 @@ echo "Loading screen"
 export FONTCONFIG_PATH=/etc/fonts
 python -m http.server
 export DISPLAY=:0
-chromium-browser --kiosk --disable-infobars --incognito http://localhost:8000/ &
-PID=$! &
+chromium-browser --kiosk --disable-infobars --incognito http://localhost:5173/ & PID=$!
 
 echo "Installing packages"
 cd /home/smartmirror/Desktop/project-smart-mirror/frontend/mirror-frontend
@@ -29,7 +28,7 @@ done
 kill $PID
 # Once the server is ready, open Chromium in kiosk mode
 export DISPLAY=:0
-sudo unclutter -idle 0 &
+# sudo unclutter -idle 0 &
 chromium-browser --kiosk --disable-infobars --incognito http://localhost:5173/
 echo "System initialized"
 echo "Opening browser"
