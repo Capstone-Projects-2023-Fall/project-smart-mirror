@@ -14,7 +14,7 @@ npm i
 echo "Starting mirror"
 npm run dev &
 
-while ! nc -z localhost 5173; do
+while ! ncat -z localhost 5173; do
   sleep 1
 done
 
