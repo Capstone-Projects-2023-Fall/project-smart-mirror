@@ -13,6 +13,7 @@ echo "Installing packages"
 cd /home/smartmirror/Desktop/project-smart-mirror/frontend/mirror-frontend
 npm update
 npm i
+npm install concurrently
 
 echo "Starting mirror"
 npm run dev
