@@ -1,4 +1,5 @@
 #!/bin/bash
+export PATH=$PATH:/usr/local/bin   # Adjust the path as needed
 echo "Starting Mirror"
 
 echo "Updating git repo"
@@ -13,4 +14,4 @@ npm i
 echo "Starting mirror"
 npm run dev
 
-echo "System intialized"
+echo "System initialized"
