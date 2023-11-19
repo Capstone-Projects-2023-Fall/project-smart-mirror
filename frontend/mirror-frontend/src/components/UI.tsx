@@ -2,6 +2,7 @@ import React from 'react';
 import TemperatureDisplay from './weather';
 import CalendarUI from './calendar';
 import './App.css'; // Assuming you have a CSS file for styling
+import Clock from './clock';
 
 const UI = () => {
   return (
@@ -11,6 +12,9 @@ const UI = () => {
       </div>
       <div className="calendar-box">
         <CalendarUI />
+      </div>
+      <div className="clock-box">
+        <Clock title="Clock" />
       </div>
     </div>
   );
