@@ -8,7 +8,6 @@ export async function GET(request: Request){
     const field = searchParams.get('field')
     
     if (id && field){
-        //const client = new supabase;
         
         const { data, error } = await supabase
         .from("profiles")
