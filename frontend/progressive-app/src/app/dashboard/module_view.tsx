@@ -1,53 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import './ToggleSwitch.css'; // Ensure this is the path to your toggle switch CSS
 
 const ModuleView: React.FC = () => {
-  const [isWidgetOn, setIsWidgetOn] = useState<boolean>(
-    localStorage.getItem('isWidgetOn') === 'true'
-  );
+  const [isWidgetVisible, setIsWidgetVisible] = useState<boolean>(false);
 
-  useEffect(() => {
-    // Initialize the broadcast channel
-    const bc = new BroadcastChannel('widget_channel');
-
-    
-    const postMessage = (isOn: boolean) => {
-      console.log('Posting message to broadcast channel:', isOn);
-      bc.postMessage({ isWidgetOn: isOn });
-    };
-
-    
-    postMessage(isWidgetOn);
-
-    
-    const handleStorageChange = (event: StorageEvent) => {
-      if (event.key === 'isWidgetOn') {
-        const newValue = event.newValue === 'true';
-        setIsWidgetOn(newValue);
-        postMessage(newValue); 
+  const toggleWidgetVisibility = async () => {
+    try {
+      const response = await fetch('http://localhost:4000/toggle-widget', { method: 'POST' });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
       }
-    };
-
-    window.addEventListener('storage', handleStorageChange);
-
-    
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-      bc.close(); 
-    };
-  }, []);
-
-  const toggleWidget = () => {
-    setIsWidgetOn((current) => {
-      const newValue = !current;
-      localStorage.setItem('isWidgetOn', newValue.toString());
-      return newValue;
-    });
+      const data = await response.json();
+      setIsWidgetVisible(data.isWidgetVisible);
+      console.log('Widget visibility toggled:', data.isWidgetVisible);
+    } catch (error) {
+      console.error('There has been a problem with your fetch operation:', error);
+    }
   };
+
   return (
-    <div>
+    <div className="module-view">
+      <div className="weather-label">Weather</div>
       <label className="toggle-switch">
-        <input type="checkbox" checked={isWidgetOn} onChange={toggleWidget} />
-        <span className="switch-slider"></span>
+        <input
+          type="checkbox"
+          checked={isWidgetVisible}
+          onChange={toggleWidgetVisibility}
+          className="toggle-switch-checkbox"
+        />
+        <span className="toggle-switch-slider" />
       </label>
     </div>
   );
