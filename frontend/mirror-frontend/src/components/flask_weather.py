@@ -12,6 +12,8 @@ from flask_cors import CORS
 meteo_weather_url = "https://api.open-meteo.com/v1/forecast?latitude=39.9523&longitude=-75.1638&current=temperature_2m,precipitation,rain,weathercode&hourly=temperature_2m&daily=temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_probability_max&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime&timezone=America%2FNew_York"
 app = Flask(__name__)
 CORS(app)
+is_weather_widget_visible = True
+
 
 # Gets the coordinates from a search term, can be a city name or a zip code
 def get_coords_from_API(name):
@@ -275,6 +277,8 @@ if __name__ == "__main__":
             
 @app.route('/weather/<zip_code>')
 def weather(zip_code):
+    if not is_weather_widget_visible:
+        return jsonify({"Error"}),403
     city_search = get_coords_from_API(zip_code)
     if city_search:
         parsed_values = parse_geocode_response(city_search)
@@ -315,6 +319,12 @@ def weekly_forecast(zip_code):
             else:
                 return jsonify({"error": "Forecast data not found"}), 404
     return jsonify({"error": "Data not found"}), 404
+
+@app.route('/toggle-weather-widget', methods=['POST'])
+def toggle_weather_widget():
+    global is_weather_widget_visible
+    is_weather_widget_visible = not is_weather_widget_visible
+    return jsonify({'visible': is_weather_widget_visible}), 200
 
 if __name__ == '__main__':
     app.run(debug=True)
