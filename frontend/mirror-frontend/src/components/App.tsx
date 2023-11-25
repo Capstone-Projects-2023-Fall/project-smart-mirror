@@ -1,19 +1,16 @@
+
 import React, { useState, useEffect } from 'react';
-import TemperatureDisplay from './weather';
-import CalendarUI from './calendar';
+import TemperatureDisplay from './weather'; 
+import CalendarUI from './calendar'; 
 
 const UI: React.FC = () => {
-  const [isWeatherVisible, setIsWeatherVisible] = useState<boolean>(
-    localStorage.getItem('isWidgetOn') === 'true'
-  );
+
+  const [isWeatherVisible, setIsWeatherVisible] = useState<boolean>(() => {
+    return localStorage.getItem('isWidgetOn') === 'true';
+  });
 
   useEffect(() => {
-    const bc = new BroadcastChannel('widget_channel');
-
-    bc.onmessage = (event) => {
-      setIsWeatherVisible(event.data.isWidgetOn);
-    };
-
+    
     const handleStorageChange = (event: StorageEvent) => {
       if (event.key === 'isWidgetOn') {
         setIsWeatherVisible(event.newValue === 'true');
@@ -23,7 +20,6 @@ const UI: React.FC = () => {
     window.addEventListener('storage', handleStorageChange);
 
     return () => {
-      bc.close();
       window.removeEventListener('storage', handleStorageChange);
     };
   }, []);
