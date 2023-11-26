@@ -8,7 +8,7 @@ const UI: React.FC = () => {
   useEffect(() => {
     const fetchWidgetVisibility = async () => {
       try {
-        const response = await fetch('http://localhost:4000/toggle-widget');
+        const response = await fetch('http://localhost:1023/toggle-widget');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
