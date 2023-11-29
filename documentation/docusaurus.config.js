@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
  * The URL or reference to your projects logo!
  * @type {string}
  */
-const logo = 'https://upload.wikimedia.org/wikipedia/commons/1/17/Temple_T_logo.svg';
+const logo = 'img/icon-512x512.png';
 
 const main_template_jira_scripts = () => {
   if (process.env.ORG_NAME === 'ApplebaumIan'){
@@ -217,6 +217,7 @@ const config = {
 
   ],
   scripts:['https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js',
+      'https://temple-cis-projects-in-cs.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e-T/tod1zk/b/5/c95134bc67d3a521bb3f4331beb9b804/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-US&collectorId=ba006f9b',
       ...main_template_jira_scripts()
   ],
 };
