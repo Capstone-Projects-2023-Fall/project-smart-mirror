@@ -43,10 +43,9 @@ body {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 15px;
   padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  /* Removed the border property */
+  width: 360px; /* Fixed width */
+  height: 200px; /* Fixed height */
+  margin: 20px auto;
 }
 
 @media (max-width: 768px) {
@@ -56,6 +55,7 @@ body {
 
   .weather-box, .calendar-box, .weekly-forecast-container {
     width: 100%;
+    height: auto;
     margin-bottom: 20px; 
   }
 }
@@ -95,8 +95,8 @@ body {
 }
 
 .weekly-forecast-container {
-  max-width: 100%; /* Use 100% of the container width */
-  max-height: 300px; /* Adjust this value to match the height of the daily forecast */
+  max-width: 100%; /* Adjust if necessary */
+  max-height: 300px; /* Fixed height */
   margin: 20px auto;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
@@ -107,27 +107,21 @@ body {
 }
 
 .weekly-forecast {
-  display: flex;
-  flex-direction: row; /* Align children horizontally */
-  justify-content: space-around; /* Distributes space evenly */
-  align-items: center; /* Aligns items vertically in the center */
+  display: block;
   height: 100%;
-  margin: 0; 
-  padding: 0; 
+  margin: 0;
+  padding: 0;
 }
 
 .weekly-forecast > div {
-  flex: 1; /* Each child will take equal space */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around; /* Evenly spaces the content within each child */
-  align-items: center;
+  display: inline-block;
+  width: calc(100% / 7); /* Width adjusted for seven items */
+  height: 100%;
   padding: 5px;
-  margin: 2px;
+  box-sizing: border-box;
   font-size: 0.8rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional, for individual days' styling */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
 
 .weekly-forecast-title {
   margin-bottom: 1rem;
