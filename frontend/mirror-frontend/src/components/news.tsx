@@ -9,12 +9,12 @@ const NewsComponent = () => {
         padding: '10px',
       };
 
-  const [newsData, setForecastData] = useState([]);
+  const [newsData, setNewsData] = useState([]);
 
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   useEffect(() => {
-    async function fetchWeeklyForecast() {
+    async function fetchNews() {
       setIsLoading(true);
       try {
         const response = await fetch("https://api.thenewsapi.com/v1/news/top?api_token=FnaoOtNUONgOKDKV7r46ZfjZSDSygue4aLKlR0nW&locale=us&limit=3");
@@ -23,7 +23,7 @@ const NewsComponent = () => {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        setForecastData(data.data);
+        setNewsData(data.data);
       } catch (error) {
         
       } finally {
@@ -31,7 +31,7 @@ const NewsComponent = () => {
       }
     }
   
-    fetchWeeklyForecast();
+    fetchNews();
   }, []);
 
   if (isLoading) {
