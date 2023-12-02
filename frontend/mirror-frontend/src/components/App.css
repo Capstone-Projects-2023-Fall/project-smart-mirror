@@ -213,6 +213,31 @@ html {
 
 }
 
+.news {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  height: 600px;
+  width: 400px;
+
+  background-color: #000;
+}
+
+.news-box {
+  flex: none; 
+  margin: 10px; 
+  padding: 20px; 
+  height: 600px;
+  width: 400px;
+
+  background-color: #000000; 
+  border: 1px solid #000000; 
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
+  background-color: #000; 
+  position:  fixed;
+
+}
+
 
 @media (max-width: 768px) {
   .ui-container {
