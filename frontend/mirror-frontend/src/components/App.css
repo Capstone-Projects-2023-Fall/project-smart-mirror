@@ -1,7 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
 
+html {
+  background-color: black;
+}
+
 body {
   font-family: 'Nunito', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #fff;
 }
 
 #root {
@@ -10,7 +18,6 @@ body {
   padding: 1rem;
   text-align: center;
   background-color: #000; 
-  color: #000000; 
 }
 
 .App-header {
@@ -21,7 +28,36 @@ body {
   background-color: #000000; 
   color: #fff; 
   border: 2px solid #fff; 
-  
+}
+
+.ui-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+  grid-auto-rows: minmax(200px, auto);
+}
+
+.weather-box, .calendar-box, .weekly-forecast-container {
+  background-color: #000000;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  padding: 20px;
+  width: 360px; /* Fixed width */
+  height: 200px; /* Fixed height */
+  margin: 20px auto;
+}
+
+@media (max-width: 768px) {
+  .ui-container {
+    grid-template-columns: 1fr;
+  }
+
+  .weather-box, .calendar-box, .weekly-forecast-container {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px; 
+  }
 }
 
 .temperature-display {
@@ -43,8 +79,6 @@ body {
 .temperature-display p:first-child {
   font-size: 1.5rem; 
   font-weight: bold; 
-
-
 }
 
 .temperature-display .temperature {
@@ -59,47 +93,39 @@ body {
 .temperature-display .uv-index {
   font-size: 1rem; 
 }
+
 .weekly-forecast-container {
-  color: white;
-  background-color: #000;
+  max-width: 100%; /* Adjust if necessary */
+  max-height: 300px; /* Fixed height */
+  margin: 20px auto;
   padding: 20px;
-  margin: 20px auto; 
-  text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  background-color: #000;
+  color: white;
+  text-align: center;
+  overflow: hidden;
+}
+
+.weekly-forecast {
+  display: block;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.weekly-forecast > div {
+  display: inline-block;
+  width: calc(100% / 7); /* Width adjusted for seven items */
+  height: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+  font-size: 0.8rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .weekly-forecast-title {
   margin-bottom: 1rem;
   font-size: 1.5rem;
-
-}
-
-
-
-body, p, h1, h2, h3, h4, h5, h6, a, button {
-  color: #fff; 
-}
-
-.loading-box {
-  color: white;
-  background-color: #000000; 
-  padding: 20px;
-  margin: 20px;
-  border-radius: 10px; 
-  border: 1px solid #000000; 
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  text-align: center;
-  font-size: 1.5rem;
-  
-}
-
-.weekly-forecast {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-  margin: 20px auto; 
-  border-radius: 10px; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 .daily-forecast {
@@ -109,12 +135,7 @@ body, p, h1, h2, h3, h4, h5, h6, a, button {
   text-align: center;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   border-radius: 4px;
-  flex-grow: 1;
-}
-
-
-.daily-forecast {
-  width: calc(100% / 7 - 10px);
+  flex: 1;
 }
 
 .day {
@@ -124,6 +145,7 @@ body, p, h1, h2, h3, h4, h5, h6, a, button {
 .temperature {
   font-size: 1.2em; 
 }
+
 .black-button {
   background-color: black;
   color: white;
@@ -138,8 +160,6 @@ body, p, h1, h2, h3, h4, h5, h6, a, button {
   display: flex;
   flex-direction: column;
   font-family: 'Arial', sans-serif;
-  color: white;
-
 }
 
 .calendar-header {
@@ -177,61 +197,24 @@ body, p, h1, h2, h3, h4, h5, h6, a, button {
   border-right: none;
 }
 
-html {
-  background-color: black
-}
-.ui-container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 20px; 
-  padding: 20px;
-  height: calc(100% - 40px);
-}
-
-
-.weather-box
-{
-  flex: 1; 
-  margin: 10px; 
-  padding: 20px; 
-  background-color: #000000; 
-  border: 1px solid #000000; 
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
-  background-color: #000; 
-  
-}
-.calendar-box {
-  flex: 1; 
-  margin: 10px; 
-  padding: 20px; 
-  border-radius: 10px; 
-  background-color: #000000; 
-  border: 1px solid #000000; 
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
-  background-color: #000; 
-
-}
-
-
-@media (max-width: 768px) {
-  .ui-container {
-    flex-direction: column;
-    align-items: center; 
-  }
-
-  .weather-box,
-  .calendar-box {
-    width: 80%; 
-    margin-bottom: 20px; 
-  }
-}
 .calendar-container {
   text-align: center;
   color: white;
-
 }
+
 .calendar-title {
   text-align: center;
   margin-bottom: 20px; 
+}
+
+.loading-box {
+  color: white;
+  background-color: #000000; 
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px; 
+  border: 1px solid #000000; 
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  text-align: center;
+  font-size: 1.5rem;
 }
