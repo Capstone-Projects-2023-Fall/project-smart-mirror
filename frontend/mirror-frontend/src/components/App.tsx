@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import TemperatureDisplay from './weather';
 import CalendarUI from './calendar';
+import FitbitDataComponent from './fitbit'
+import NewsComponent from './news';
+import './App.css'; // Ensure this is the path to your CSS file
 
 const UI: React.FC = () => {
   const [isWeatherVisible, setIsWeatherVisible] = useState<boolean>(true);
@@ -26,6 +29,7 @@ const UI: React.FC = () => {
   }, []);
 
   return (
+    <div className="ui-container2">
     <div className="ui-container">
       {isWeatherVisible && (
         <div className="weather-box">
@@ -34,6 +38,11 @@ const UI: React.FC = () => {
       )}
       <div className="calendar-box">
         <CalendarUI />
+      </div>
+      
+    </div>
+    <div className="news-box">
+      <NewsComponent/>
       </div>
     </div>
   );

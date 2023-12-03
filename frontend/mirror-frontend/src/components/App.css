@@ -197,6 +197,80 @@ body {
   border-right: none;
 }
 
+html {
+  background-color: black
+}
+.ui-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px; 
+  padding: 20px;
+  height: calc(100% - 40px);
+}
+
+
+.weather-box
+{
+  flex: 1; 
+  margin: 10px; 
+  padding: 20px; 
+  background-color: #000000; 
+  border: 1px solid #000000; 
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
+  background-color: #000; 
+  
+}
+.calendar-box {
+  flex: 1; 
+  margin: 10px; 
+  padding: 20px; 
+  border-radius: 10px; 
+  background-color: #000000; 
+  border: 1px solid #000000; 
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
+  background-color: #000; 
+
+}
+
+.news {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  height: 600px;
+  width: 400px;
+
+  background-color: #000;
+}
+
+.news-box {
+  flex: none; 
+  margin: 10px; 
+  padding: 20px; 
+  height: 600px;
+  width: 400px;
+
+  background-color: #000000; 
+  border: 1px solid #000000; 
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
+  background-color: #000; 
+  position:  fixed;
+
+}
+
+
+@media (max-width: 768px) {
+  .ui-container {
+    flex-direction: column;
+    align-items: center; 
+  }
+
+  .weather-box,
+  .calendar-box {
+    width: 80%; 
+    margin-bottom: 20px; 
+  }
+}
 .calendar-container {
   text-align: center;
   color: white;
