@@ -6,7 +6,8 @@
     "build": "next build",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
-    "dev": "next dev",
+    "dev": "next dev & set FLASK_APP=./src/app/dashboard/api.py & flask run",
+    "dev:next": "next dev",
     "postinstall": "prisma generate",
     "lint": "next lint",
     "start": "next start"
