@@ -21,7 +21,7 @@ while True:
     override = current-lastsignal<DISPLAY_TIMEOUT
     if len(faces) > 0 or (current-lastsignal<DISPLAY_TIMEOUT):
        print("Face detected")
-       os.popen('xset -display :0.0 dpms force on')
+       subprocess.run(["xset", "-display", ":0.0", "dpms", "force", "on"])
        if not override:
           lastsignal = current
           #interval = 60
