@@ -3,7 +3,9 @@ import TemperatureDisplay from './weather';
 import CalendarUI from './calendar';
 import FitbitDataComponent from './fitbit';
 import NewsComponent from './news';
+import Clock from "./clock";
 import './App.css';
+import './clock.css';
 
 const UI: React.FC = () => {
   const [widgetVisibility, setWidgetVisibility] = useState({
@@ -49,18 +51,19 @@ const UI: React.FC = () => {
             <CalendarUI />
           </div>
         )}
+        {/* Clock component is always displayed */}
+        <div className="clock-box">
+          <Clock />
+        </div>
       </div>
       {widgetVisibility.News && (
         <div className="news-box">
           <NewsComponent />
         </div>
       )}
-      {/* {widgetVisibility.Fitbit && (
-        <div className="fitbit-box">
-          <FitbitDataComponent />
-        </div>
-      )} */}
+      {/* The Fitbit component is commented out, so it won't be displayed */}
     </div>
+    
   );
 };
 

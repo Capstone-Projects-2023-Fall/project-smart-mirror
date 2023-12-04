@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css'; // Make sure to create a Calendar.css file for styling
+import './calendar.css';
 
 const CalendarUI = () => {
   // This would be replaced with data fetched from your Python backend

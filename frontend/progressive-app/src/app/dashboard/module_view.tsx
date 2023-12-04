@@ -3,9 +3,9 @@ import './ToggleSwitch.css';
 
 const ModuleView: React.FC = () => {
   const [widgetVisibility, setWidgetVisibility] = useState({
-    Weather: false,
-    News: false,
-    Calendar: false
+    Weather: true,
+    News: true,
+    Calendar: true
   });
 
   const userId = '21380693-3ade-4951-82c0-1440aaf54297'; // Replace with the actual user ID from the user's session

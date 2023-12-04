@@ -26,6 +26,7 @@ body, html {
   
   .digital-clock {
     padding: 10px;
+    color: #fff
   }
   
   .analog-clock {
@@ -59,4 +60,3 @@ body, html {
     top: 15px;
     border-left: solid 3px rgb(0, 58, 233)
   }
-  

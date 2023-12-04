@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "start-flask": "python src/app/dashboard/api.py",
+    "dev": "concurrently \"npm run start-flask\" \"next dev\"",
     "build": "next build",
+    "lint": "next lint",
+    "start": "next start",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
-    "dev": "next dev & set FLASK_APP=./src/app/dashboard/api.py & flask run",
-    "dev:next": "next dev",
-    "postinstall": "prisma generate",
-    "lint": "next lint",
-    "start": "next start"
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^5.1.1",
@@ -48,6 +48,8 @@
     "@typescript-eslint/eslint-plugin": "^6.3.0",
     "@typescript-eslint/parser": "^6.3.0",
     "autoprefixer": "^10.4.14",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
     "eslint": "^8.47.0",
     "eslint-config-next": "^13.5.4",
     "postcss": "^8.4.27",
@@ -61,6 +63,4 @@
     "initVersion": "7.22.0"
   },
   "packageManager": "npm@9.5.1"
-  
-  
 }
