@@ -9,31 +9,33 @@ import './clock.css';
 
 const UI: React.FC = () => {
   const [widgetVisibility, setWidgetVisibility] = useState({
-    Weather: true,
-    Calendar: true,
-    News: true,
-    Fitbit: true
+    Weather: false,
+    Calendar: false,
+    News: false,
+    Fitbit: false
   });
 
   useEffect(() => {
     const fetchWidgetVisibility = async () => {
       try {
-        const response = await fetch('http://localhost:1023/api/widget-visibility'); 
+        const response = await fetch('http://localhost:3000/api/widget?user_id=21380693-3ade-4951-82c0-1440aaf54297');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        const data = await response.json();
-        setWidgetVisibility(prevVisibility => ({
-          ...prevVisibility,
-          ...data
-        }));
+        const result = await response.json();
+        if (result && result.length > 0 && result[0].downloaded_modules) {
+          setWidgetVisibility(result[0].downloaded_modules);
+        } else {
+          console.error('No widget visibility data found');
+        }
       } catch (error) {
         console.error('There has been a problem with your fetch operation:', error);
       }
     };
 
     fetchWidgetVisibility();
-    const intervalId = setInterval(fetchWidgetVisibility, 5000); // Poll every 5 seconds
+    // You might not need this interval if your data doesn't change often
+    const intervalId = setInterval(fetchWidgetVisibility, 5000);
 
     return () => clearInterval(intervalId);
   }, []);
@@ -51,7 +53,6 @@ const UI: React.FC = () => {
             <CalendarUI />
           </div>
         )}
-        {/* Clock component is always displayed */}
         <div className="clock-box">
           <Clock />
         </div>
@@ -61,9 +62,13 @@ const UI: React.FC = () => {
           <NewsComponent />
         </div>
       )}
-      {/* The Fitbit component is commented out, so it won't be displayed */}
+      {/* If you want to include Fitbit widget as well */}
+      {widgetVisibility.Fitbit && (
+        <div className="fitbit-box">
+          <FitbitDataComponent />
+        </div>
+      )}
     </div>
-    
   );
 };
 

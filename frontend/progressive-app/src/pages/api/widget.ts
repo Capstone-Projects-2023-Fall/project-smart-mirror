@@ -1,17 +1,14 @@
-
 import { NextApiRequest, NextApiResponse } from 'next';
 import Cors from 'cors';
-import { supabase } from '~/lib/supabase-client'; 
-
+import { supabase } from '~/lib/supabase-client'; // Make sure this path is correct
 
 const cors = Cors({
   methods: ['GET', 'POST', 'HEAD'],
 });
 
-
-function runMiddleware(req: NextApiRequest, res: NextApiResponse, fn: any) {
+function runMiddleware(req, res, fn) {
   return new Promise((resolve, reject) => {
-    fn(req, res, (result: any) => {
+    fn(req, res, (result) => {
       if (result instanceof Error) {
         return reject(result);
       }
@@ -24,51 +21,55 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   // Run the middleware
   await runMiddleware(req, res, cors);
 
-  // Rest of the API logic
   if (req.method === 'GET') {
-    // Handle GET request logic here
-    const { user_id } = req.query; // or however you are passing the user ID
-    if (user_id) {
+    const { user_id } = req.query;
+    if (!user_id) {
+      console.log("User ID not provided in GET request");
+      return res.status(400).json({ error: 'User ID is required' });
+    }
+    try {
       const { data, error } = await supabase
         .from('profiles')
         .select('downloaded_modules')
         .eq('id', user_id);
 
       if (error) {
-        return res.status(400).json({ error });
+        console.error("Error fetching data from Supabase:", error);
+        throw error;
       }
-      return res.status(200).json({ data });
-    } else {
-      return res.status(400).json({ error: 'User ID is required' });
+      
+      console.log("Fetched data:", data);
+      return res.status(200).json(data);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
     }
   } else if (req.method === 'POST') {
-    // Handle POST request logic here
-    const { id, field, value } = req.body;
-
-    if (req.method === 'POST') {
-      const { id, field, value } = req.body;
-      if (id && field && value) {
-        // Parse the 'value' from string to JSON before updating
-        const parsedValue = JSON.parse(value);
-        const updateObject = { [field]: parsedValue };
-  
-        const { data, error } = await supabase
-          .from('profiles')
-          .update(updateObject)
-          .eq('id', id);
-  
-        if (error) {
-          return res.status(400).json({ error });
-        }
-        return res.status(200).json({ data });
-      } else {
-        return res.status(400).json({ error: 'Missing required parameters' });
-      }
+    const { id, downloaded_modules } = req.body;
+    console.log('Received update request:', id, downloaded_modules);
+    if (!id || !downloaded_modules) {
+      console.log("Missing parameters in POST request");
+      return res.status(400).json({ error: 'Missing required parameters' });
     }
-  else {
-    // Handle any other HTTP method
+
+    try {
+      const { data, error } = await supabase
+        .from('profiles')
+        .update({ downloaded_modules })
+        .eq('id', id);
+
+      if (error) {
+        console.error("Error updating data in Supabase:", error);
+        throw error;
+      }
+
+      console.log("Updated data:", data);
+      return res.status(200).json(data);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  } else {
+    console.log(`Method ${req.method} not allowed`);
     res.setHeader('Allow', ['GET', 'POST']);
-    res.status(405).end(`Method ${req.method} Not Allowed`);
+    return res.status(405).end(`Method ${req.method} Not Allowed`);
   }
-}
 }
