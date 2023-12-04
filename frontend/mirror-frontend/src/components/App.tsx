@@ -4,15 +4,16 @@ import CalendarUI from './calendar';
 import FitbitDataComponent from './fitbit';
 import NewsComponent from './news';
 import Clock from "./clock";
+import GlobalStyle from './GlobalStyle'; // Import the GlobalStyle
 import './App.css';
 import './clock.css';
 
 const UI: React.FC = () => {
   const [widgetVisibility, setWidgetVisibility] = useState({
-    Weather: false,
-    Calendar: false,
-    News: false,
-    Fitbit: false
+    Weather: true,
+    Calendar: true,
+    News: true,
+    Fitbit: true
   });
 
   useEffect(() => {
@@ -41,34 +42,37 @@ const UI: React.FC = () => {
   }, []);
 
   return (
-    <div className="ui-container2">
-      <div className="ui-container">
-        {widgetVisibility.Weather && (
-          <div className="weather-box">
-            <TemperatureDisplay />
+    <>
+    <GlobalStyle />
+      <div className="ui-container2">
+        <div className="ui-container">
+          {widgetVisibility.Weather && (
+            <div className="weather-box">
+              <TemperatureDisplay />
+            </div>
+          )}
+          {/*{widgetVisibility.Calendar && (
+            <div className="calendar-box">
+              <CalendarUI />
+            </div>
+          )}*/}
+          <div className="clock-box">
+            <Clock />
           </div>
-        )}
-        {widgetVisibility.Calendar && (
-          <div className="calendar-box">
-            <CalendarUI />
-          </div>
-        )}
-        <div className="clock-box">
-          <Clock />
         </div>
+        {widgetVisibility.News && (
+          <div className="news-box">
+            <NewsComponent />
+          </div>
+        )}
+        {/* If you want to include Fitbit widget as well
+        {widgetVisibility.Fitbit && (
+          <div className="fitbit-box">
+            <FitbitDataComponent />
+          </div>
+        )} */}
       </div>
-      {widgetVisibility.News && (
-        <div className="news-box">
-          <NewsComponent />
-        </div>
-      )}
-      {/* If you want to include Fitbit widget as well */}
-      {widgetVisibility.Fitbit && (
-        <div className="fitbit-box">
-          <FitbitDataComponent />
-        </div>
-      )}
-    </div>
+    </>
   );
 };
 

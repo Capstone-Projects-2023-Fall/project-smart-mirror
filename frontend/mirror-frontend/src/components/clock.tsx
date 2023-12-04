@@ -1,66 +1,39 @@
-import React, { Component } from "react";
+// Clock.tsx
+import React, { useState, useEffect } from 'react';
+import DateDisplay from './DateDisplay'; 
 
-class Clock extends Component {
-  clockInterval = null;
+const Clock: React.FC = () => {
+  const [currentTime, setCurrentTime] = useState<string>('');
+  const [amPm, setAmPm] = useState<string>('AM');
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      hours: "",
-      minutes: "",
-      seconds: ""
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      let hours = now.getHours() % 12 || 12; // 12 ht format
+      const minutes = now.getMinutes();
+      const isPM = now.getHours() >= 12;
+
+      setAmPm(isPM ? 'PM' : 'AM');
+
+      const minutesString = minutes < 10 ? `0${minutes}` : `${minutes}`;
+      const timeString = `${hours}:${minutesString} ${amPm}`;
+      setCurrentTime(timeString);
     };
-  }
 
-  componentDidMount() {
-    this.updateTime(); // Call once to set initial time
-    this.clockInterval = setInterval(this.updateTime, 1000);
-  }
+    updateTime();
+    const intervalId = setInterval(updateTime, 500);
 
-  componentWillUnmount() {
-    clearInterval(this.clockInterval);
-  }
+    return () => clearInterval(intervalId);
+  }, [amPm]);
 
-  updateTime = () => {
-    const currentDate = new Date();
-    const hours = this.formatTime(currentDate.getHours());
-    const minutes = this.formatTime(currentDate.getMinutes());
-    const seconds = this.formatTime(currentDate.getSeconds());
+  return (
+    <div className="clock-container">
+      <div className="clock">{currentTime}
+      <DateDisplay />
 
-    this.setState({ hours, minutes, seconds });
-  };
-
-  formatTime(time) {
-    return time < 10 ? `0${time}` : time;
-  }
-
-  render() {
-    const { title } = this.props;
-    const { hours, minutes, seconds } = this.state;
-
-    return (
-      <div className={"clock"}>
-        <h3>{title}</h3>
-        <div className={"analog-clock"}>
-          <div
-            className={"dial seconds"}
-            style={{ transform: `rotate(${seconds * 6}deg)` }}
-          />
-          <div
-            className={"dial minutes"}
-            style={{ transform: `rotate(${minutes * 6}deg)` }}
-          />
-          <div
-            className={"dial hours"}
-            style={{ transform: `rotate(${hours * 30}deg)` }}
-          />
-        </div>
-        <div className={"digital-clock"}>
-          {hours}:{minutes}:{seconds}
-        </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Clock;
