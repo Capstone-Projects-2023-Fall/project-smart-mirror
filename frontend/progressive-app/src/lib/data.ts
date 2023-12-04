@@ -74,6 +74,7 @@ export const sidebarData = [
     label: "notifications",
     state: "notifications",
   },
+  
   {
     label: "settings",
     state: "settings",
