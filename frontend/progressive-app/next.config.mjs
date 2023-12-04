@@ -14,10 +14,7 @@ const config = {
     dest: 'public',
     register: true,
     skipWaiting: true,
-    }), 
-    experimental: {
-        serverActions: true
-    }
+    })
 }
 
 export default config;

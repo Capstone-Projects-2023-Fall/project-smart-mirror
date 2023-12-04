@@ -1,7 +1,4 @@
 .news-box {
-  position: fixed; /* Fixed position relative to the viewport */
-  top: 50px; /* Distance from the top of the viewport */
-  right: 50px; /* Distance from the right of the viewport */
   margin: 10px;
   padding: 20px;
   height: 500px;

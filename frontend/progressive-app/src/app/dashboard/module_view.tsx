@@ -1,18 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { createClient } from '@supabase/supabase-js';
 import './ToggleSwitch.css';
 
-// Initialize Supabase client
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
-
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Supabase URL and Anon Key must be defined');
-}
-
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
-
-const ModuleView = () => {
+const ModuleView: React.FC = () => {
   const [widgetVisibility, setWidgetVisibility] = useState({
     Weather: true,
     News: true,
@@ -37,7 +26,7 @@ const ModuleView = () => {
   };
 
   // Function to handle the visibility toggle for each widget
-  const toggleWidgetVisibility = async (widgetName) => {
+  const toggleWidgetVisibility = async (widgetName : keyof WidgetVisibility) => {
     const newState = !widgetVisibility[widgetName];
 
     // Prepare the updated visibility state
