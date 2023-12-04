@@ -1,61 +1,88 @@
 .toggle-switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-  }
-  
-  .toggle-switch-checkbox {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  .toggle-switch-slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-    border-radius: 34px;
-  }
-  
-  .toggle-switch-slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 50%;
-  }
-  
-  input:checked + .toggle-switch-slider {
-    background-color: #2196F3;
-  }
-  
-  input:focus + .toggle-switch-slider {
-    box-shadow: 0 0 1px #2196F3;
-  }
-  
-  input:checked + .toggle-switch-slider:before {
-    transform: translateX(26px);
-  }
-  .module-view {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 50px; /* Increase this value to move the content further down */
-  }
-  
-  .weather-label {
-    margin-bottom: 20px; /* Adjust the margin as needed */
-    font-size: 1.5em; /* Adjust the font size as needed */
-    color: #333; /* Adjust the text color as needed */
-  }
-  
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin: 10px; /* Added for spacing */
+}
+
+.toggle-switch-checkbox {
+  opacity: 0; /* Visually hidden, but accessible to screen readers */
+  position: absolute; /* Ensure it overlays the slider for better screen reader support */
+  width: 60px;
+  height: 34px;
+  cursor: pointer; /* Indicates it's clickable */
+}
+
+.toggle-switch-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: background-color .4s, box-shadow .3s; /* Smooth transitions for color and shadow */
+  border-radius: 34px;
+}
+
+.toggle-switch-slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: transform .4s; /* Only transform should be animated */
+  border-radius: 50%;
+}
+
+input:checked + .toggle-switch-slider {
+  background-color: #2196F3;
+}
+
+input:focus + .toggle-switch-slider {
+  box-shadow: 0 0 3px 1px #2196F3; /* More visible focus state */
+}
+
+input:checked + .toggle-switch-slider:before {
+  transform: translateX(26px);
+}
+
+/* Hover effect for better user interaction */
+.toggle-switch-slider:hover {
+  background-color: #bdbdbd; /* Lighter grey to indicate hover state */
+}
+
+.module-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+  width: 100%; /* Set a width to center content */
+}
+
+.weather-label {
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  color: #333;
+}
+.toggle-switch-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1em; 
+  width: 100%; 
+}
+
+.widget-name {
+  margin-right: 10px;
+ 
+}
+.widget-name {
+  flex: 1; 
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+}
