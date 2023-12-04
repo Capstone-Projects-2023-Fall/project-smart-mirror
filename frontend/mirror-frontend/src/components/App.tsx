@@ -8,7 +8,6 @@ import './App.css';
 import './clock.css';
 
 const UI: React.FC = () => {
-  // Assume that the initial state is set to what is saved in the database
   const [widgetVisibility, setWidgetVisibility] = useState({
     Weather: false,
     Calendar: false,
@@ -17,32 +16,27 @@ const UI: React.FC = () => {
   });
 
   useEffect(() => {
-    // Define a function that will be called to fetch widget visibility
     const fetchWidgetVisibility = async () => {
       try {
-        // Fetch the latest widget visibility state from your API
         const response = await fetch('http://localhost:3000/api/widget?user_id=21380693-3ade-4951-82c0-1440aaf54297');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        const data = await response.json();
-        
-        // Update the state if the fetched data has the 'downloaded_modules' key
-        if (data && data.downloaded_modules) {
-          setWidgetVisibility(data.downloaded_modules);
+        const result = await response.json();
+        if (result && result.length > 0 && result[0].downloaded_modules) {
+          setWidgetVisibility(result[0].downloaded_modules);
+        } else {
+          console.error('No widget visibility data found');
         }
       } catch (error) {
         console.error('There has been a problem with your fetch operation:', error);
       }
     };
 
-    // Call the fetch function when the component mounts
     fetchWidgetVisibility();
+    // You might not need this interval if your data doesn't change often
+    const intervalId = setInterval(fetchWidgetVisibility, 5000);
 
-    // Optionally, set up a polling mechanism to fetch the latest visibility
-    const intervalId = setInterval(fetchWidgetVisibility, 5000); // Poll every 5 seconds
-
-    // Clean up the interval on component unmount
     return () => clearInterval(intervalId);
   }, []);
 
