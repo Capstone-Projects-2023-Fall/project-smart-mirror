@@ -4,7 +4,7 @@ import { sidebarData } from "~/lib/data";
 import { motion } from "framer-motion";
 
 type Props = {
-  update: React.Dispatch<React.SetStateAction<string | null>>;
+  update: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export default function Sidebar({ update }: Props) {

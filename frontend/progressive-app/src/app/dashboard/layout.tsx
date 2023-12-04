@@ -1,8 +1,8 @@
 import "~/styles/globals.css";
-import React, { ReactNode } from "react";
+import React, { Children, ReactNode } from "react";
 import { satoshi } from "~/lib/font";
 import { supabase } from "~/lib/supabase-server";
-import Dashboard from "./page";
+import Dashboard from "./dashboard";
 
 type Props = {};
 
@@ -13,19 +13,12 @@ export const metadata = {
   icons: [{ rel: "apple-touch-icon", url: "/icon.png" }],
 };
 
-export default async function DashboardLayout({
-  children,
-}: {
-  children: ReactNode;
-}) {
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+export const dynamic = "force-dynamic";
+
+export default function DashboardLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${satoshi.className}`}>
-        <Dashboard user={user}></Dashboard>
-      </body>
+      <body className={`${satoshi.className}`}>{children}</body>
     </html>
   );
 }
