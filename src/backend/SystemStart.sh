@@ -19,8 +19,12 @@ export DISPLAY=:0
 chromium-browser --kiosk --disable-infobars --incognito http://localhost:8000/ & PID=$!
 
 echo "Installing packages"
-cd /home/smartmirror/Desktop/project-smart-mirror/frontend/mirror-frontend
+cd /home/smartmirror/Desktop/project-smart-mirror/frontend
 npm update
+npm i
+npm run dev &
+
+cd /home/smartmirror/Desktop/project-smart-mirror/frontend/mirror-frontend
 npm i
 
 echo "Starting mirror"
