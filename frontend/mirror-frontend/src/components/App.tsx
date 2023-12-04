@@ -21,7 +21,7 @@ const UI: React.FC = () => {
     const fetchWidgetVisibility = async () => {
       try {
         // Fetch the latest widget visibility state from your API
-        const response = await fetch('http://localhost:1023/api/widget-visibility');
+        const response = await fetch('http://localhost:3000/api/widget?user_id=21380693-3ade-4951-82c0-1440aaf54297');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
