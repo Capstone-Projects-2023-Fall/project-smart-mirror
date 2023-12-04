@@ -10,7 +10,7 @@ export default function ErrorModal({ error }: Props) {
   return (
     <motion.section
       layout
-      className="mb-7 w-full rounded-xl border-4 border-error p-4 font-bold text-text md:w-2/5"
+      className="mb-7 w-full rounded-xl border-4 border-error p-4 font-bold text-black md:w-2/5"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
     >

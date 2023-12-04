@@ -19,7 +19,6 @@ export default function Settings({ user }: Props) {
     <>
       <section className="mt-8 font-medium">
         <Location />
-        <UserSettings user={user} />
         <Mirror />
         <Time user={user} />
       </section>

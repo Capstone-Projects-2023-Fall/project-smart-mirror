@@ -5,6 +5,7 @@ type Props = {
   user: User | null;
 };
 
+
 export default function Home({ user }: Props) {
   const [userData, setUserData]: any = useState([]);
   const [curTime, setCurTime] = useState(new Date());
