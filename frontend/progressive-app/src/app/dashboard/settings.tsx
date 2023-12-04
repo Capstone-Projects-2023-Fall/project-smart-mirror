@@ -23,7 +23,7 @@ export default function Settings({ user }: Props) {
         <UserSettings user={user} />
         <Mirror />
         <Time user={user} />
-        <Fitbit/>
+        <Fitbit user={user}/>
       </section>
     </>
   );

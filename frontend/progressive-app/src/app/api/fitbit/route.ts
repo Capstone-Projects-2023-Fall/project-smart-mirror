@@ -10,11 +10,23 @@ export async function GET(request: Request){
     if (id && field){
         
         const { data, error } = await supabase
-        .from("profiles")
+        .from("fitbit")
         .select(field)
         .eq("id", id);
         if (data){
-            return NextResponse.json({ message: data }, {status: 200})
+            const responseBody = { message: data };
+            const customHeaders = {
+                'Content-Type': 'application/json', // Adjust as needed
+                'Access-Control-Allow-Origin': '*', // Allow any origin; you may want to restrict this based on your needs
+                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS', // Specify the allowed HTTP methods
+                'Access-Control-Allow-Headers': 'Origin, Content-Type, Accept', // Specify the allowed headers
+              };
+            const customStatus = 200;
+
+            return NextResponse.json(responseBody, {
+                headers: customHeaders,
+                status: customStatus,
+              });
         }
         else{
             return NextResponse.json({ message: "Error: Data not found" }, {status: 400})
@@ -38,7 +50,7 @@ export async function POST(request: Request){
           };
 
         const { data, error } = await supabase
-        .from("profiles")
+        .from("fitbit")
         .update(updateObject)
         .eq('id', id)
         
@@ -46,7 +58,7 @@ export async function POST(request: Request){
             return NextResponse.json({ message: "Success" }, {status: 200})
         }
         else{
-            return NextResponse.json({ message: error }, {status: 400})
+            return NextResponse.json({ message: "Incorrect Params" }, {status: 400})
         }
         
         

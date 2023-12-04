@@ -15,7 +15,9 @@ const UI = () => {
       <div className="calendar-box">
         <CalendarUI />
       </div>
-      
+      <div className="fitbit-box">
+      <FitbitDataComponent/>
+      </div>
     </div>
     <div className="news-box">
       <NewsComponent/>
