@@ -3,7 +3,7 @@ echo "Starting Mirror"
 echo "Updating git repo"
 cd /home/smartmirror/Desktop/project-smart-mirror
 git stash
-git pull origin LoadingScreen
+git pull origin main
 
 cd /home/smartmirror/Desktop/project-smart-mirror/src/backend/LoadingScreen
 
@@ -32,9 +32,12 @@ done
 export DISPLAY=:0
 # sudo unclutter -idle 0 &
 kill $PID &
+
 chromium-browser --kiosk --disable-infobars --incognito http://localhost:5173/ 
 
 echo "System initialized"
 echo "Opening browser"
 
+cd /home/smartmirror/Desktop/project-smart-mirror/src/backend/
 
+python Camera.py
