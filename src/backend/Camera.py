@@ -17,7 +17,7 @@ while True:
     current = time.time()
     ret, frame = camera.read()
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=3, minSize=(19, 19))
+    faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=3, minSize=(18, 18))
     override = current-lastsignal<DISPLAY_TIMEOUT
     if len(faces) > 0 or (current-lastsignal<DISPLAY_TIMEOUT):
        print("Face detected")
