@@ -34,7 +34,7 @@ export DISPLAY=:0
 # sudo unclutter -idle 0 &
 kill $PID &
 cd /home/smartmirror/Desktop/project-smart-mirror/src/backend/
-python Camera.py & #> "$LOG_FILE" 2>&1 &
+python3 Camera.py & #> "$LOG_FILE" 2>&1 &
 cd /home/smartmirror/Desktop/project-smart-mirror/frontend/mirror-frontend
 chromium-browser --kiosk --disable-infobars --incognito --hide-scrollbars http://localhost:5173/
 
