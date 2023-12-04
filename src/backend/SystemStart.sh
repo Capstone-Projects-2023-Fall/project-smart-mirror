@@ -33,7 +33,7 @@ export DISPLAY=:0
 # sudo unclutter -idle 0 &
 kill $PID &
 
-chromium-browser --kiosk --disable-infobars --incognito http://localhost:5173/ 
+chromium-browser --kiosk --disable-infobars --incognito --hide-scrollbars http://localhost:5173/ 
 
 echo "System initialized"
 echo "Opening browser"
