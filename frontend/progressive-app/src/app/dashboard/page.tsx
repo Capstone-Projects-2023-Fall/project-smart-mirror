@@ -2,9 +2,7 @@ import React from "react";
 import Dashboard from "./dashboard";
 import { getUser } from "~/utils/getUser";
 
-type Props = {};
-
-export default async function Page({}: Props) {
+export default async function Page() {
   const {
     data: { user },
   } = await getUser();
