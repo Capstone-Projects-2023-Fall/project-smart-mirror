@@ -32,12 +32,10 @@ done
 export DISPLAY=:0
 # sudo unclutter -idle 0 &
 kill $PID &
-
-chromium-browser --kiosk --disable-infobars --incognito --hide-scrollbars http://localhost:5173/ &
+cd /home/smartmirror/Desktop/project-smart-mirror/src/backend/
+python Camera.py &
+cd /home/smartmirror/Desktop/project-smart-mirror/frontend/mirror-frontend
+chromium-browser --kiosk --disable-infobars --incognito --hide-scrollbars http://localhost:5173/
 
 echo "System initialized"
 echo "Opening browser"
-
-cd /home/smartmirror/Desktop/project-smart-mirror/src/backend/
-
-python Camera.py
