@@ -22,8 +22,23 @@ body {
   background-color: #000000; 
   color: #fff; 
   border: 2px solid #fff; 
-  
+  position: relative;
 }
+
+
+
+.clock {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 5rem;
+  color: white;
+  border: none;
+  outline: none;
+  white-space: nowrap;
+}
+
 
 .temperature-display {
   margin: 20px;
