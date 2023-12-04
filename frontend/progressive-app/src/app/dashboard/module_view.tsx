@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './toggleswitch.css';
 
+interface WidgetVisibility {
+  Weather: boolean;
+  News: boolean;
+  Calendar: boolean;
+}
+
+
 const ModuleView: React.FC = () => {
-  const [widgetVisibility, setWidgetVisibility] = useState({
+  const [widgetVisibility, setWidgetVisibility] = useState<WidgetVisibility>({
     Weather: true,
     News: true,
     Calendar: true
@@ -29,7 +36,7 @@ const ModuleView: React.FC = () => {
   }, []);
 
   // Function to handle the visibility toggle for each widget
-  const toggleWidgetVisibility = async (widgetName) => {
+  const toggleWidgetVisibility = async (widgetName : keyof WidgetVisibility) => {
     const newState = !widgetVisibility[widgetName];
 
     try {
