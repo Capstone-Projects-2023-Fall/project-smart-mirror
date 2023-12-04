@@ -10,7 +10,7 @@ camera = cv2.VideoCapture(0)
 
 print("Starting")
 os.popen("xset -display :0.0 dpms force off")
-interval = 0
+interval = .5
 lastsignal = 0
 DISPLAY_TIMEOUT = 10
 while True:
@@ -21,7 +21,7 @@ while True:
     override = current-lastsignal<DISPLAY_TIMEOUT
     if len(faces) > 0 or (current-lastsignal<DISPLAY_TIMEOUT):
        print("Face detected")
-       subprocess.call('xset -display :0.0 dpms force on',shell=True)
+       os.popen('xset -display :0.0 dpms force on')
        if not override:
           lastsignal = current
           #interval = 60
