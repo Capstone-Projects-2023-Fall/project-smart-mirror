@@ -18,10 +18,10 @@ while True:
     ret, frame = camera.read()
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=3, minSize=(20, 20))
-    override = current-lastsignal<5
-    if len(faces) > 0 or (current-lastsignal<10):
+    override = current-lastsignal<DISPLAY_TIMEOUT
+    if len(faces) > 0 or (current-lastsignal<DISPLAY_TIMEOUT):
        print("Face detected")
-       subprocess.call('xset dpms force on',shell=True)
+       subprocess.call('xset -display :0.0 dpms force on',shell=True)
       # if not override:
           #interval = 60
     elif current-lastsignal>DISPLAY_TIMEOUT:
