@@ -19,7 +19,7 @@ export DISPLAY=:0
 chromium-browser --kiosk --disable-infobars --incognito http://localhost:8000/ & PID=$!
 
 echo "Installing packages"
-cd /home/smartmirror/Desktop/project-smart-mirror/frontend
+cd /home/smartmirror/Desktop/project-smart-mirror/frontend/progressive-app
 npm update
 npm i
 npm run dev &
