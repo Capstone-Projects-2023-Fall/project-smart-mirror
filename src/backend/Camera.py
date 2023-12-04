@@ -10,7 +10,7 @@ camera = cv2.VideoCapture(0)
 
 print("Starting")
 os.popen("xset -display :0.0 dpms force off")
-interval = .5
+interval = .1
 lastsignal = 0
 DISPLAY_TIMEOUT = 10
 while True:
