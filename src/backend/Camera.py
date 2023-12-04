@@ -22,6 +22,7 @@ while True:
     if len(faces) > 0 or (current-lastsignal<DISPLAY_TIMEOUT):
        print("Face detected")
        subprocess.call('xset -display :0.0 dpms force on',shell=True)
+       lastsignal = current
       # if not override:
           #interval = 60
     elif current-lastsignal>DISPLAY_TIMEOUT:
