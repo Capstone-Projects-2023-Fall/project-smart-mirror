@@ -7,7 +7,7 @@ import SunSVG from "../svg/sun-svgrepo-com.svg";
 import SnowAltSVG from "../svg/snow-alt-svgrepo-com.svg";
 import Freezing_Sleet from "../svg/cloud-sleet-svgrepo-com.svg";
 import RainSVG from "../svg/cloud-rain-svgrepo-com.svg";
-import './App.css';
+import './weather.css';
 import WeeklyForecast from './forecast';
 
 const weatherCodeToSVG = {
