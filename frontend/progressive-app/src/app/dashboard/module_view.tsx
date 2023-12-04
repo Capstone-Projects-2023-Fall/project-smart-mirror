@@ -1,9 +1,73 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import './ToggleSwitch.css';
 
-type Props = {}
+const ModuleView: React.FC = () => {
+  const [widgetVisibility, setWidgetVisibility] = useState({
+    Weather: true,
+    News: true,
+    Calendar: true
+  });
 
-export default function ModuleView({}: Props) {
+  const userId = '21380693-3ade-4951-82c0-1440aaf54297'; // Replace with the actual user ID from the user's session
+
+  // Function to fetch the current widget visibility state from the server
+  const fetchWidgetVisibility = async () => {
+    try {
+      const response = await fetch('http://localhost:1023/api/widget-visibility');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      setWidgetVisibility(data);
+    } catch (error) {
+      console.error('There was an error fetching the widget visibility:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchWidgetVisibility();
+  }, []);
+
+  // Function to handle the visibility toggle for each widget
+  const toggleWidgetVisibility = async (widgetName) => {
+    const newState = !widgetVisibility[widgetName];
+
+    try {
+      const response = await fetch('http://localhost:1023/api/toggle-widget', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ widgetName, newVisibility: newState }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      setWidgetVisibility(prev => ({ ...prev, [widgetName]: data[widgetName] }));
+    } catch (error) {
+      console.error('Error toggling widget visibility:', error);
+    }
+  };
+
   return (
-    <div>module_view</div>
-  )
-}
+    <div className="module-view">
+      {Object.keys(widgetVisibility).map(widgetName => (
+        <div key={widgetName} className="toggle-switch-container">
+          <span className="widget-name">{widgetName}</span>
+          <label className="toggle-switch">
+            <input
+              type="checkbox"
+              checked={widgetVisibility[widgetName]}
+              onChange={() => toggleWidgetVisibility(widgetName)}
+              className="toggle-switch-checkbox"
+            />
+            <span className="toggle-switch-slider" />
+          </label>
+        </div>
+      ))}
+    </div>
+  );
+      }
+export default ModuleView;

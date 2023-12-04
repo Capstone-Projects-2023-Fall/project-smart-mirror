@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src", "../mirror-frontend/src/components/App.tsx", "../mirror-frontend/src/components/calendar.tsx", "../mirror-frontend/src/components/forecast.tsx", "../mirror-frontend/src/components/main.tsx", "../mirror-frontend/src/components/svg.d.ts", "../mirror-frontend/src/components/UI.tsx", "../mirror-frontend/src/components/vite-env.d.ts", "../mirror-frontend/src/components/weather.tsx"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

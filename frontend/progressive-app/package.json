@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "start-flask": "python src/app/dashboard/api.py",
+    "dev": "concurrently \"npm run start-flask\" \"next dev\"",
     "build": "next build",
+    "lint": "next lint",
+    "start": "next start",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
-    "dev": "next dev",
-    "postinstall": "prisma generate",
-    "lint": "next lint",
-    "start": "next start"
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^5.1.1",
@@ -22,11 +23,12 @@
     "@trpc/react-query": "^10.37.1",
     "@trpc/server": "^10.37.1",
     "date-fns": "^2.30.0",
+    "cors": "^2.8.5",
     "debounce": "^1.2.1",
     "formik": "^2.4.5",
     "framer-motion": "^10.16.4",
     "lodash.debounce": "^4.0.8",
-    "next": "^13.5.4",
+    "next": "^13.5.6",
     "next-pwa": "^5.6.0",
     "react": "18.2.0",
     "react-autosave": "^0.4.3",
@@ -37,6 +39,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/eslint": "^8.44.2",
     "@types/lodash": "^4.14.201",
     "@types/next-pwa": "^5.6.8",
@@ -46,6 +49,8 @@
     "@typescript-eslint/eslint-plugin": "^6.3.0",
     "@typescript-eslint/parser": "^6.3.0",
     "autoprefixer": "^10.4.14",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
     "eslint": "^8.47.0",
     "eslint-config-next": "^13.5.4",
     "postcss": "^8.4.27",

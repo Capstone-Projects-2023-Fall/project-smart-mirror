@@ -1,6 +1,7 @@
 import requests
 from datetime import datetime
 import datetime
+import urllib.parse
 import time
 import json
 
@@ -9,16 +10,61 @@ import json
 meteo_weather_url = "https://api.open-meteo.com/v1/forecast?latitude=39.9523&longitude=-75.1638&current=temperature_2m,precipitation,rain,weathercode&hourly=temperature_2m&daily=temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_probability_max&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime&timezone=America%2FNew_York"
 
 
+# Gets the coordinates from a search term, can be a city name or a zip code
+def get_coords_from_API(name):
+    URL = "https://geocoding-api.open-meteo.com/v1/search?"
+    params = {
+        "name": name,
+        "count": 1,
+        "language": "en",
+        "format": "json"
+    }
+    URL = URL + urllib.parse.urlencode(params)
+    response = requests.get(URL)
+    if response.status_code == 200:
+        return response
+    else:
+        print("Error connecting to geocoding API: ", response.status_code)
+
+
+# Builds api URL from a given location
+# Doesn't work with evil time zones yet
+def build_url_from_coords(lat, long):
+    base_url = "https://api.open-meteo.com/v1/forecast?"
+    params = {
+        "latitude": lat,
+        "longitude": long,
+        "current": "temperature_2m,precipitation,rain,weathercode",
+        "hourly": "temperature_2m",
+        "daily": "temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_probability_max",
+        "temperature_unit": "fahrenheit",
+        "windspeed_unit": "mph",
+        "precipitation_unit": "inch",
+        "timeformat": "unixtime",
+        "timezone": "America/New_York",
+    }
+    url = base_url + urllib.parse.urlencode(params)
+    return url
+
+
+# Check if an argument is a decimal or float
+def is_float(string):
+    if string.replace(".", "").isnumeric():
+        return True
+    else:
+        return False
+
+
 # Gets all weather data from weather API and populates response json for us to parse
-def get_weather_data():
-    response = requests.get(meteo_weather_url)
+def get_weather_data(URL):
+    response = requests.get(URL)
     if response.status_code == 200:
         return response
     else:
         print("Error connecting to API: ", response.status_code)
 
 
-# Gets the current temperature from response in degrees farenheit
+# Parse the current temperature from response in degrees farenheit
 def get_current_temp(response):
     # response = requests.get(meteo_weather_url)
     data = response.json()
@@ -31,7 +77,7 @@ def get_current_temp(response):
         print("ERROR: Current temp not found")
 
 
-# Returns the current WMO weathercode
+# Parse the current WMO weathercode from response
 def get_current_weather_code(response):
     # response = requests.get(meteo_weather_url)
     data = response.json()
@@ -101,6 +147,37 @@ def translate_weather_code(weather_code):
         return ""
 
 
+# Parses today's uv from the response variable
+def get_uv(response):
+    data = response.json()
+    if "daily" in data.keys():
+        if "uv_index_max" in data["daily"]:
+            uv = data["daily"]["uv_index_max"][0]
+            # print(uv)
+            return uv
+    else:
+        print("ERROR: UV not found")
+
+
+def parse_geocode_response(response):
+    data = response.json()
+    retVal = {
+        "name": "",
+        "latitude": "",
+        "longitude": "",
+        "timezone": ""
+    }
+    if "results" in data and isinstance(data["results"], list) and data["results"]:
+        result = data["results"][0]
+        if "name" and "latitude" and "longitude" and "timezone" in result:
+            retVal["name"] = result["name"]
+            retVal["latitude"] = result["latitude"]
+            retVal["longitude"] = result["longitude"]
+            retVal["timezone"] = result["timezone"]
+            return retVal
+    return None
+
+
 # What was I cooking here
 def get_temp(response):
     data = response.json()
@@ -132,33 +209,57 @@ def get_temp(response):
     return currentTemp
 
 
-# Parses today's uv from the response variable
-def get_uv(response):
-    data = response.json()
-
-    if "daily" in data.keys():
-        if "uv_index_max" in data["daily"]:
-            uv = data["daily"]["uv_index_max"][0]
-            #print(uv)
-            return uv
-    else:
-        print("ERROR: UV not found")
-
-def displayForecast(weather, current_temp, uv):
+def display_forecast(weather, current_temp, uv):
     print(f'Weather forecast:')
     print(f'Description: {weather}')
     print(f'Temperature: {current_temp}°F')
     print(f'UV Index: {uv}')
 
-if __name__ == "__main__":
-    response = get_weather_data()
-    if response:
-        uv = get_uv(response)
-        weather_code = get_current_weather_code(response)
-        weather = translate_weather_code(weather_code)
-        current_temp = get_current_temp(response)
 
-        displayForecast(weather, current_temp, uv)
-        #print(weather)
-        #print(uv)
-        #print(current_temp)
+def find_key_in_dict(d, key_to_find):
+    if isinstance(d, dict):
+        for key, value in d.items():
+            if key == key_to_find:
+                return value
+            elif isinstance(value, dict):
+                result = find_key_in_dict(value, key_to_find)
+                if result is not None:
+                    return result
+    return None
+
+
+def find_keys_in_dict(dictionary, key_to_find):
+    found_values = []
+    if isinstance(dictionary, dict):
+        for key, value in dictionary.items():
+            if key == key_to_find:
+                found_values.append(value)
+            elif isinstance(value, dict):
+                found_values.extend(find_keys_in_dict(value, key_to_find))
+
+    return found_values
+
+if __name__ == "__main__":
+    city_search = get_coords_from_API("19128")
+    if city_search:
+        parsed_values = parse_geocode_response(city_search)
+        if parsed_values:
+            lat = parsed_values["latitude"]
+            long = parsed_values["longitude"]
+            city = parsed_values["name"]
+
+
+            print(city)
+            URL = build_url_from_coords(lat, long)
+            response = get_weather_data(URL)
+            if response:
+                uv = get_uv(response)
+                #uv = find_key_in_dict(response.json(), "uv_index_max")
+                weather_code = get_current_weather_code(response)
+                weather = translate_weather_code(weather_code)
+                current_temp = get_current_temp(response)
+                max_temps = find_keys_in_dict(response.json(), "temperature_2m_max")
+                min_temps = find_keys_in_dict(response.json(), "temperature_2m_min")
+                display_forecast(weather, current_temp, uv)
+        else:
+            print("Error")

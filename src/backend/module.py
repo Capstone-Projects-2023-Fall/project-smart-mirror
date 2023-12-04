@@ -34,10 +34,11 @@ class Module:
         self.name = moduleName
 
         # Init the module based on name. Files are located inside of src.backend.modules 
-
-        self.tryWidgetInit(moduleName)
+        if moduleName:
+            self.tryWidgetInit(moduleName)
 
     def tryWidgetInit(self,moduleName):
+        self.lastUpdate = time.time()
         module_path = os.path.join(project_root, "src", "backend", "modules", moduleName + ".py")
         try:
             spec = importlib.util.spec_from_file_location(moduleName, module_path)
@@ -45,15 +46,15 @@ class Module:
             spec.loader.exec_module(module)
             try:
                 self.widgetInstance = module.Widget()
-                self.status = 'OK'
+                self.set_status('OK')
             except Exception as e:
                 # Handle any exception that occurs during widget instantiation
                 print(f"Widget instantiation failed for '{moduleName}'. Error: {e}")
-                self.status = 'ERR-01'
+                self.set_status('ERR-01')
         except Exception as e:
             #Failed to import
             print(f"Widget '{moduleName}' not found. Error: {e}")
-            self.status = 'ERR'
+            self.set_status('ERR')
 
     def get_widgetInstance(self):
         #return widget instance
@@ -63,9 +64,12 @@ class Module:
         return self.status
     def set_status(self,goalStatus):
         self.status = goalStatus
+        self.lastUpdate = time.time()
+        if self.widgetInstance != None:
+            self.widgetInstance.status = self.status
         return self.status
     def pauseModule(self):
-        self.status = 'PAUSED'
+        self.set_status('PAUSED')
         return self.status
 
     def resumeModule(self):
@@ -81,4 +85,4 @@ class Module:
     
 if __name__ == "__main__":
     mod = Module("WidgetTest")
-
+    print(mod.widgetInstance.status)
