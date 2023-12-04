@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './ToggleSwitch.css';
+import './toggleswitch.css';
 
 const ModuleView: React.FC = () => {
   const [widgetVisibility, setWidgetVisibility] = useState({
