@@ -15,7 +15,7 @@ export default function MainDisplay({ page, user }: Props) {
   const renderPage = () => {
     switch (page) {
       case "home":
-        return <Home />;
+        return <Home user={user} />;
       case "moduleView":
         return <ModuleView />;
       case "analytics":
