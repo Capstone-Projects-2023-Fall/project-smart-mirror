@@ -14,7 +14,7 @@ export default function Home({ user }: Props) {
 
   useEffect( () => {
     getData();
-  }, [])
+  }, []);
 
   async function getData() {
     const {data, error} = await supabase
@@ -47,7 +47,7 @@ export default function Home({ user }: Props) {
       }
     }
 
-  }, [isLoading])
+  }, [isLoading]);
 
 
 
@@ -56,11 +56,11 @@ export default function Home({ user }: Props) {
   // }
 
   if (isLoading) 
-    return <div> Loading Page...</div>;
+    return (<div> Loading Page...</div>);
 
 
 
-  return <section className="my-8 font-bold" style={{paddingTop:"3rem"}}>
+  return (<section className="my-8 font-bold" style={{paddingTop:"3rem"}}>
     <div style={{display:"flex", flexDirection:"row", justifyContent:"space-between"}}>
       <h2>
         {userData[0].username}'s Home Page
@@ -76,5 +76,5 @@ export default function Home({ user }: Props) {
     Active Modules
     </h3>
   </section>
-
+  );
 }
