@@ -12,7 +12,7 @@ print("Starting")
 os.popen("xset -display :0.0 dpms force off")
 interval = .1
 lastsignal = 0
-DISPLAY_TIMEOUT = 10
+DISPLAY_TIMEOUT = 30
 while True:
     current = time.time()
     ret, frame = camera.read()
