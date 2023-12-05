@@ -97,8 +97,8 @@ html {
 
 .weather-box {
   position: absolute; 
-  left: 22%;
-  top: 2%;
+  right: 0%;
+  top: 3%;
   background-color: #00000000;
   border: 1px solid #00000000;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
