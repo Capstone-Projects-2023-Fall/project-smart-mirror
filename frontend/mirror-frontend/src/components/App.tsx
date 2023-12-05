@@ -44,6 +44,9 @@ const UI: React.FC = () => {
   return (
     <>
     <GlobalStyle />
+      <div className="clock-box">
+        <Clock />
+      </div>
       <div className="ui-container2">
         <div className="ui-container">
           {widgetVisibility.Weather && (
@@ -51,20 +54,12 @@ const UI: React.FC = () => {
               <TemperatureDisplay />
             </div>
           )}
-          {/*{widgetVisibility.Calendar && (
-            <div className="calendar-box">
-              <CalendarUI />
-            </div>
-          )}*/}
-          <div className="clock-box">
-            <Clock />
-          </div>
-        </div>
-        {widgetVisibility.News && (
+          {widgetVisibility.News && (
           <div className="news-box">
             <NewsComponent />
           </div>
         )}
+        </div>
         {/* If you want to include Fitbit widget as well
         {widgetVisibility.Fitbit && (
           <div className="fitbit-box">

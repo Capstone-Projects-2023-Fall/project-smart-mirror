@@ -156,48 +156,6 @@ body, p, h1, h2, h3, h4, h5, h6, a, button {
   cursor: pointer;
 }
 
-.calendar {
-  display: flex;
-  flex-direction: column;
-  font-family: 'Arial', sans-serif;
-  color: white;
-
-}
-
-.calendar-header {
-  display: flex;
-  background-color: #000000;
-  color: white;
-}
-
-.calendar-header-day {
-  flex: 1;
-  padding: 10px;
-  text-align: center;
-  border-right: 1px solid #000000;
-}
-
-.calendar-header-day:last-child {
-  border-right: none;
-}
-
-.calendar-week {
-  display: flex;
-}
-
-.calendar-day {
-  flex: 1;
-  padding: 10px;
-  text-align: center;
-  border-bottom: 1px solid #ddd;
-  border-right: 1px solid #ddd;
-  background-color: #000; 
-  border: 2px solid #fff;
-}
-
-.calendar-day:last-child {
-  border-right: none;
-}
 
 html {
   background-color: black
@@ -216,8 +174,8 @@ html {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 20px; 
-  padding: 20px;
+  gap: 75px; 
+  padding: 125px;
   height: calc(100% - 40px);
 }
 
@@ -262,11 +220,10 @@ html {
   padding: 20px; 
   height: 500px;
   width: 400px;
-
   border: 1px solid #000000; 
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
-  background-color: #000; 
-
+  background-color: #00000000; 
+  margin-left: 50px;
 }
 
 
