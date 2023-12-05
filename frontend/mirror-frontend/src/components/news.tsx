@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import './new.css'; 
+import './new.css';
+import NewsSVG from "../svg/newsicon.svg";
 
 const NewsComponent = () => {
-    const whiteNumberStyle = {
-        color: 'white',
-        fontSize: '24px',
-        backgroundColor: 'black',
-        padding: '10px',
-      };
+  const whiteNumberStyle = {
+    color: 'white',
+    fontSize: '24px',
+    backgroundColor: 'black',
+    padding: '10px',
+  };
 
   const [newsData, setNewsData] = useState([]);
 
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+
   useEffect(() => {
     async function fetchNews() {
       setIsLoading(true);
@@ -25,12 +27,12 @@ const NewsComponent = () => {
         const data = await response.json();
         setNewsData(data.data);
       } catch (error) {
-        
+        setError(error.message);
       } finally {
         setIsLoading(false);
       }
     }
-  
+
     fetchNews();
   }, []);
 
@@ -44,16 +46,17 @@ const NewsComponent = () => {
 
   return (
     <div className="news">
-    <h1>Top Stories</h1>
-    {newsData.map((data) => (
-      <div key={data.id}>
-        <p className="source">({data.source})</p>
-        <p className="description">{data.snippet}</p>
-        
-        
-      </div>
-    ))}
-  </div>
-);
+      <h1>Top Stories</h1>
+      {newsData.map((data) => (
+        <div key={data.id} className="news-item">
+          <img src={NewsSVG} alt="News Icon" className="news-icon" />
+          <div className="news-content">
+            <p className="description">{data.snippet}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
 };
+
 export default NewsComponent;
