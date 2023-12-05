@@ -1,9 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
 
 body {
+  margin: 0;
+  padding: 0;
   font-family: 'Nunito', sans-serif;
+  overflow: hidden; 
 }
 
+.container {
+  width: 1920px;
+  height: 1080px;
+  margin: auto; 
+  position: relative;
+}
 #root {
   position: relative; 
   max-width: 1280px;
@@ -156,48 +165,6 @@ body, p, h1, h2, h3, h4, h5, h6, a, button {
   cursor: pointer;
 }
 
-.calendar {
-  display: flex;
-  flex-direction: column;
-  font-family: 'Arial', sans-serif;
-  color: white;
-
-}
-
-.calendar-header {
-  display: flex;
-  background-color: #000000;
-  color: white;
-}
-
-.calendar-header-day {
-  flex: 1;
-  padding: 10px;
-  text-align: center;
-  border-right: 1px solid #000000;
-}
-
-.calendar-header-day:last-child {
-  border-right: none;
-}
-
-.calendar-week {
-  display: flex;
-}
-
-.calendar-day {
-  flex: 1;
-  padding: 10px;
-  text-align: center;
-  border-bottom: 1px solid #ddd;
-  border-right: 1px solid #ddd;
-  background-color: #000; 
-  border: 2px solid #fff;
-}
-
-.calendar-day:last-child {
-  border-right: none;
-}
 
 html {
   background-color: black
@@ -216,8 +183,8 @@ html {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 20px; 
-  padding: 20px;
+  gap: 75px; 
+  padding: 125px;
   height: calc(100% - 40px);
 }
 
@@ -247,48 +214,55 @@ html {
 
 }
 
+.news-box {
+  position: absolute;
+  margin: -10px;
+  padding: 0px;
+  height: 500px;
+  width: 60%;
+  margin-top: 45%;
+  background-color: #000000;
+  border: 1px solid #000000;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+  
 .news {
   flex: 1;
   padding: 10px;
-  text-align: center;
+  text-align: left;
   height: 600px;
-  width: 400px;
-
+  font-size: .8rem;
+  background-color: #00000000;
 }
 
-.news-box {
-  flex: none; 
-  margin: 10px; 
-  padding: 20px; 
-  height: 500px;
-  width: 400px;
-
-  border: 1px solid #000000; 
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
-  background-color: #000; 
-
-}
-
-
-@media (max-width: 768px) {
+@media (max-width: 1920px) and (max-height: 1080px) {
   .ui-container {
     flex-direction: column;
     align-items: center; 
   }
+  .news-box {
+    margin: -10px;
+    padding: 0px;
+    height: 500px;
+    width: 25%;
+    margin-top: 12%;
+    background-color: #000000;
+    border: 1px solid #000000;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+    
+  .news {
+    flex: 1;
+    padding: 10px;
+    text-align: left;
+    height: 600px;
+    font-size: .8rem;
+    background-color: #00000000;
+  }
 
-  .weather-box,
-  .calendar-box {
-    width: 80%; 
-    margin-bottom: 20px;
-    position: static; 
+
+  body {
+    /* Your styles for 1920x1080 resolution */
   }
 }
-.calendar-container {
-  text-align: center;
-  color: white;
 
-}
-.calendar-title {
-  text-align: center;
-  margin-bottom: 20px; 
-}

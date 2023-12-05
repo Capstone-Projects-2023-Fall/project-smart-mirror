@@ -80,12 +80,7 @@ const TemperatureDisplay = () => {
     return () => clearInterval(fetchIntervalId);
   }, []);
 
-  useEffect(() => {
-    const toggleViewIntervalId = setInterval(() => {
-      setShowWeeklyForecast(prev => !prev);
-    }, 10000);
-    return () => clearInterval(toggleViewIntervalId);
-  }, []);
+ 
 
   const WeatherSVG = getWeatherSVG(weatherData.weatherCode);
 
