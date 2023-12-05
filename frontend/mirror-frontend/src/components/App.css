@@ -48,65 +48,6 @@ body {
 }
 
 
-.temperature-display {
-  margin: 20px;
-  padding: 20px;
-  border-radius: 10px;
-  background-color: #000000;
-  color: #fff; 
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-  display: inline-block; 
-}
-
-.temperature-display p {
-  margin: 10px 0;
-  font-size: 1.2rem; 
-  line-height: 1.5; 
-}
-
-.temperature-display p:first-child {
-  font-size: 1.5rem; 
-  font-weight: bold; 
-
-
-}
-
-.temperature-display .temperature {
-  font-size: 2.5rem; 
-  font-weight: bold; 
-}
-
-.temperature-display .weather-condition {
-  font-size: 1.8rem; 
-}
-
-.temperature-display .uv-index {
-  font-size: 1rem; 
-}
-.weekly-forecast-container {
-  color: white;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  background-color: #000;
-  padding: 20px;
-  margin: 20px auto; 
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-}
-
-.weekly-forecast-title {
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-
-}
-
-
-
 body, p, h1, h2, h3, h4, h5, h6, a, button {
   color: #fff; 
 }
@@ -124,37 +65,10 @@ body, p, h1, h2, h3, h4, h5, h6, a, button {
   
 }
 
-.weekly-forecast {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-  margin: 20px auto; 
-  border-radius: 10px; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-}
-
-.daily-forecast {
-  border: 1px solid #ddd; 
-  padding: 10px;
-  margin: 5px;
-  text-align: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  border-radius: 4px;
-  flex-grow: 1;
-}
-
-
-.daily-forecast {
-  width: calc(100% / 7 - 10px);
-}
-
 .day {
   font-weight: bold; 
 }
 
-.temperature {
-  font-size: 1.2em; 
-}
 .black-button {
   background-color: black;
   color: white;
@@ -170,35 +84,23 @@ html {
   background-color: black
 }
 
-.ui-container2 {
-  display:block;
-  justify-content: left;
-  align-items: flex-start;
-  gap: 20px; 
-  padding: 20px;
-  height: calc(100% - 40px);
-}
 
 .ui-container {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 75px; 
-  padding: 125px;
-  height: calc(100% - 40px);
+  padding: 0; /* Set padding to 0 */
+  margin: 0; /* Set margin to 0 */
+  height: 100vh; /* Set height to 100% of the viewport height */
+  width: 100vh;
 }
 
-
 .weather-box {
-  position: relative; 
-  top: 0; 
-  left: 0; 
-  width: 300px; 
-  height: 200px; 
-  margin-top: 20px;
-  padding: 20px;
-  background-color: #000000;
-  border: 1px solid #000000;
+  position: absolute; 
+  left: 22%;
+  top: 2%;
+  background-color: #00000000;
+  border: 1px solid #00000000;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 .calendar-box {
@@ -220,7 +122,7 @@ html {
   padding: 0px;
   height: 500px;
   width: 60%;
-  margin-top: 45%;
+  margin-top: 40%;
   background-color: #000000;
   border: 1px solid #000000;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -228,7 +130,7 @@ html {
   
 .news {
   flex: 1;
-  padding: 10px;
+  padding: 0px;
   text-align: left;
   height: 600px;
   font-size: .8rem;
@@ -244,8 +146,8 @@ html {
     margin: -10px;
     padding: 0px;
     height: 500px;
-    width: 25%;
-    margin-top: 12%;
+    width: 35%;
+    margin-top: 45%;
     background-color: #000000;
     border: 1px solid #000000;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -253,9 +155,9 @@ html {
     
   .news {
     flex: 1;
-    padding: 10px;
+    padding: 0px;
     text-align: left;
-    height: 600px;
+    height: 500px;
     font-size: .8rem;
     background-color: #00000000;
   }

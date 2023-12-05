@@ -97,12 +97,17 @@ const TemperatureDisplay = () => {
   }
 
   return (
+
     <div className="temperature-display">
-      <h2 className="title">{weatherData.city}</h2>
-      <img src={WeatherSVG} alt={weatherData.weatherDescription} width="100" height="100" />
-      <p className="temperature">{weatherData.temperature}°F</p>
-      <p className="weather-condition">{weatherData.weatherDescription}</p>
-      <p className="uv-index">UV Index: {weatherData.uvIndex}</p>
+      <div className="weather-info">
+        <img src={WeatherSVG} alt={weatherData.weatherDescription} width="50" height="50" />
+        {/* Additional weather information goes here */}
+      </div>
+      <div>
+        <p className="temperature">{weatherData.temperature}°F</p>
+        <p className="weather-condition">{weatherData.weatherDescription}</p>
+      </div>
+
     </div>
   );
 };
