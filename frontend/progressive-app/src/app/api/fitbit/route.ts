@@ -16,10 +16,10 @@ export async function GET(request: Request){
         if (data){
             const responseBody = { message: data };
             const customHeaders = {
-                'Content-Type': 'application/json', // Adjust as needed
-                'Access-Control-Allow-Origin': '*', // Allow any origin; you may want to restrict this based on your needs
-                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS', // Specify the allowed HTTP methods
-                'Access-Control-Allow-Headers': 'Origin, Content-Type, Accept', // Specify the allowed headers
+                'Content-Type': 'application/json', 
+                'Access-Control-Allow-Origin': '*', 
+                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS', 
+                'Access-Control-Allow-Headers': 'Origin, Content-Type, Accept', 
               };
             const customStatus = 200;
 

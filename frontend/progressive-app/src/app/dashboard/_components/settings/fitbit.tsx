@@ -20,6 +20,7 @@ type Props = {
     return codeChallenge;
   };
 
+  // Upsert data into supa db
   const upsertSupa = async (userId: string, table: string, data: Record<string, string>) => {
     //console.log(userId + ' ' + table + ' ' + column + ' ' + value);
     if (userId && table && data) {
@@ -35,6 +36,98 @@ type Props = {
     }
   };
 
+  // Get data from fitbit table
+  const getSuper = async (userId: string, field: string) => {
+    if(userId && field){
+        const { data, error } = await supabase
+        .from('fitbit')
+        .select(field)
+        .eq("id", userId);
+
+        if (error !== null) {
+        console.log("Data could not be retrieved from SUPA" + error);
+        }
+        else {
+            console.log("Data retrieved from SUPA");
+            return data;
+        }
+    }
+
+    return null;
+  }
+
+
+  // Send user to auth page, save verifier code in supabase: step 1 - DONE
+  const authorizeUser = async (userId:string, codeVerifier:string, codeChallenge:string) => {
+    const { error } = await supabase
+          .from("fitbit")
+          .upsert([{id: userId, code_verifier:codeVerifier}])
+          if (error !== null) {
+            console.log("Failed to store code verifier" + error);
+          }
+          else{
+            console.log("Code Verifier stored");
+          }
+          
+          //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`
+          var authorizationUrl = 'https://www.fitbit.com/oauth2/authorize?client_id=23RKLS&response_type=code&code_challenge=' + codeChallenge + '&code_challenge_method=S256&scope=activity%20heartrate%20location%20nutrition%20oxygen_saturation%20profile%20respiratory_rate%20settings%20sleep%20social%20temperature%20weight';
+
+          window.location.replace(authorizationUrl);     
+  }
+
+  // Get code verifier, parse auth code, get token: step 2 - TODI
+  // If we get sent to this screen from home, automatically parse the url and store it
+  // TODO get rid of sync buttons
+  const getAccessToken = async (userId:string, clientId:string, clientSecret:string, codeParam:string, codeVerifier:string) => {
+    console.log("GAT" + userId + " " + clientId + " " + clientSecret + " " + codeParam + " " + codeVerifier);
+    //console.log(code)   
+    if(!userId){
+        console.log("Error: User is not signed in");
+    }
+    else if(codeVerifier && clientId && codeParam){
+        console.log("posting access token");    
+          // Get access token, refresh token, user_id, scope
+
+            const authResponse = await fetch('https://api.fitbit.com/oauth2/token', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': 'Basic ' + btoa(clientId + ':' + clientSecret)
+              },
+              body: new URLSearchParams({
+                client_id: clientId,
+                code: codeParam,
+                code_verifier: codeVerifier,
+                grant_type: 'authorization_code'
+              }).toString(),
+            });
+
+            if (!authResponse.ok) {
+              throw new Error(`Authentication failed with status: ${authResponse.status}`);
+            }
+          console.log("auth resp" + authResponse);
+          const authData = await authResponse.json();
+
+          const accessToken = authData.access_token;
+          const refreshToken = authData.refresh_token;
+          const user_idd = authData.user_id;
+
+          // Store tokens in supa
+          console.log("accessToken:! " + accessToken);
+          const data = { access_token: accessToken, code_verifier: codeVerifier};
+          upsertSupa(userId, 'fitbit', data);
+
+          const data2 = { refresh_token: refreshToken, code_verifier: codeVerifier};
+          upsertSupa(userId, 'fitbit', data2);
+
+          const data3 = { fitbit_id: user_idd, code_verifier: codeVerifier};
+          upsertSupa(userId, 'fitbit', data3);
+
+        
+  
+      }
+  }
+
   export default function Fitbit({ user }: Props) {
     const [prefDate, setPrefDate] = useState<string | null>(null);
     useEffect(() => {
@@ -47,7 +140,6 @@ type Props = {
     }, []);
 
   return (
-    
     <>
       <h2 className="fitbit-header">Fitbit</h2>
       <button onClick={async () => {
@@ -63,19 +155,7 @@ type Props = {
         // get User id
         const userId = user?.id;
         if(userId){
-          const { error } = await supabase
-          .from("fitbit")
-          .upsert([{id: userId, code_verifier:codeVerifier}])
-          if (error !== null) {
-            console.log(error);
-          }
-          
-          //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`
-          var authorizationUrl = 'https://www.fitbit.com/oauth2/authorize?client_id=23RKLS&response_type=code&code_challenge=' + codeChallenge + '&code_challenge_method=S256&scope=activity%20heartrate%20location%20nutrition%20oxygen_saturation%20profile%20respiratory_rate%20settings%20sleep%20social%20temperature%20weight';
-
-          window.location.replace(authorizationUrl);
-          //window.location.replace('https://www.fitbit.com/oauth2/authorize?client_id=23RKLS&response_type=code&code_challenge={3J5FPfgwtx6aj2GFL10KOEqpyhpOWDgmI0ZTkobhrAQ}&code_challenge_method=S256&scope=activity%20heartrate%20location%20nutrition%20oxygen_saturation%20profile%20respiratory_rate%20settings%20sleep%20social%20temperature%20weight');
-          
+            authorizeUser(userId, codeVerifier, codeChallenge);
           }
         }
         
@@ -84,135 +164,32 @@ type Props = {
 
       <h2 className="fitbit-sync">Sync</h2>
       <button onClick={async () => {
-        const codeParam = new URLSearchParams(location.search).get("code");
+        const authCode = new URLSearchParams(location.search).get("code");
         const userId = user?.id;
-        if (codeParam && userId) {
-          
-          const { data, error } = await supabase
-            .from("fitbit")
-            .select("code_verifier")
-            .eq("id", userId);
+        console.log(authCode);
+        if (authCode && userId) {
+            let codeVerifier: any;
+            const response = await getSuper(userId, 'code_verifier');
+            console.log(response);
     
-            if (error !== null) {
-              console.log(error);
+            if(response !== null){
+                codeVerifier = response[0]?.code_verifier;
             }
             else{
-              const codeVerifier: string | undefined = data[0]?.code_verifier;
-           
-              if(codeVerifier){
-      
-                const clientId = "23RKLS";
-                const clientSecret = "2c3743a22c9be82c95f1b9a615e11580";
-
-                try {
-                  console.log(JSON.stringify({
-                    client_id: clientId,
-                    code: codeParam,
-                    code_verifier: codeVerifier,
-                    grant_type: 'authorization_code' 
-                  }));
-
-                    const authResponse = await fetch('https://api.fitbit.com/oauth2/token', {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                        'Authorization': 'Basic ' + btoa(clientId + ':' + clientSecret)
-                      },
-                      body: new URLSearchParams({
-                        client_id: clientId,
-                        code: codeParam,
-                        code_verifier: codeVerifier,
-                        grant_type: 'authorization_code'
-                      }).toString(),
-                    });
-                  console.log("auth resp" + authResponse);
-                  const authData = await authResponse.json();
-
-                  const accessToken = authData.access_token;
-                  const refreshToken = authData.refresh_token;
-                  const user_idd = authData.user_id;
-
-                  //console.log("auth token:" + accessToken)
-                  //console.log(authData);
-                  //console.log(authData);
-/*
-                  if(userId){
-                    console.log("supa test: id, token" + userId + " and " + accessToken);
-                    const { error } = await supabase
-                    .from("fitbit")
-                    .upsert([{
-                      id: userId,
-                      access_token: accessToken,
-                      code_verifier: codeVerifier
-                      }]);
-
-                      
-            
-                if (!error) {
-                    console.log("Upsert successful");
-                } else {
-                    console.error("Error during upsert:", error);
-                }
-                  }
-                  
-                  if(userId){
-                    console.log("supa test: id, token" + userId + " and " + accessToken);
-                    const { error } = await supabase
-                    .from("fitbit")
-                    .upsert([{
-                      id: userId,
-                      refresh_token: refreshToken,
-                      code_verifier: codeVerifier
-                      }]);
-
-                      
-            
-                if (!error) {
-                    console.log("Upsert successful");
-                } else {
-                    console.error("Error during upsert:", error);
-                }
-                  }
-*/
-                  console.log("accessToken:! " + accessToken)
-                  const data = { access_token: accessToken, code_verifier: codeVerifier};
-                  upsertSupa(userId, 'fitbit', data);
-
-                  const data2 = { refresh_token: refreshToken, code_verifier: codeVerifier};
-                  upsertSupa(userId, 'fitbit', data2);
-
-                  const data3 = { fitbit_id: user_idd, code_verifier: codeVerifier};
-                  upsertSupa(userId, 'fitbit', data3);
-
-
-                  //upsertSupa(userId, 'fitbit', 'access_token', accessToken)
-                  //upsertSupa(userId, 'fitbit', 'refresh_token', refreshToken)
-                  //upsertSupa(userId, 'fitbit', 'fitbit_id',user_id)
-
-                  // Step 2: Fetch Fitbit data using the access token
-                  /*
-                  const fitbitResponse = await fetch('https://api.fitbit.com/2/user/-/profile.json', {
-                    headers: {
-                      Authorization: `Bearer ${accessToken}`,
-                    },
-                  });
-          
-                  const fitbitData = await fitbitResponse.json();
-        */
-                } catch (error) {
-                  console.error('Error fetching Fitbit data:', error);
-                }
-          
-              }
+                console.log("Error: cv is null");
             }
-            //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`
-    
-            
-    
-          //console.log(codeParam);
+      
+            console.log("CV: " + codeVerifier);
+
+           if(authCode !== null){
+            // TODO REMOVE HARD CODED BS
+            const clientId = "23RKLS";
+            const clientSecret = "2c3743a22c9be82c95f1b9a615e11580";
+            getAccessToken(userId, clientId, clientSecret, authCode, codeVerifier);
+           }
+
           console.log(user)
           
-          // Perform actions based on the 'code' parameter if needed
         }
 }
   }>Click to sync fitbit</button>
