@@ -11,7 +11,7 @@ type Props = {
 };
 
 export default function Dashboard({ user }: Props) {
-  const [page, setPage] = useState<string>("Home");
+  const [page, setPage] = useState<string>("home");
 
   return (
     <main className="flex h-screen flex-col">
