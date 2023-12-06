@@ -5,9 +5,7 @@ import FitbitDataComponent from './fitbit'
 import NewsComponent from './news';
 import './App.css'; // Ensure this is the path to your CSS file
 /*
- <div className="news-box">
-      <NewsComponent/>
-      </div>
+ 
 */
 const UI = () => {
   return (
@@ -20,10 +18,12 @@ const UI = () => {
         <CalendarUI />
       </div>
       <div className="fitbit-box">
-      <FitbitDataComponent/>
+        <FitbitDataComponent/>
       </div>
     </div>
-    
+    <div className="news-box">
+      <NewsComponent/>
+      </div>
    
       
     </div>
