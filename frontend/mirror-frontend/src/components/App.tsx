@@ -52,25 +52,21 @@ const UI: React.FC = () => {
           <NewsComponent />
         </div>
       )}
-      
-      <div className="ui-container2">
-        <div className="ui-container">
-         
-          {widgetVisibility.Weather && (
-            <div className="weather-box">
-              <TemperatureDisplay />
-            </div>
-          )}
-          
-
-        </div>
-        {/* If you want to include Fitbit widget as well
-        {widgetVisibility.Fitbit && (
-          <div className="fitbit-box">
-            <FitbitDataComponent />
+      <div className="ui-container">
+        {widgetVisibility.Weather && (
+          <div className="weather-box">
+            <TemperatureDisplay />
           </div>
-        )} */}
+        )}
+        
+
       </div>
+      {/* If you want to include Fitbit widget as well
+      {widgetVisibility.Fitbit && (
+        <div className="fitbit-box">
+          <FitbitDataComponent />
+        </div>
+      )} */}
     </>
   );
 };

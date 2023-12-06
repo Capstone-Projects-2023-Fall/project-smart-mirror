@@ -1,48 +1,68 @@
 
-.weather-box {
-    position: absolute; 
-    top: 0; 
-    left: 0; 
-    width: 300px; 
-    height: 200px; 
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #000000;
-    border: 1px solid #000000;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  }
-  
+
   .temperature-display {
-    margin: 20px;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #000000;
-    color: #fff; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-    display: inline-block; 
+    background-color: #ed090900;
+    color: #000000; 
+    display: flex;
+    align-items: center;
   }
-  
-  .temperature-display p {
-    margin: 10px 0;
-    font-size: 1.2rem; 
-    line-height: 1.5; 
-  }
-  
+
   .temperature-display p:first-child {
-    font-size: 1.5rem; 
-    font-weight: bold; 
+
   }
   
-  .temperature-display .temperature {
-    font-size: 1rem; 
-    font-weight: bold; 
+  .temperature-display p.temperature {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-top: 0; 
+    margin-bottom: -25%;
   }
-  
+
   .temperature-display .weather-condition {
-    font-size: 1.8rem; 
+ 
+  }
+
+  .temperature-display .uv-index {
+  }
+
+
+
+
+  .weather-info {
+    margin-right: 10px; /* Adjust the margin as needed */
   }
   
-  .temperature-display .uv-index {
-    font-size: 1rem; 
+
+
+  .weekly-forecast {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin: 20px auto; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   }
+
+  .weekly-forecast-container {
+    color: white;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: #000;
+    padding: 20px;
+    margin: 20px auto; 
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  }
+  
+  .weekly-forecast-title {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  
+  }
+  
   
