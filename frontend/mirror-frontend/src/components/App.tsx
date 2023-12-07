@@ -3,10 +3,12 @@ import TemperatureDisplay from './weather';
 import CalendarUI from './calendar';
 import FitbitDataComponent from './fitbit';
 import NewsComponent from './news';
+import MarketDisplay from './stocks';
 import Clock from "./clock";
 import GlobalStyle from './GlobalStyle'; // Import the GlobalStyle
 import './App.css';
 import './clock.css';
+
 
 const UI: React.FC = () => {
   const [widgetVisibility, setWidgetVisibility] = useState({
@@ -18,7 +20,7 @@ const UI: React.FC = () => {
 
   useEffect(() => {
     const fetchWidgetVisibility = async () => {
-      try {
+     /* try {
         const response = await fetch('http://localhost:3000/api/widget?user_id=21380693-3ade-4951-82c0-1440aaf54297');
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -31,7 +33,7 @@ const UI: React.FC = () => {
         }
       } catch (error) {
         console.error('There has been a problem with your fetch operation:', error);
-      }
+      }*/
     };
 
     fetchWidgetVisibility();
@@ -61,7 +63,9 @@ const UI: React.FC = () => {
         
 
       </div>
-
+      <div className="news-box">
+          <MarketDisplay />
+        </div>
       {widgetVisibility.Fitbit && (
         <div className="fitbit-box">
           <FitbitDataComponent />
