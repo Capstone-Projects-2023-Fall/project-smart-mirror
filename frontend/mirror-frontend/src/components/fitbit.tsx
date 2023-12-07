@@ -125,13 +125,14 @@ const refreshToken = async (clientId:string, clientSecret:string, refreshToken:s
             });
 
             if (!authResponse.ok) {
+              console.log(authResponse.json());
               throw new Error(`Token refresh failed: ${authResponse.status}`);
             }
             else{
 
               console.log(authResponse.status);
               const authData = await authResponse.json();
-
+              
 
               const accessToken2 = authData.access_token;
               const refreshToken2 = authData.refresh_token;
@@ -142,6 +143,7 @@ const refreshToken = async (clientId:string, clientSecret:string, refreshToken:s
               const data2 = { refresh_token: refreshToken2};
               upsertSupa(userId, 'fitbit', data2);
               
+              return [accessToken2, refreshToken2];
             }
           
           
@@ -191,7 +193,7 @@ const FitbitDataComponent = () => {
   useEffect(() => {
     const fetchData = async () => {
 
-      const userId = "b85ded12-06ba-4a7e-a14e-de104007ccd8"
+      const userId = "8089166a-3db2-4b56-b1c7-ac3b188829a4"
       
       const clientId = "23RKLS";
       const clientSecret = "2c3743a22c9be82c95f1b9a615e11580";
@@ -214,35 +216,47 @@ const FitbitDataComponent = () => {
       if(aTokenResponse && rTokenResponse){
         aToken = aTokenResponse[0]?.access_token;
         rToken = rTokenResponse[0]?.refresh_token;
-
+        if (typeof aToken === 'string' && typeof rToken === 'string') {
           // get activity data
-        const stepsJson = await getFitbitData(stepsURL, aToken, rToken);
-        console.log(stepsJson);
+          const stepsJson = await getFitbitData(stepsURL, aToken, rToken);
+          console.log(stepsJson);
 
-        // Refresh tokens if they are expired
-        if (stepsJson === -1){
-          refreshToken(clientId, clientSecret, rToken, userId)
+          // Refresh tokens if they are expired
+          if (stepsJson === -1){
+            //console.log("clientid" + clientId + "rToken" + "userId");
+            const tokens = await refreshToken(clientId, clientSecret, rToken, userId).catch(error => {
+              console.log(clientId + " " + clientSecret + " "+ rToken  +" " + userId);
+              console.log(error);
+            });
+            if (tokens){
+              aToken = tokens[0];
+              rToken = tokens[1];
+              console.log("a token:" + aToken);
+              console.log("r token:" + rToken);
+            }
+          }
+
+          // Get all fitbit data!
+          const sleepJson = await getFitbitData(sleepLogURL, aToken, rToken);
+          //const badgesJson = await getFitbitData(badgesURL, aToken, rToken);
+          const goalsJson = await getFitbitData(goalsURL, aToken, rToken);
+          const sleepGoalsJson = await getFitbitData(sleepGoalsURL, aToken, rToken);
+
+          // sleep goal metrics are in hours
+
+          const data = {
+            steps: await findValueByKey(stepsJson, 'value'),
+            stepGoal: await findValueByKey(goalsJson, 'steps'),
+            calorieGoal: await findValueByKey(goalsJson, 'caloriesOut'),
+            sleep: await findValueByKey(sleepJson, 'timeInBed')/60.0,
+            sleepGoals: await findValueByKey(sleepGoalsJson, 'minDuration')/60.0
+          };
+          
+          // Now, jsonObject contains all the values in a structured manner.
+          console.log(data);
+          setFitbitData(data);
         }
-   
-        // Get all fitbit data!
-        const sleepJson = await getFitbitData(sleepLogURL, aToken, rToken);
-        //const badgesJson = await getFitbitData(badgesURL, aToken, rToken);
-        const goalsJson = await getFitbitData(goalsURL, aToken, rToken);
-        const sleepGoalsJson = await getFitbitData(sleepGoalsURL, aToken, rToken);
-
-        // sleep goal metrics are in hours
-
-        const data = {
-          steps: await findValueByKey(stepsJson, 'value'),
-          stepGoal: await findValueByKey(goalsJson, 'steps'),
-          calorieGoal: await findValueByKey(goalsJson, 'caloriesOut'),
-          sleep: await findValueByKey(sleepJson, 'timeInBed')/60.0,
-          sleepGoals: await findValueByKey(sleepGoalsJson, 'minDuration')/60.0
-        };
-        
-        // Now, jsonObject contains all the values in a structured manner.
-        console.log(data);
-        setFitbitData(data);
+         
         
        
       }
