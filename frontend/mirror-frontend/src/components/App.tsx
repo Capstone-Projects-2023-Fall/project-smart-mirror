@@ -44,34 +44,29 @@ const UI: React.FC = () => {
   return (
     <>
     <GlobalStyle />
-      <div className="ui-container2">
-        <div className="ui-container">
-          {widgetVisibility.Weather && (
-            <div className="weather-box">
-              <TemperatureDisplay />
-            </div>
-          )}
-          {/*{widgetVisibility.Calendar && (
-            <div className="calendar-box">
-              <CalendarUI />
-            </div>
-          )}*/}
-          <div className="clock-box">
-            <Clock />
-          </div>
+      <div className="clock-box">
+        <Clock />
+      </div>
+      {widgetVisibility.News && (
+        <div className="news-box">
+          <NewsComponent />
         </div>
-        {widgetVisibility.News && (
-          <div className="news-box">
-            <NewsComponent />
+      )}
+      <div className="ui-container">
+        {widgetVisibility.Weather && (
+          <div className="weather-box">
+            <TemperatureDisplay />
           </div>
         )}
-        {/* If you want to include Fitbit widget as well
-        {widgetVisibility.Fitbit && (
-          <div className="fitbit-box">
-            <FitbitDataComponent />
-          </div>
-        )} */}
+        
+
       </div>
+      {/* If you want to include Fitbit widget as well
+      {widgetVisibility.Fitbit && (
+        <div className="fitbit-box">
+          <FitbitDataComponent />
+        </div>
+      )} */}
     </>
   );
 };

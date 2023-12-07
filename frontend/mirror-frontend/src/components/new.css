@@ -1,18 +1,46 @@
-.news-box {
-  margin: 10px;
-  padding: 20px;
-  height: 500px;
-  width: 400px;
-  background-color: #000000;
-  border: 1px solid #000000;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+.description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* Set the number of lines before the ellipsis appears */
+  -webkit-box-orient: vertical;
+  max-height: 3.0rem; /* Adjust the max height as needed */
 }
+.news h1 {
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
   
-  .news {
-    flex: 1;
-    padding: 10px;
-    text-align: center;
-    height: 600px;
-    width: 400px;
-    background-color: #000;
-  }
+}
+
+.news-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0px;
+  background-color: #00000000;
+}
+
+.news-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  fill: white;
+  background-color: #00000000;
+}
+
+.news-description {
+  color: white;
+  font-size: .5rem;
+  background-color: #00000000;
+}
+
+.news-source {
+  color: #808080; /* Gray color for source */
+  margin-right: 0px;
+  font-size: .5rem;
+  background-color: #00000000;
+}
+.underlined-heading {
+  text-decoration: underline;
+}
