@@ -25,7 +25,7 @@ const getFitbitData = async (url: string, requestToken: string, refreshTokenId: 
   
     if (authResponse.ok) {
       const jsonResponse = await authResponse.json();
-      console.log(jsonResponse);
+      //console.log(jsonResponse);
       return jsonResponse; // If you want to return the JSON response
     }else if(authResponse.status == 401){
       console.log("its time to refresh the token!");
@@ -46,7 +46,7 @@ const getFitBitValue = async (userId: string, value: string) => {
    const url = new URL('http://localhost:3000/api/fitbit');
    url.searchParams.append('id', userId);
    url.searchParams.append('field', value);
- console.log("URL: " + url.toString());
+
    try {
      // Make the GET request
      const response = await fetch(url.toString());
@@ -76,7 +76,6 @@ const PostFitbitData = async (url: string, requestToken: string,) => {
   
     if (authResponse.ok) {
       const jsonResponse = await authResponse.json();
-      console.log(jsonResponse);
       return jsonResponse; // If you want to return the JSON response
     } else {
       console.error('Error fetching Fitbit data:', authResponse.statusText);
@@ -128,29 +127,19 @@ const refreshToken = async (clientId:string, clientSecret:string, refreshToken:s
               throw new Error(`Token refresh failed: ${authResponse.status}`);
             }
             else{
-              //console.log(authResponse);
+
               console.log(authResponse.status);
               const authData = await authResponse.json();
-              //console.log("refresh token data" + authData.toString());
+
 
               const accessToken2 = authData.access_token;
               const refreshToken2 = authData.refresh_token;
-              //const user_idd = authData.user_id;
-              //upsertSupa(userId, 'fitbit', )
+
               const data = { access_token: accessToken2};
               upsertSupa(userId, 'fitbit', data);
 
               const data2 = { refresh_token: refreshToken2};
               upsertSupa(userId, 'fitbit', data2);
-              // Store tokens in supa
-              //console.log("accessToken:! " + accessToken2);
-              //onsole.log("refreshToken:! " + refreshToken2);
-              //const data = { access_token: accessToken, code_verifier: codeVerifier};
-              //upsertSupa(userId, 'fitbit', data);
-    
-              //const data2 = { refresh_token: refreshToken, code_verifier: codeVerifier};
-              //upsertSupa(userId, 'fitbit', data2);
-
               
             }
           
@@ -240,7 +229,8 @@ const FitbitDataComponent = () => {
         const goalsJson = await getFitbitData(goalsURL, aToken, rToken);
         const sleepGoalsJson = await getFitbitData(sleepGoalsURL, aToken, rToken);
 
-        //console.log("badges!" + badgesJson);
+        // sleep goal metrics are in hours
+
         const data = {
           steps: await findValueByKey(stepsJson, 'value'),
           stepGoal: await findValueByKey(goalsJson, 'steps'),
@@ -260,7 +250,7 @@ const FitbitDataComponent = () => {
 
 
     fetchData();
-  }, []); // Empty dependency array ensures the effect runs once when the component mounts
+  }, []);
 
   const whiteTextStyle = {
     color: 'white',
