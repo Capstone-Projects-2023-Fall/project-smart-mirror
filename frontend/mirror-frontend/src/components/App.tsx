@@ -60,12 +60,10 @@ const UI: React.FC = () => {
             <TemperatureDisplay />
           </div>
         )}
-        
+        <MarketDisplay />
 
       </div>
-      <div className="news-box">
-          <MarketDisplay />
-        </div>
+      
       {widgetVisibility.Fitbit && (
         <div className="fitbit-box">
           <FitbitDataComponent />
