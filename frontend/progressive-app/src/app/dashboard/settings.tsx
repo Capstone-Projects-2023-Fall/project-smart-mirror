@@ -9,6 +9,7 @@ import DataPrivacy from "./_components/settings/data_privacy";
 import Time from "./_components/settings/time";
 import Widget from "./_components/settings/widget";
 import Notifications from "./notifications";
+import Fitbit from "./_components/settings/fitbit";
 
 type Props = {
   user: User | null;
@@ -21,6 +22,7 @@ export default function Settings({ user }: Props) {
         <Location />
         <Mirror />
         <Time user={user} />
+        <Fitbit user={user}/>
       </section>
     </>
   );
