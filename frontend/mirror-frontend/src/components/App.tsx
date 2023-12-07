@@ -61,12 +61,12 @@ const UI: React.FC = () => {
         
 
       </div>
-      {/* If you want to include Fitbit widget as well
+
       {widgetVisibility.Fitbit && (
         <div className="fitbit-box">
           <FitbitDataComponent />
         </div>
-      )} */}
+      )}
     </>
   );
 };

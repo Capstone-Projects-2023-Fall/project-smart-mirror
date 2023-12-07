@@ -25,7 +25,7 @@ export default function MainDisplay({ page, user }: Props) {
       case "settings":
         return <Settings user={user} />;
       default:
-        return null;
+        return <Home />;
     }
   };
 
