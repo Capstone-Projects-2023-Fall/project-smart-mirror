@@ -83,9 +83,10 @@ type Props = {
         console.log("Error: User is not signed in");
     }
     else if(codeVerifier && clientId && codeParam){
+      console.log("get access token info" + userId + "   " + clientId+ "   " + clientSecret + "   " + codeParam);
       let authResponse:any;
           // Get access token, refresh token, user_id, scope
-          console.log(codeVerifier + "" + clientId + " " + codeParam)
+          
           try{
               authResponse = await fetch('https://api.fitbit.com/oauth2/token', {
               method: 'POST',
@@ -107,8 +108,8 @@ type Props = {
             
 
             if (!authResponse.ok) {
-              throw new Error(`Authentication failed with status: ${authResponse.status}`);
-              console.log("error")
+              //throw new Error(`Authentication failed with status: ${authResponse.status}`);
+              console.log("Authentication failed with status:" + authResponse.status);
             }
             else{
               const authData = await authResponse.json();
