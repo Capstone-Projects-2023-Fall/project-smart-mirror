@@ -1,0 +1,9 @@
+.draggable-box {
+    width: 100px;
+    height: 100px;
+    background-color: lightblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: move; /* Cursor indicates that the element is draggable */
+  }

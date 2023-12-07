@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
+import { motion } from "framer-motion";
+import './toggleswitch.css'
+import './box.css'
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 if (!supabaseUrl || !supabaseAnonKey) {
@@ -65,6 +68,7 @@ const ModuleView: React.FC = () => {
 
   return (
     <div className="module-view">
+      {/* Existing code for widget visibility toggles */}
       {Object.keys(widgetVisibility).map(widgetName => (
         <div key={widgetName} className="toggle-switch-container">
           <span className="widget-name">{widgetName}</span>
@@ -79,6 +83,15 @@ const ModuleView: React.FC = () => {
           </label>
         </div>
       ))}
+
+      {/* Draggable Box placed after the toggle switches */}
+      <motion.div 
+        drag // Enables dragging
+        dragConstraints={{ left: 0, right: 300, top: 0, bottom: 300 }} // Optional: Constraints for dragging
+        className="draggable-box" // Add your styling class
+      >
+        Drag Me
+      </motion.div>
     </div>
   );
 };
