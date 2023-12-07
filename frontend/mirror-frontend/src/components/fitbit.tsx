@@ -1,11 +1,12 @@
 import { request } from 'http';
 import React, { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
-//const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-//const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 
 const supabaseUrl = 'https://saqzgdinpsbxjdzhgfue.supabase.co'
 const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNhcXpnZGlucHNieGpkemhnZnVlIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTgyNjU2ODksImV4cCI6MjAxMzg0MTY4OX0.AWSNUfrFQFhZFwEOPkLYhzZV07k3VSA4Ox0gwJt2B2U';
+
+//console.log("ENV!!!" + process.env.NEXT_PUBLIC_SUPABASE_URL);
+
 if (!supabaseUrl || !supabaseAnonKey) {
   throw new Error('Supabase URL and Anon Key must be defined');
 }

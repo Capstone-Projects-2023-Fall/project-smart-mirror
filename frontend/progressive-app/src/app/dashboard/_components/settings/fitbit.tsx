@@ -22,7 +22,6 @@ type Props = {
 
   // Upsert data into supa db
   const upsertSupa = async (userId: string, table: string, data: Record<string, string>) => {
-    //console.log(userId + ' ' + table + ' ' + column + ' ' + value);
     if (userId && table && data) {
       const { error } = await supabase
           .from("fitbit")
@@ -79,13 +78,11 @@ type Props = {
   // If we get sent to this screen from home, automatically parse the url and store it
   // TODO get rid of sync buttons
   const getAccessToken = async (userId:string, clientId:string, clientSecret:string, codeParam:string, codeVerifier:string) => {
-    console.log("GAT" + userId + " " + clientId + " " + clientSecret + " " + codeParam + " " + codeVerifier);
     //console.log(code)   
     if(!userId){
         console.log("Error: User is not signed in");
     }
     else if(codeVerifier && clientId && codeParam){
-        console.log("posting access token");    
           // Get access token, refresh token, user_id, scope
 
             const authResponse = await fetch('https://api.fitbit.com/oauth2/token', {
@@ -105,7 +102,6 @@ type Props = {
             if (!authResponse.ok) {
               throw new Error(`Authentication failed with status: ${authResponse.status}`);
             }
-          console.log("auth resp" + authResponse);
           const authData = await authResponse.json();
 
           const accessToken = authData.access_token;
@@ -113,7 +109,6 @@ type Props = {
           const user_idd = authData.user_id;
 
           // Store tokens in supa
-          console.log("accessToken:! " + accessToken);
           const data = { access_token: accessToken, code_verifier: codeVerifier};
           upsertSupa(userId, 'fitbit', data);
 
@@ -145,12 +140,9 @@ type Props = {
       <button onClick={async () => {
         // Generate code verifier 
         const codeVerifier = generateCodeVerifier();
-        console.log('Code Verifier:', codeVerifier);
     
         // Generate code challenge
         const codeChallenge = generateCodeChallenge(codeVerifier);
-        console.log('Code Challenge:', codeChallenge);
-
 
         // get User id
         const userId = user?.id;
@@ -166,11 +158,10 @@ type Props = {
       <button onClick={async () => {
         const authCode = new URLSearchParams(location.search).get("code");
         const userId = user?.id;
-        console.log(authCode);
+
         if (authCode && userId) {
             let codeVerifier: any;
             const response = await getSuper(userId, 'code_verifier');
-            console.log(response);
     
             if(response !== null){
                 codeVerifier = response[0]?.code_verifier;
@@ -178,8 +169,6 @@ type Props = {
             else{
                 console.log("Error: cv is null");
             }
-      
-            console.log("CV: " + codeVerifier);
 
            if(authCode !== null){
             // TODO REMOVE HARD CODED BS
@@ -187,8 +176,6 @@ type Props = {
             const clientSecret = "2c3743a22c9be82c95f1b9a615e11580";
             getAccessToken(userId, clientId, clientSecret, authCode, codeVerifier);
            }
-
-          console.log(user)
           
         }
 }
