@@ -40,20 +40,18 @@ const UI: React.FC = () => {
 
     return () => clearInterval(intervalId);
   }, []);
-/*
-{widgetVisibility.News && (
-        <div className="news-box">
-          <NewsComponent />
-        </div>
-      )}
-*/
+
   return (
     <>
     <GlobalStyle />
       <div className="clock-box">
         <Clock />
       </div>
-      
+      {widgetVisibility.News && (
+        <div className="news-box">
+          <NewsComponent />
+        </div>
+      )}
       <div className="ui-container">
         {widgetVisibility.Weather && (
           <div className="weather-box">
