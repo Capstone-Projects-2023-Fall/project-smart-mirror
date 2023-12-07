@@ -83,9 +83,11 @@ type Props = {
         console.log("Error: User is not signed in");
     }
     else if(codeVerifier && clientId && codeParam){
+      let authResponse:any;
           // Get access token, refresh token, user_id, scope
-
-            const authResponse = await fetch('https://api.fitbit.com/oauth2/token', {
+          console.log(codeVerifier + "" + clientId + " " + codeParam)
+          try{
+              authResponse = await fetch('https://api.fitbit.com/oauth2/token', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -98,26 +100,35 @@ type Props = {
                 grant_type: 'authorization_code'
               }).toString(),
             });
+          }
+          catch (error){
+            console.log("Error could not get tokens:" + error);
+          }
+            
 
             if (!authResponse.ok) {
               throw new Error(`Authentication failed with status: ${authResponse.status}`);
+              console.log("error")
             }
-          const authData = await authResponse.json();
+            else{
+              const authData = await authResponse.json();
 
-          const accessToken = authData.access_token;
-          const refreshToken = authData.refresh_token;
-          const user_idd = authData.user_id;
-
-          // Store tokens in supa
-          const data = { access_token: accessToken, code_verifier: codeVerifier};
-          upsertSupa(userId, 'fitbit', data);
-
-          const data2 = { refresh_token: refreshToken, code_verifier: codeVerifier};
-          upsertSupa(userId, 'fitbit', data2);
-
-          const data3 = { fitbit_id: user_idd, code_verifier: codeVerifier};
-          upsertSupa(userId, 'fitbit', data3);
-
+              const accessToken = authData.access_token;
+              const refreshToken = authData.refresh_token;
+              const user_idd = authData.user_id;
+    
+              // Store tokens in supa
+              const data = { access_token: accessToken, code_verifier: codeVerifier};
+              upsertSupa(userId, 'fitbit', data);
+    
+              const data2 = { refresh_token: refreshToken, code_verifier: codeVerifier};
+              upsertSupa(userId, 'fitbit', data2);
+    
+              const data3 = { fitbit_id: user_idd, code_verifier: codeVerifier};
+              upsertSupa(userId, 'fitbit', data3);
+    
+            }
+          
         
   
       }

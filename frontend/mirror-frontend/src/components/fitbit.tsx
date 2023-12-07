@@ -216,6 +216,8 @@ const FitbitDataComponent = () => {
       if(aTokenResponse && rTokenResponse){
         aToken = aTokenResponse[0]?.access_token;
         rToken = rTokenResponse[0]?.refresh_token;
+
+        // Check if user has a fitbit connected
         if (typeof aToken === 'string' && typeof rToken === 'string') {
           // get activity data
           const stepsJson = await getFitbitData(stepsURL, aToken, rToken);
@@ -225,7 +227,7 @@ const FitbitDataComponent = () => {
           if (stepsJson === -1){
             //console.log("clientid" + clientId + "rToken" + "userId");
             const tokens = await refreshToken(clientId, clientSecret, rToken, userId).catch(error => {
-              console.log(clientId + " " + clientSecret + " "+ rToken  +" " + userId);
+              console.log(clientId + " " + clientSecret + " "+ rToken  + " " + userId);
               console.log(error);
             });
             if (tokens){
@@ -243,7 +245,6 @@ const FitbitDataComponent = () => {
           const sleepGoalsJson = await getFitbitData(sleepGoalsURL, aToken, rToken);
 
           // sleep goal metrics are in hours
-
           const data = {
             steps: await findValueByKey(stepsJson, 'value'),
             stepGoal: await findValueByKey(goalsJson, 'steps'),
