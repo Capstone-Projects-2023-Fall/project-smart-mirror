@@ -5,7 +5,7 @@ description: API Documentation
 API Documentation
 =============================
 
-## Calander API 
+## Calendar API 
 **Description:**    
 The Calendar API allows you to manage user calendars and events.
 
