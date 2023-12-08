@@ -46,7 +46,7 @@ const NewsComponent = () => {
 
   return (
     <div className="news">
-      <h2 class="underlined-heading">Top Stories</h2>
+      <h2 className="underlined-heading">Top Stories</h2>
       {newsData.map((data) => (
         <div key={data.id} className="news-item">
           <img src={NewsSVG} alt="News Icon" className="news-icon" />
