@@ -1,15 +1,21 @@
+.root {
+    color: white;
+}
 .stock-data-display {
     display: flex;
     flex-direction: row;
     align-items: center; 
+    color: white !important;;
   }
   
   .data-item {
     margin-right: 20px;
+    color: white !important;;
   }
   
   .data-label {
     font-weight: bold;
     margin-right: 10px;
+    color: white !important;;
   }
   
