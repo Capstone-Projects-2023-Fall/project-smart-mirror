@@ -1,9 +1,23 @@
-.draggable-box {
-    width: 100px;
-    height: 100px;
-    background-color: lightblue;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: move; /* Cursor indicates that the element is draggable */
+.draggable-area {
+    width: 1000px; 
+    height: 500px;
+    position: relative; 
+    margin: 20px auto; 
+    border: 2px solid #000000; 
+    border-radius: 10px; 
+    overflow: hidden; 
+  }
+  
+  .draggable-box {
+    width: 100px; /* Width of the box */
+    height: 100px; /* Height of the box */
+    background-color: skyblue; 
+    cursor: grab;
+
+    
+  }
+  .box-title {
+    text-align: center;
+    margin-bottom: 10px; /* Adjust as needed */
+    /* Additional styling as needed */
   }

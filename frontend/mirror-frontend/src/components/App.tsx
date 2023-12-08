@@ -4,16 +4,19 @@ import CalendarUI from './calendar';
 import FitbitDataComponent from './fitbit';
 import NewsComponent from './news';
 import Clock from "./clock";
+import Spotify from './spotify';
 import GlobalStyle from './GlobalStyle'; // Import the GlobalStyle
 import './App.css';
 import './clock.css';
+import './spotify.css';
 
 const UI: React.FC = () => {
   const [widgetVisibility, setWidgetVisibility] = useState({
     Weather: true,
     Calendar: true,
     News: true,
-    Fitbit: true
+    Fitbit: true,
+    Spotify: true
   });
 
   useEffect(() => {
@@ -43,7 +46,7 @@ const UI: React.FC = () => {
 
   return (
     <>
-    <GlobalStyle />
+      <GlobalStyle />
       <div className="clock-box">
         <Clock />
       </div>
@@ -58,17 +61,21 @@ const UI: React.FC = () => {
             <TemperatureDisplay />
           </div>
         )}
-        
-
+        {widgetVisibility.Spotify && ( // Conditional rendering for Spotify
+          <div className="spotify-box">
+            <Spotify />
+          </div>
+        )}
+        {/* Include other widgets as needed */}
       </div>
-      {/* If you want to include Fitbit widget as well
-      {widgetVisibility.Fitbit && (
+      {/* Uncomment Fitbit widget if needed */}
+      {/* {widgetVisibility.Fitbit && (
         <div className="fitbit-box">
           <FitbitDataComponent />
         </div>
       )} */}
     </>
   );
-};
+    }  
 
 export default UI;
