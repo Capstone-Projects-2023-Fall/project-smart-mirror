@@ -1,11 +1,18 @@
 import { useState } from 'react';
 import { Switch } from '@radix-ui/react-switch';
 import { supabase } from "@/app/utils/supabase-client";
+import { Form } from '@radix-ui/react-form';
 
 export default function SettingsPage() {
   const [locationEnabled, setLocationEnabled] = useState(false);
   const [trackingEnabled, setTrackingEnabled] = useState(false);
   const [analyticsEnabled, setAnalyticsEnabled] = useState(false);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [birthday, setBirthday] = useState('');
+  const [gender, setGender] = useState('');
+
 /*For toggle check*/
   const LocationToggle = (checked) => setLocationEnabled(checked);
   const TrackingToggle = (checked) => setTrackingEnabled(checked);
@@ -58,6 +65,14 @@ const handleLocationToggle = async (checked) => {
     }
   }
 };
+/*----------------------------------------------------------------------------------------------*/
+const handleUsernameChange = (event) => { /* ... */ };
+const handlePasswordChange = (event) => { /* ... */ };
+const handleEmailChange = (event) => { /* ... */ };
+const handleBirthdayChange = (event) => { /* ... */ };
+const handleGenderChange = (event) => { /* ... */ };
+
+
 
   return (
     <div className="text-skin-base">
@@ -96,34 +111,72 @@ const handleLocationToggle = async (checked) => {
                 <span className={`block w-4 h-4 bg-skin-button-accent rounded-full shadow-lg transform transition-transform duration-200 ${analyticsEnabled ? 'translate-x-6' : 'translate-x-1'}`}></span>
               </Switch>
             </li>
-          </ul>
+          </ul> 
         </li>
-        {/* ... other settings items ... */}
+        {/* Account */}
         <li>
-          <h3 className="font-semibold mb-2">Account</h3>
-          <ul className="list-disc pl-5">
-            <li className="flex items-center justify-between mb-1">
-              Change username
-              {/*log */}
-            </li>
-            <li className="flex items-center justify-between mb-1">
-              Change password
-              {/* log */}
-            </li>
-            <li className="flex items-center justify-between mb-1">
-              Change email
-              {/*log */}
-            </li>
-            <li className="flex items-center justify-between">
-              Change birthday
-              {/* log */}
-            </li>
-            <li className="flex items-center justify-between">
-              Change gender
-              {/* log */}
-            </li>
-          </ul>
-        </li>
+        <h3 className="text-xl font-semibold mb-4">Account</h3>
+      <form className="space-y-4">
+        <div className="flex flex-col mb-4">
+          <label htmlFor="username" className="mb-2 font-semibold">Change username:</label>
+          <input
+            id="username"
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            onBlur={handleUsernameChange}
+            className="px-3 py-2 border-2 border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+          />
+        </div>
+        <div className="flex flex-col mb-4">
+          <label htmlFor="password" className="mb-2 font-semibold">Change password:</label>
+          <input
+            id="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            onBlur={handlePasswordChange}
+            className="px-3 py-2 border-2 border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+          />
+        </div>
+        <div className="flex flex-col mb-4">
+          <label htmlFor="email" className="mb-2 font-semibold">Change email:</label>
+          <input
+            id="email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            onBlur={handleEmailChange}
+            className="px-3 py-2 border-2 border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+          />
+        </div>
+        <div className="flex flex-col mb-4">
+          <label htmlFor="birthday" className="mb-2 font-semibold">Change birthday:</label>
+          <input
+            id="birthday"
+            type="date"
+            value={birthday}
+            onChange={(e) => setBirthday(e.target.value)}
+            onBlur={handleBirthdayChange}
+            className="px-3 py-2 border-2 border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+          />
+        </div>
+        <div className="flex flex-col">
+          <label htmlFor="gender" className="mb-2 font-semibold">Change gender:</label>
+          <select
+            id="gender"
+            value={gender}
+            onChange={(e) => setGender(e.target.value)}
+            onBlur={handleGenderChange}
+            className="px-3 py-2 border-2 border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+          >
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+            </div>
+          </form>
+        </li>       
         
         {/* ... other settings items ... */}
       </ul>
