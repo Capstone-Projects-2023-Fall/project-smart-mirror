@@ -8,10 +8,26 @@ import base64url from "base64url";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 type Props = {
     user: User | null;
   };
   
+  // function to set up auth code for classes outside fitbit
+  export const initTokenAuth = (userId:string, authCode:string, codeVerifier:string) => {
+     // TODO REMOVE HARD CODED BS
+     const clientId = "23RKLS";
+     const clientSecret = "2c3743a22c9be82c95f1b9a615e11580";
+     if(clientId && clientSecret){
+       console.log("success, client id + clientsecret attached");
+       getAccessToken(userId, clientId, clientSecret, authCode, codeVerifier);
+     }
+     else{
+       console.log("Error: no clientid or clientsecret")
+     }
+     //getAccessToken(userId, clientId, clientSecret, authCode, codeVerifier);
+  };
+
   const generateCodeVerifier = () => {
     const codeVerifier = base64url.encode(crypto.randomBytes(32));
     return codeVerifier;
@@ -38,7 +54,7 @@ type Props = {
   };
 
   // Get data from fitbit table
-  const getSuper = async (userId: string, field: string) => {
+  export const getSuper = async (userId: string, field: string) => {
     if(userId && field){
         const { data, error } = await supabase
         .from('fitbit')
@@ -195,10 +211,20 @@ type Props = {
             }
 
            if(authCode !== null){
+            initTokenAuth(userId, authCode, codeVerifier);
+            /*
             // TODO REMOVE HARD CODED BS
             const clientId = "23RKLS";
             const clientSecret = "2c3743a22c9be82c95f1b9a615e11580";
-            getAccessToken(userId, clientId, clientSecret, authCode, codeVerifier);
+            if(clientId && clientSecret){
+              console.log("success, client id + clientsecret attached");
+              getAccessToken(userId, clientId, clientSecret, authCode, codeVerifier);
+            }
+            else{
+              console.log("Error: no clientid or clientsecret")
+            }
+            //getAccessToken(userId, clientId, clientSecret, authCode, codeVerifier);
+            */
            }
           
         }
