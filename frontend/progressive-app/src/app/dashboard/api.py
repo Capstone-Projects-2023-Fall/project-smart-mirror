@@ -8,7 +8,8 @@ CORS(app)  # This will enable CORS for all routes and origins.
 widget_visibility = {
     'Weather': False,
     'News': False,
-    'Calendar': False
+    'Calendar': False,
+    'Spotify': False
 }
 
 @app.route('/api/toggle-widget', methods=['POST', 'OPTIONS'])
