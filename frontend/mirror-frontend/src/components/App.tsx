@@ -72,54 +72,54 @@ const UI: React.FC = () => {
 
   return (
     <>
-      <GlobalStyle />
-      <motion.div className="clock-box">
+      {/* <GlobalStyle /> Remove if you decide to use Tailwind for global styles */}
+      {/* Assuming clock-box is styled to be full screen and centered */}
+      <motion.div className="fixed inset-0 flex justify-center items-center">
         <Clock />
       </motion.div>
       
-      <motion.div className="ui-container"> 
+      {/* Assuming ui-container is styled to be full screen and flex */}
+      <motion.div className="fixed inset-0 flex flex-wrap justify-around items-start p-4"> 
 
         {widgetVisibility.News && (
           <motion.div
-            className="news-box"
-            drag
-            initial={{ x: positions.newsBox.x, y: positions.newsBox.y }}
-            dragConstraints={{ left: 0, right: window.innerWidth - 150, top: 0, bottom: window.innerHeight-55 }}
-            onDragEnd={(event, info) => handleDragEnd(event, info, 'newsBox')}
+          className="p-4 bg-black text-white rounded-lg shadow-lg mx-auto my-4"
+          drag
+          initial={{ x: positions.newsBox.x, y: positions.newsBox.y }}
+          dragConstraints={{
+            left: 0,
+            right: window.innerWidth - 150,
+            top: 0,
+            bottom: window.innerHeight - 55
+          }}
+          onDragEnd={(event, info) => handleDragEnd(event, info, 'newsBox')}
+          dragElastic={0}
+        >
+          <NewsComponent />
+        </motion.div>
+)}  
+        {widgetVisibility.Weather && (
+          <motion.div 
+            className="p-4 bg-black text-white rounded-lg shadow-lg mx-auto my-4"
+            drag 
+            initial={{ x: positions.weatherBox.x, y: positions.weatherBox.y }}
+            dragConstraints={{
+              left: 0,  
+              right: window.innerWidth - 150,
+              top: 0,
+              bottom: window.innerHeight - 55
+            }}
+            onDragEnd={(event, info) => handleDragEnd(event, info, 'weatherBox')}
             dragElastic={0}
           >
-            <NewsComponent />
+            <TemperatureDisplay />
           </motion.div>
         )}
 
-        {widgetVisibility.Weather && (
-          <motion.div 
-            className="weather-box"
-            drag 
-            initial={{ x: positions.weatherBox.x, y: positions.weatherBox.y }}
-
-            dragConstraints={{ left: 0, right: window.innerWidth - 150, top: 0, bottom: window.innerHeight-55 }}
-            onDragEnd={(event, info) => handleDragEnd(event, info, 'weatherBox')}
-
-            dragElastic={0}
-          >
-          <TemperatureDisplay/>
-        </motion.div>
-        )}
-         <motion.div
-            className="market-box"
-            drag
-            initial={{ x: positions.marketBox.x, y: positions.marketBox.y }}
-
-            dragConstraints={{ left: 0, right: window.innerWidth, top: 0, bottom: window.innerHeight }}
-
-          >
-          <MarketDisplay />
-        </motion.div>
+        {/* ... other widgets ... */}
       </motion.div>
-     
     </>
   );
-    }  
+}; 
 
 export default UI;
