@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { useEffect } from 'react';
 import crypto from 'crypto';
 import base64url from "base64url";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 type Props = {
     user: User | null;
@@ -136,6 +138,15 @@ type Props = {
 
   export default function Fitbit({ user }: Props) {
     const [prefDate, setPrefDate] = useState<string | null>(null);
+
+    const notify = () => {
+    toast.success("Success! Fitbit is now synced", {
+      position: toast.POSITION.BOTTOM_RIGHT,
+      autoClose: 2000,
+      pauseOnFocusLoss: false,
+
+    });
+  }
     useEffect(() => {
       const generateAndRedirect = async () => {
     
@@ -167,6 +178,8 @@ type Props = {
 
       <h2 className="fitbit-sync">Sync</h2>
       <button onClick={async () => {
+        
+      
         const authCode = new URLSearchParams(location.search).get("code");
         const userId = user?.id;
 
@@ -191,7 +204,14 @@ type Props = {
         }
 }
   }>Click to sync fitbit</button>
+  
+ <div>
+        <button onClick={notify}>Notify !</button>
+        <ToastContainer />
+      </div>
+
     </>
     
   );
+  
 }
