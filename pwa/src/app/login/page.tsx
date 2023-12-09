@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as Form from "@radix-ui/react-form";
 import { supabase } from "../utils/supabase-client";
 import Link from "next/link";
@@ -15,7 +15,7 @@ export default function Login({}: Props) {
     confirmPassword: "",
   });
 
-  const [error, setError] = useState<string>("");
+  const [error, setError] = useState<string | null | undefined>(undefined);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -27,14 +27,22 @@ export default function Login({}: Props) {
       password: values.password,
     });
 
-    if (authData.error) {
+    if (authData.error !== null) {
+      console.log(authData.error);
       setError(authData.error.message);
+    } else {
+      setError(null);
     }
-    console.log(authData.error);
   };
 
   const router = useRouter();
 
+  useEffect(() => {
+    if (error === null) {
+      router.push("/dashboard");
+      router.refresh();
+    }
+  }, [error, router]);
   return (
     <>
       <section className="w-full h-full flex flex-col items-center jusify-center text-base space-y-3">
@@ -42,12 +50,8 @@ export default function Login({}: Props) {
         <Form.Root
           className="flex flex-col w-72 space-y-6"
           onSubmit={(event) => {
-            handleLogin();
             event.preventDefault();
-            if (!error) {
-              router.push("/dashboard");
-              router.refresh();
-            }
+            handleLogin();
           }}
         >
           <Form.Field name="email" className="grid">
