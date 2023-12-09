@@ -105,6 +105,22 @@ html {
 }
 
 @media (max-width: 1920px) and (max-height: 1080px) {
+  .qr-code-text {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, 50%); /* Center the text under the QR code */
+    text-align: center;
+    color: white; /* Set the text color */
+  }
+  .QRCode {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 256px;
+    height: 256px;
+    transform: translate(-50%, -50%); /* Center the QR code */
+  }
   html, body {
     width: 1536px;
     height: 854px;

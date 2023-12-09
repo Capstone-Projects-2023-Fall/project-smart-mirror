@@ -5,7 +5,7 @@
   display: -webkit-box;
   -webkit-line-clamp: 1; /* Set the number of lines before the ellipsis appears */
   -webkit-box-orient: vertical;
-  max-height: 3.0rem; /* Adjust the max height as needed */
+  max-height: 2.0rem; /* Adjust the max height as needed */
 }
 .news h1 {
   color: white;
@@ -18,6 +18,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 0px;
+  width: 45%;
   background-color: #00000000;
 }
 

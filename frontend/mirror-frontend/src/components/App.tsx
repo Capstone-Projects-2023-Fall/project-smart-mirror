@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import QRCode from 'qrcode.react';
+
 import TemperatureDisplay from './weather';
 import CalendarUI from './calendar';
 import FitbitDataComponent from './fitbit';
@@ -9,6 +11,7 @@ import GlobalStyle from './GlobalStyle'; // Import the GlobalStyle
 import './App.css';
 import './clock.css';
 import { motion, useAnimation } from 'framer-motion';
+import { QRCodeSVG } from 'qrcode.react';
 
 
 const UI: React.FC = () => {
@@ -53,7 +56,7 @@ const UI: React.FC = () => {
 
 
   const initialPositionsString = localStorage.getItem('widgetPositions');
-  const initialPositions =  {
+  const initialPositions =  { // pull from pwa
     weatherBox: { x: 1370, y: 15 },
     marketBox: { x: 800, y: 15 },
     newsBox:{x: 15, y: 660 },
@@ -65,58 +68,78 @@ const UI: React.FC = () => {
     const updatedPositions = { ...positions, [key]: { x: info.point.x, y: info.point.y } };
     setPositions(updatedPositions);
     localStorage.setItem('widgetPositions', JSON.stringify(updatedPositions));
+    //save position and send to the data base
   };
 
-  return (
-    <>
-      <GlobalStyle />
-      <motion.div className="clock-box">
-        <Clock />
-      </motion.div>
-      
-      <motion.div className="ui-container"> 
+  const loggedin = false;
 
-        {widgetVisibility.News && (
-          <motion.div
-            className="news-box"
+  if(loggedin){
+    return (
+      <div className="ui-container">
+        <div className="QRCode">
+          <QRCodeSVG value={"https://www.youtube.com"} size={256} />
+        </div>
+        <div className="qr-code-text">
+          Please scan QR Code on Project Lumina App
+        </div>
+        {/* Other mirror UI components */}
+      </div>
+    );
+  } else {
+    return (
+      <>
+        {/* <GlobalStyle /> Remove if you decide to use Tailwind for global styles */}
+        {/* Assuming clock-box is styled to be full screen and centered */}
+        <motion.div className="fixed inset-0 flex justify-center items-center">
+          <Clock />
+        </motion.div>
+        
+        {/* Assuming ui-container is styled to be full screen and flex */}
+        <motion.div className="fixed inset-0 flex flex-wrap justify-around items-start p-4"> 
+  
+          {widgetVisibility.News && (
+            <motion.div
+            className="p-4 bg-black text-white rounded-lg shadow-lg mx-auto my-4"
             drag
             initial={{ x: positions.newsBox.x, y: positions.newsBox.y }}
-            dragConstraints={{ left: 0, right: window.innerWidth - 150, top: 0, bottom: window.innerHeight-55 }}
+            dragConstraints={{
+              left: 10,
+              right: window.innerWidth - 700,
+              top: 0,
+              bottom: window.innerHeight - 200
+            }}
             onDragEnd={(event, info) => handleDragEnd(event, info, 'newsBox')}
             dragElastic={0}
           >
             <NewsComponent />
           </motion.div>
-        )}
-
-        {widgetVisibility.Weather && (
-          <motion.div 
-            className="weather-box"
-            drag 
-            initial={{ x: positions.weatherBox.x, y: positions.weatherBox.y }}
-
-            dragConstraints={{ left: 0, right: window.innerWidth - 150, top: 0, bottom: window.innerHeight-55 }}
-            onDragEnd={(event, info) => handleDragEnd(event, info, 'weatherBox')}
-
-            dragElastic={0}
-          >
-          <TemperatureDisplay/>
+           )}  
+          {widgetVisibility.Weather && (
+            <motion.div 
+              className="p-4 bg-black text-white rounded-lg shadow-lg mx-auto my-4"
+              drag 
+              initial={{ x: positions.weatherBox.x, y: positions.weatherBox.y }}
+              dragConstraints={{
+                left: 0,
+                right: window.innerWidth - 150,
+                top: -150,
+                bottom: window.innerHeight - 275
+              }}
+              onDragEnd={(event, info) => handleDragEnd(event, info, 'weatherBox')}
+              dragElastic={0}
+            >
+              <TemperatureDisplay />
+            </motion.div>
+          )}
+  
+          {/* ... other widgets ... */}
         </motion.div>
-        )}
-         <motion.div
-            className="market-box"
-            drag
-            initial={{ x: positions.marketBox.x, y: positions.marketBox.y }}
+      </>
+    );
+  }; 
 
-            dragConstraints={{ left: 0, right: window.innerWidth, top: 0, bottom: window.innerHeight }}
 
-          >
-          <MarketDisplay />
-        </motion.div>
-      </motion.div>
-     
-    </>
-  );
+ 
 };
 
 export default UI;
