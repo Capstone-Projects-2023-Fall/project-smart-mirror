@@ -18,6 +18,7 @@ const config: Config = {
       backgroundColor: {
         skin: {
           fill: "var(--color-fill)",
+          accent: "var(--color-background-accent)",
           "fill-inverted": "var(--color-fill-inverted)",
           "button-accent": "var(--color-button-accent)",
           "button-accent-hover": "var(--color-button-accent-hover)",

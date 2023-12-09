@@ -5,6 +5,7 @@ import { supabase } from "../utils/supabase-client";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Cross1Icon } from "@radix-ui/react-icons";
 import Link from "next/link";
+import { getRandomUsername } from "../utils/getRandomUsername";
 
 type Props = {};
 
@@ -29,6 +30,9 @@ export default function SignUp({}: Props) {
       password: values.password,
       options: {
         emailRedirectTo: `https://localhost:3000/auth/callback`,
+        data: {
+          username: getRandomUsername(),
+        },
       },
     });
 

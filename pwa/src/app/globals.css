@@ -11,8 +11,8 @@
   --color-button-accent: #4561DA;
   --color-button-accent-hover: #4E67E1;
   --color-button-muted: #C0BFFF;
-  --color-button-accent-secondary: #C0C7CE;
-  --color-button-accent-secondary-hover: #A8B2BA;
+  --color-button-accent-secondary: #fbfbfc;
+  --color-button-accent-secondary-hover: #F3F3F4;
   --color-input-field-accent: #DBDDDF;
   overflow-y: hidden;
 }
@@ -27,8 +27,8 @@
   --color-button-accent: #4561DA;
   --color-button-accent-hover: #4E67E1;
   --color-button-muted: #C0BFFF;
-  --color-button-accent-secondary: #C0C7CE;
-  --color-button-accent-secondary-hover: #A8B2BA;
+  --color-button-accent-secondary: #161616;
+  --color-button-accent-secondary-hover: #1c1c1c;
   --color-input-field-accent: #37393D;
 }
 

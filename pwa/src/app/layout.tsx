@@ -4,8 +4,6 @@ import localFont from "next/font/local";
 import Navbar from "./components/Navbar";
 import ThemeClient from "./components/ThemeClient";
 import { supabase } from "./utils/supabase-server";
-import { cookies } from "next/headers";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 
 const satoshi = localFont({
   src: [
