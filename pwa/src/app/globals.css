@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-text-base: #000000;
+  --color-text-muted: #C0BFFF;
+  --color-text-inverted: #4E67E1;
+  --color-fill: #26292e;
+  --color-fill-inverted: #F3F3F4;
+  --color-button-accent: #4561DA;
+  --color-button-accent-hover: #4E67E1;
+  --color-button-muted: #C0BFFF;
+  --color-button-accent-secondary: #fbfbfc;
+  --color-button-accent-secondary-hover: #F3F3F4;
+  --color-input-field-accent: #DBDDDF;
+  overflow-x: hidden;
+}
+
+
+[data-theme='dark'] {
+  --color-text-base: #FFFFFF;
+  --color-text-muted: #C0BFFF;
+  --color-text-inverted: #4E67E1;
+  --color-fill: #F3F3F4;
+  --color-fill-inverted: #26292e; 
+  --color-button-accent: #4561DA;
+  --color-button-accent-hover: #4E67E1;
+  --color-button-muted: #C0BFFF;
+  --color-button-accent-secondary: #161616;
+  --color-button-accent-secondary-hover: #1c1c1c;
+  --color-input-field-accent: #37393D;
+}
+
+@layer base {
+  h1 {
+    @apply text-5xl
+  }
+  h2 {
+    @apply text-4xl
+  }
+  h3 {
+    @apply text-2xl
+  }
+  h4 {
+    @apply text-lg
+  }
+  p, div {
+    @apply text-base
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+body::-webkit-scrollbar-thumb {
+background: var(--text);
+border-radius: 100px;
+}
+
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
