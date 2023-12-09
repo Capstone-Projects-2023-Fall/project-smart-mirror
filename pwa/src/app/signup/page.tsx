@@ -109,7 +109,7 @@ export default function SignUp({}: Props) {
               </Form.Control>
             </div>
           </Form.Field>
-          <Form.Field name="password" className="grid">
+          <Form.Field name="confirmPassword" className="grid">
             <div className="flex flex-col items-baseline justify-between space-y-2">
               <Form.Label className="font-semibold">
                 Please re-enter your password
