@@ -13,7 +13,7 @@ export default function Sidebar({ state, getState }: Props) {
     { name: "home", state: "home" },
     { name: "module view", state: "moduleView" },
     { name: "notifications", state: "notifications" },
-    { name: "settings", state: "settings" },
+    { name: "Settings", state: "settings" },
   ];
 
   const [hovered, setHovered] = useState<string | null>();

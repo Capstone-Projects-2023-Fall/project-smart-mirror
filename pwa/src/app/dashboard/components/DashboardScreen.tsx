@@ -1,5 +1,6 @@
 import React from "react";
 import HomeScreen from "./HomeScreen";
+import SettingPage from "./SettingPage";  
 
 type Props = {
   page: string | null;
@@ -15,9 +16,9 @@ export default function DashboardScreen({ page }: Props) {
           case "moduleView":
             return <p>module view</p>;
           case "notifications":
-            return <p>notifications</p>;
+            return <p>notifications </p>;
           case "settings":
-            return <p>settings</p>;
+            return <SettingPage />;
           default:
             return <p>home</p>;
         }
