@@ -30,7 +30,7 @@ export default function Navbar({}: Props) {
     fetchData();
 
     console.log(userFound);
-  });
+  }, [userFound]);
 
   useLayoutEffect(() => {
     dark ? setTheme("dark") : setTheme("light");
