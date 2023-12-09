@@ -29,12 +29,15 @@ export default function SignUp({}: Props) {
       email: values.email,
       password: values.password,
       options: {
-        emailRedirectTo: `https://localhost:3000/auth/callback`,
+        emailRedirectTo: `auth/callback`,
         data: {
           username: getRandomUsername(),
         },
       },
     });
+
+    /* REMEMBER TO CHANGE TO PAIR WITH THE DATABASE, STOP LOOKING AT CURRENT USER TO DETERMINE IF USER EXISTS*/
+    console.log(authData.data.user);
 
     if (authData.data.user) {
       setExistingUser(true);

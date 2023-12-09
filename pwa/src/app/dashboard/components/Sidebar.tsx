@@ -29,7 +29,7 @@ export default function Sidebar({ state, getState }: Props) {
             {routes.map((item) => (
               <NavigationMenu.Item
                 key={item.state}
-                className="rounded-md w-72 h-12 flex justify-center items-center cursor-pointer relative"
+                className="rounded-md w-[20vw] h-12 flex justify-center items-center cursor-pointer relative"
                 onMouseEnter={() => setHovered(item.state)}
                 onClick={() => getState(item.state)}
               >

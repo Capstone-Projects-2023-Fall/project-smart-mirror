@@ -38,7 +38,9 @@ export default function Navbar({}: Props) {
             />
           </svg>
         </NavigationMenu.Item>
-        <NavigationMenu.Item className="">lumina</NavigationMenu.Item>
+        <NavigationMenu.Item className="select-none">
+          lumina
+        </NavigationMenu.Item>
       </NavigationMenu.List>
       <NavigationMenu.List className="flex flex-row">
         <NavigationMenu.Item className="px-4 cursor-pointer hover:text-secondary duration-300 ease-in-out">

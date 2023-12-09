@@ -14,7 +14,7 @@
   --color-button-accent-secondary: #fbfbfc;
   --color-button-accent-secondary-hover: #F3F3F4;
   --color-input-field-accent: #DBDDDF;
-  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 
@@ -50,6 +50,10 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body::-webkit-scrollbar {
   width: 0.25rem;
 }
@@ -62,6 +66,7 @@ body::-webkit-scrollbar-thumb {
 background: var(--text);
 border-radius: 100px;
 }
+
 
 body {
   width: 100vw;
