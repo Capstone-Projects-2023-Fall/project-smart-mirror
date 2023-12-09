@@ -20,7 +20,7 @@ export default function Sidebar({ state, getState }: Props) {
 
   return (
     <>
-      <section className="md:w-1/5 md:h-full w-full h-1/6 border-[1px] border-white bg-skin-button-accent-secondary rounded mx-2 border-opacity-10">
+      <section className="md:w-1/5 md:h-full w-screen h-1/6 border-[1px] border-white bg-skin-button-accent-secondary rounded mx-2 border-opacity-10">
         <NavigationMenu.Root
           className="h-full w-full flex flex-col items-center space-x-3 mt-6"
           orientation="vertical"

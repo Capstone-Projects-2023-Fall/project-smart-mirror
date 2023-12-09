@@ -3,18 +3,34 @@ import React, { useEffect, useLayoutEffect, useState } from "react";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import { User } from "@supabase/supabase-js";
+import { supabase } from "../utils/supabase-client";
 
 type Props = {};
 
 export default function Navbar({}: Props) {
   const [dark, setDark] = useState<boolean>();
   const { theme, setTheme } = useTheme();
+  const [userFound, setUserFound] = useState<boolean>(false);
 
   useEffect(() => {
+    const fetchData = async () => {
+      const {
+        data: { user },
+        error,
+      } = await supabase.auth.getUser();
+      if (user) {
+        setUserFound(true);
+      }
+      console.log(user);
+
+      if (error) console.log(error);
+    };
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
     setDark(prefersDark.matches);
-  }, []);
+    fetchData();
+
+    console.log(userFound);
+  });
 
   useLayoutEffect(() => {
     dark ? setTheme("dark") : setTheme("light");
@@ -54,14 +70,16 @@ export default function Navbar({}: Props) {
         </NavigationMenu.Item>
       </NavigationMenu.List>
       <NavigationMenu.List className="flex flex-row">
-        <>
-          <NavigationMenu.Item className="px-4 cursor-pointer hover:text-secondary duration-300 ease-in-out">
-            <Link href={`/signup`}>sign up</Link>
-          </NavigationMenu.Item>
-          <NavigationMenu.Item className="px-4 py-1 rounded-md bg-skin-button-accent cursor-pointer text-white">
-            <Link href={`/login`}>login</Link>
-          </NavigationMenu.Item>
-        </>
+        {!userFound && (
+          <>
+            <NavigationMenu.Item className="px-4 cursor-pointer hover:text-secondary duration-300 ease-in-out">
+              <Link href={`/signup`}>sign up</Link>
+            </NavigationMenu.Item>
+            <NavigationMenu.Item className="px-4 py-1 rounded-md bg-skin-button-accent cursor-pointer text-white">
+              <Link href={`/login`}>login</Link>
+            </NavigationMenu.Item>
+          </>
+        )}
         <NavigationMenu.Item
           className="px-4 cursor-pointer"
           onClick={() => {

@@ -10,13 +10,7 @@ export default function ThemeClient({
 }) {
   return (
     <AnimatePresence>
-      <ThemeProvider>
-        <motion.div
-          animate={{ opacity: [0, 1], transition: { duration: 0.5 } }}
-        >
-          {children}
-        </motion.div>
-      </ThemeProvider>
+      <ThemeProvider>{children}</ThemeProvider>
     </AnimatePresence>
   );
 }
