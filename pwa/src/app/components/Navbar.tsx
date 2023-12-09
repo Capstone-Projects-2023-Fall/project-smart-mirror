@@ -70,13 +70,19 @@ export default function Navbar({}: Props) {
         </NavigationMenu.Item>
       </NavigationMenu.List>
       <NavigationMenu.List className="flex flex-row">
-        {!userFound && (
+        {!userFound ? (
           <>
             <NavigationMenu.Item className="px-4 cursor-pointer hover:text-secondary duration-300 ease-in-out">
               <Link href={`/signup`}>sign up</Link>
             </NavigationMenu.Item>
             <NavigationMenu.Item className="px-4 py-1 rounded-md bg-skin-button-accent cursor-pointer text-white">
               <Link href={`/login`}>login</Link>
+            </NavigationMenu.Item>
+          </>
+        ) : (
+          <>
+            <NavigationMenu.Item className="px-4 py-1 rounded-md bg-skin-button-accent cursor-pointer text-white">
+              <Link href={`/dashboard`}>Visit Dashboard</Link>
             </NavigationMenu.Item>
           </>
         )}

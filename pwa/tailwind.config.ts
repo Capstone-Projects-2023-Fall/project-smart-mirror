@@ -11,14 +11,15 @@ const config: Config = {
       textColor: {
         skin: {
           base: "var(--color-text-base)",
-          muted: "var(--color-text-muted)",
           inverted: "var(--color-text-inverted)",
+          muted: "var(--color-text-muted)",
+          accent: "var(--color-text-accent)",
         },
       },
       backgroundColor: {
         skin: {
           fill: "var(--color-fill)",
-          accent: "var(--color-background-accent)",
+          base: "var(--color-background-base)",
           "fill-inverted": "var(--color-fill-inverted)",
           "button-accent": "var(--color-button-accent)",
           "button-accent-hover": "var(--color-button-accent-hover)",

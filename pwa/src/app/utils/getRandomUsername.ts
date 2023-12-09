@@ -10,6 +10,11 @@ export const getRandomUsername = () => {
     "gentle",
     "creative",
     "honest",
+    "scared",
+    "witty",
+    "lovely",
+    "shy",
+    "timid",
   ];
   const nouns = [
     "cat",
@@ -22,6 +27,15 @@ export const getRandomUsername = () => {
     "panda",
     "dolphin",
     "butterfly",
+    "mammoth",
+    "axelotl",
+    "parrot",
+    "donkey",
+    "robin",
+    "lemur",
+    "cheetah",
+    "shiba",
+    "tanuki",
   ];
 
   const randomAdjective =

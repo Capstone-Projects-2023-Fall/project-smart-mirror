@@ -8,6 +8,7 @@ export const greetings = {
     "Top of the morning to you",
     "Have a great day",
     "Look alive",
+    "Ohayou",
   ],
 
   day: [

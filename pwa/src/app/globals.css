@@ -4,8 +4,9 @@
 
 :root {
   --color-text-base: #000000;
+  --color-text-inverted: #FFFFFF;
   --color-text-muted: #C0BFFF;
-  --color-text-inverted: #4E67E1;
+  --color-text-accent: #4E67E1;
   --color-fill: #26292e;
   --color-fill-inverted: #F3F3F4;
   --color-button-accent: #4561DA;
@@ -14,14 +15,16 @@
   --color-button-accent-secondary: #fbfbfc;
   --color-button-accent-secondary-hover: #F3F3F4;
   --color-input-field-accent: #DBDDDF;
+  --color-background-base: #FFFFFF;
   overflow-x: hidden;
 }
 
 
 [data-theme='dark'] {
   --color-text-base: #FFFFFF;
+  --color-text-inverted: #000000;
   --color-text-muted: #C0BFFF;
-  --color-text-inverted: #4E67E1;
+  --color-text-accent: #4E67E1;
   --color-fill: #F3F3F4;
   --color-fill-inverted: #26292e; 
   --color-button-accent: #4561DA;
@@ -30,6 +33,7 @@
   --color-button-accent-secondary: #161616;
   --color-button-accent-secondary-hover: #1c1c1c;
   --color-input-field-accent: #37393D;
+  --color-background-base: #121212;
 }
 
 @layer base {

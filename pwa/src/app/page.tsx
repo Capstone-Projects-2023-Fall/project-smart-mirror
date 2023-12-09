@@ -5,7 +5,7 @@ import Overview from "./components/Overview";
 
 export default function Home() {
   return (
-    <main className="">
+    <main className="h-full w-full">
       <Hero />
       <Overview />
     </main>
