@@ -11,10 +11,21 @@ export default function HomeScreen({}: Props) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
-      setUsername(session?.user.user_metadata.username);
+      const { data: { user }, error: userError } = await supabase.auth.getUser();
+  
+      if (user) {
+        const { data, error } = await supabase
+          .from('profiles')
+          .select('username')
+          .eq('id', user.id)
+          .single();
+  
+        if (error) {
+          console.error('Error fetching profile:', error);
+        } else {
+          setUsername(data.username);
+        }
+      }
     };
 
     fetchData();

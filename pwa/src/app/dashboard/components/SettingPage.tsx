@@ -66,17 +66,61 @@ const handleLocationToggle = async (checked) => {
   }
 };
 /*----------------------------------------------------------------------------------------------*/
-const handleUsernameChange = (event) => { /* ... */ };
-const handlePasswordChange = (event) => { /* ... */ };
-const handleEmailChange = (event) => { /* ... */ };
-const handleBirthdayChange = (event) => { /* ... */ };
-const handleGenderChange = (event) => { /* ... */ };
+const UsernameChange = (event) => { /* ... */ };
+const PasswordChange = (event) => { /* ... */ };
+const EmailChange = (event) => { /* ... */ };
+const BirthdayChange = (event) => { /* ... */ };
+const GenderChange = (event) => { /* ... */ };
+
+const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
 
+const handleUpdateAccount = async (event) => {
+  event.preventDefault(); // Prevent the default form submit action
 
+  const { data: { user }, error: userError } = await supabase.auth.getUser();
+if (!user) {
+  console.error('No user is currently logged in.');
+  return;
+}
+
+  const updates = {
+    username: username.trim() ? username : undefined, // Don't update if the string is empty
+    email: email.trim() ? email : undefined,
+    birthday: birthday.trim() ? birthday : undefined,
+    gender: gender.trim() ? gender : undefined,
+    password: password.trim() ? password:undefined
+  };
+
+
+  const validUpdates = Object.entries(updates).reduce((acc, [key, val]) => {
+    if (val !== undefined) acc[key] = val;
+    return acc;
+  }, {});
+
+  const { error } = await supabase
+  .from('profiles')
+  .update(updates)
+  .eq('id', user.id);
+
+if (error) {
+  console.error('Error updating account information:', error);  
+} else {
+  console.log('Account information updated successfully');
+  setShowSuccessMessage(true);
+  setTimeout(() => setShowSuccessMessage(false), 5000); // Hide message after 5 seconds
+  // Perform additional actions on successful update  
+}
+
+};
   return (
     <div className="text-skin-base">
       <h2 className="text-2xl font-bold mb-4">Settings</h2>
+      {showSuccessMessage && (
+        <div className="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
+          Account information updated successfully!
+        </div>
+      )}
       <ul className="list-inside space-y-4">
         <li>
           <h3 className="font-semibold mb-2">Data & Privacy</h3>
@@ -116,15 +160,14 @@ const handleGenderChange = (event) => { /* ... */ };
         {/* Account */}
         <li>
         <h3 className="text-xl font-semibold mb-4">Account</h3>
-      <form className="space-y-4">
+      <form className="space-y-4" onSubmit={handleUpdateAccount}>
         <div className="flex flex-col mb-4">
           <label htmlFor="username" className="mb-2 font-semibold">Change username:</label>
-          <input
+          <input  
             id="username"
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            onBlur={handleUsernameChange}
             className="px-3 py-2 border-2 border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
           />
         </div>
@@ -135,7 +178,7 @@ const handleGenderChange = (event) => { /* ... */ };
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            onBlur={handlePasswordChange}
+            onBlur={PasswordChange}
             className="px-3 py-2 border-2 border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
           />
         </div>
@@ -146,7 +189,7 @@ const handleGenderChange = (event) => { /* ... */ };
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            onBlur={handleEmailChange}
+            onBlur={EmailChange}
             className="px-3 py-2 border-2 border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
           />
         </div>
@@ -157,7 +200,7 @@ const handleGenderChange = (event) => { /* ... */ };
             type="date"
             value={birthday}
             onChange={(e) => setBirthday(e.target.value)}
-            onBlur={handleBirthdayChange}
+            onBlur={BirthdayChange}
             className="px-3 py-2 border-2 border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
           />
         </div>
@@ -167,7 +210,7 @@ const handleGenderChange = (event) => { /* ... */ };
             id="gender"
             value={gender}
             onChange={(e) => setGender(e.target.value)}
-            onBlur={handleGenderChange}
+            onBlur={GenderChange}
             className="px-3 py-2 border-2 border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
           >
             <option value="male">Male</option>
@@ -175,9 +218,15 @@ const handleGenderChange = (event) => { /* ... */ };
             <option value="other">Other</option>
           </select>
             </div>
+            <div className='flex justify-end mt-4'>
+              <button
+              type="submit"
+              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                Save Changes
+                </button>
+            </div>
           </form>
         </li>       
-        
         {/* ... other settings items ... */}
       </ul>
     </div>
