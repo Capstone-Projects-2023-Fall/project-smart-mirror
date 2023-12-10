@@ -57,7 +57,7 @@ export default function Mirror({}: Props) {
 
   const loggedin = true;
 
-  if(!loggedin){
+  if(loggedin){
     return (
     <>
     {/* Assuming clock-box is styled to be full screen and centered */}
