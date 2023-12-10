@@ -193,7 +193,7 @@ const FitbitDataComponent = () => {
   useEffect(() => {
     const fetchData = async () => {
 
-      const userId = "8089166a-3db2-4b56-b1c7-ac3b188829a4"
+      const userId = "b85ded12-06ba-4a7e-a14e-de104007ccd8"
       
       const clientId = "23RKLS";
       const clientSecret = "2c3743a22c9be82c95f1b9a615e11580";
