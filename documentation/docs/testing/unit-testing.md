@@ -21,7 +21,7 @@ Input / User Action:
 * Call the function with the integer '0'
 
 Expected Result: 
-* Returns the given Calendar Object
+* Returns the Calendar Object added to the CalendarModule's calendars property with the index specified as the integer '0'
 
 ##  `addCalendar(Calendar)`
 

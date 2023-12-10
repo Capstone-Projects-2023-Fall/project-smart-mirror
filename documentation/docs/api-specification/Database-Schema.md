@@ -4,8 +4,7 @@ sidebar_position: 3
 
 # Database Schema Diagram
 
-![Schema Diagram](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/74268497/c423f79b-a622-4fee-830b-6e822cae8ce7)
-
+![Database ER diagram (crow's foot)](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/73204434/d4120ac2-7dab-4beb-bfc4-a85a4148c373)
 
 ## Summary 
 * This schema represents a system where the user uses the CompanionApp to store various data types. Data includes calendar events, fitness information, weather information, and many more.

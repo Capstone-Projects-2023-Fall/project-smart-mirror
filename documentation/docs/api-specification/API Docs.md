@@ -9,7 +9,7 @@ API Documentation
 **Description:**    
 The Calendar API allows you to manage user calendars and events.
 
-### POST /calendar/create
+### POST /calendar/
 **Description:**    
 Create a new calendar and store it in the database.
 
@@ -36,7 +36,7 @@ Create a new calendar and store it in the database.
 }
 ```
 
-### PUT /calendar/update/{id}
+### PUT /calendar/{id}
 **Description:**    
 Update a calendar's data in the database.
 
@@ -64,7 +64,7 @@ Update a calendar's data in the database.
     "body": "Calendar with ID: {id} does not exist."
 }
 ```
-### DELETE /calendar/delete/{id}
+### DELETE /calendar/{id}
 **Description:**    
 Delete an existing calendar from the database.
 
@@ -93,7 +93,7 @@ Delete an existing calendar from the database.
 }
 ```
 
-### POST /calendar/event/add/{calendarId}
+### POST /calendar/event/{calendarId}
 **Description:**    
 Add a new event to a specific calendar.
 
@@ -127,7 +127,7 @@ Add a new event to a specific calendar.
 }
 ```
 
-### PUT/calendar/event/update/{calendarId}/{eventId}
+### PUT/calendar/event/{calendarId}/{eventId}
 **Description:**    
 Update an event in a specific calendar.
 
@@ -163,7 +163,7 @@ Update an event in a specific calendar.
 }
 ```
 
-### DELETE /calendar/event/delete/{calendarId}/{eventId}
+### DELETE /calendar/event/{calendarId}/{eventId}
 **Description:**    
 Delete an event from a specific calendar.
 
@@ -231,7 +231,7 @@ The Module class API allows the system to interface with subsequent submodules a
 - `type (str)`: The type of the module.
 - `permissionLevel (int const)`: The permission level of the module (constant).
 
-### POST/module/create
+### POST/module/
 **Description:**    
 Create a new module and initialize it.
 
