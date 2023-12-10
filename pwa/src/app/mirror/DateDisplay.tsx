@@ -7,7 +7,7 @@ const DateDisplay: React.FC = () => {
     const updateDate = () => {
       const now = new Date();
       const options = { day: 'numeric', month: 'long' };
-      const dateString = now.toLocaleDateString(undefined, options);
+      const dateString = now.toLocaleDateString('en-GB', options);
       setCurrentDate(dateString);
     };
 

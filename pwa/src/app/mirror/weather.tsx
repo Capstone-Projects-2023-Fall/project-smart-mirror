@@ -7,6 +7,7 @@ import SunSVG from "./svg/sun-svgrepo-com.svg";
 import SnowAltSVG from "./svg/snow-alt-svgrepo-com.svg";
 import Freezing_Sleet from "./svg/cloud-sleet-svgrepo-com.svg";
 import RainSVG from "./svg/cloud-rain-svgrepo-com.svg";
+import Image from 'next/image';
 import './weather.css';
 
 const weatherCodeToSVG = {
@@ -95,11 +96,17 @@ const TemperatureDisplay = () => {
     return <div className="loading-box">Loading...</div>;
   }
 
+  console.log(WeatherSVG)
   return (
-
     <div className="temperature-display">
       <div className="weather-info">
-        <img src={WeatherSVG} alt={weatherData.weatherDescription} width="50" height="50" />
+        {/* Use the imported SVG */}
+        <Image 
+          src={WeatherSVG.src} // Use the src from the WeatherSVG object
+          alt={weatherData.weatherDescription}
+          width={50} // Use the width from the WeatherSVG object
+          height={100} // Use the height from the WeatherSVG object
+        />  
         {/* Additional weather information goes here */}
       </div>
       <div>
