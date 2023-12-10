@@ -5,6 +5,8 @@ import { motion, useAnimation } from 'framer-motion';
 import './App.css'
 import './clock.css'
 import TemperatureDisplay from './weather';
+import { QRCodeSVG } from 'qrcode.react';
+
 type Props = {};
 
 export default function Mirror({}: Props) {
@@ -55,7 +57,7 @@ export default function Mirror({}: Props) {
 
   const loggedin = true;
 
-  if(loggedin){
+  if(!loggedin){
     return (
     <>
     {/* Assuming clock-box is styled to be full screen and centered */}
@@ -85,7 +87,17 @@ export default function Mirror({}: Props) {
     </>)
     ;
   
-  }else {
-;
+  }else { 
+    return (
+      <div className="ui-container">
+        <div className="QRCode">
+          <QRCodeSVG value={"https://www.youtube.com"} size={256} />
+        </div>
+        <div className="qr-code-text">
+          Please scan QR Code on Project Lumina App
+        </div>
+        {/* Other mirror UI components */}
+      </div>
+    );
   }
 }
