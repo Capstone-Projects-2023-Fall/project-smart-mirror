@@ -159,7 +159,7 @@ if (error) {
         </li>
         {/* Account */}
         <li>
-        <h3 className="text-xl font-semibold mb-4">Account</h3>
+        <h3 className="text-xl font-bold mb-4">Account</h3>
       <form className="space-y-4" onSubmit={handleUpdateAccount}>
         <div className="flex flex-col mb-4">
           <label htmlFor="username" className="mb-2 font-semibold">Change username:</label>
