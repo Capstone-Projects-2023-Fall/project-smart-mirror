@@ -4,7 +4,11 @@ import Clock from "./clock"; // Time display
 import { motion, useAnimation } from 'framer-motion';
 import './App.css'
 import './clock.css'
+import './spotify.css';
+import Spotify from './spotify';
 import TemperatureDisplay from './weather';
+import NewsDisplay from './news'
+import FitbitDataComponent from './fitbit';
 import { QRCodeSVG } from 'qrcode.react';
 
 type Props = {};
@@ -15,7 +19,8 @@ export default function Mirror({}: Props) {
     Weather: true,
     Calendar: true,
     News: true,
-    Fitbit: true
+    Fitbit: true,
+    Spotify: true
   });
 
   useEffect(() => {
@@ -42,9 +47,11 @@ export default function Mirror({}: Props) {
   }, []);
 
   const initialPositions =  { // pull from pwa
-    weatherBox: { x: 0, y: 15 },
+    weatherBox: { x: 1765, y: 30 },
     marketBox: { x: 800, y: 15 },
-    newsBox:{x: 15, y: 660 },
+    newsBox:{x: 15, y: 880 },
+    spotifyBox:{x: 1570,y: 950},
+    fitbitBox:{x:15,y:430}
   };
 
   const [positions, setPositions] = useState(initialPositions);
@@ -72,8 +79,8 @@ export default function Mirror({}: Props) {
               initial={{ x: positions.weatherBox.x, y: positions.weatherBox.y }}
               dragConstraints={{
                 left: 0,
-                right: window.innerWidth - 100,
-                top: 0,
+                right: window.innerWidth - 155,
+                top: 20,
                 bottom: window.innerHeight - 75
               }}
               onDragEnd={(event, info) => handleDragEnd(event, info, 'weatherBox')}
@@ -82,7 +89,57 @@ export default function Mirror({}: Props) {
               <TemperatureDisplay />
             </motion.div>
           )}
-
+          {widgetVisibility.News && (
+            <motion.div 
+              className="news-box"
+              drag 
+              initial={{ x: positions.newsBox.x, y: positions.newsBox.y }}
+              dragConstraints={{
+                left: 15,
+                right: window.innerWidth - 100,
+                top: 0,
+                bottom: window.innerHeight - 185
+              }}
+              onDragEnd={(event, info) => handleDragEnd(event, info, 'newsBox')}
+              dragElastic={0}
+            >
+              <NewsDisplay />
+            </motion.div>
+          )}
+          {widgetVisibility.Spotify && (
+            <motion.div 
+              className="spotify-box"
+              drag 
+              initial={{ x: positions.spotifyBox.x, y: positions.spotifyBox.y }}
+              dragConstraints={{
+                left: 0,
+                right: window.innerWidth - 350,
+                top: 65,
+                bottom: window.innerHeight - 120
+              }}
+              onDragEnd={(event, info) => handleDragEnd(event, info, 'spotifyBox')}
+              dragElastic={0}
+            >
+            <Spotify />
+            </motion.div>
+          )}
+          {widgetVisibility.Fitbit && (
+            <motion.div 
+              className="fitbit-box"
+              drag 
+              initial={{ x: positions.fitbitBox.x, y: positions.fitbitBox.y }}
+              dragConstraints={{
+                left: 15,
+                right: window.innerWidth - 295,
+                top: 0,
+                bottom: window.innerHeight - 175
+              }}
+              onDragEnd={(event, info) => handleDragEnd(event, info, 'fitbitBox')}
+              dragElastic={0}
+            >
+              <FitbitDataComponent />
+            </motion.div>
+          )}
       </motion.div>
     </>)
     ;
@@ -91,7 +148,7 @@ export default function Mirror({}: Props) {
     return (
       <div className="ui-container">
         <div className="QRCode">
-          <QRCodeSVG value={"http://10.0.0.225:3000"} size={256} />
+          <QRCodeSVG value={"http://10.0.0.225:3000/mirrorID-UNIQUE123"} size={256} />
         </div>
         <div className="qr-code-text">
           Please scan QR Code on Project Lumina App

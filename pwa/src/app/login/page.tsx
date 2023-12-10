@@ -4,7 +4,7 @@ import * as Form from "@radix-ui/react-form";
 import { supabase } from "../utils/supabase-client";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { useRouter } from "next/navigation";
+import { useRouter,useSearchParams } from "next/navigation";
 
 type Props = {};
 
@@ -34,21 +34,21 @@ export default function Login({}: Props) {
       setError(null);
     }
   };
-
+  const router = useRouter();
+  const passedId = useSearchParams().get("mirrorID") || -1
   const handleLoginWithGoogle = async () => {
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: "https://projectlumina.app/dashboard",
+        redirectTo: `https://projectlumina.app/dashboard?mirrorID=${passedId}`,
       },
     });
   };
 
-  const router = useRouter();
-
   useEffect(() => {
     if (error === null) {
-      router.push("/dashboard");
+      console.log(`Moving domains: ID PASSED ${passedId}`)
+      router.push(`/dashboard?mirrorID=${passedId}`);
       router.refresh();
     }
   }, [error, router]);
