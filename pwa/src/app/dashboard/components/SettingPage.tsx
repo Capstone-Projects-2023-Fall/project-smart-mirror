@@ -17,6 +17,13 @@ export default function SettingsPage() {
   const LocationToggle = (checked) => setLocationEnabled(checked);
   const TrackingToggle = (checked) => setTrackingEnabled(checked);
   const AnalyticsToggle = (checked) => setAnalyticsEnabled(checked);
+  const [mirrorAlwaysOn, setMirrorAlwaysOn] = useState(false);
+  const [sleepTimer, setSleepTimer] = useState('30'); // Example default value
+  /*--------MirrorSetting--------*/
+const handleMirrorAlwaysOnToggle = (checked) => {
+  setMirrorAlwaysOn(checked);
+};
+
 /*For location*/
 const [toggleLocationSharing, setToggleLocationSharing] = useState(false)
 const handleLocationToggle = async (checked) => {
@@ -73,8 +80,6 @@ const BirthdayChange = (event) => { /* ... */ };
 const GenderChange = (event) => { /* ... */ };
 
 const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-
-
 const handleUpdateAccount = async (event) => {
   event.preventDefault(); // Prevent the default form submit action
 
@@ -83,7 +88,6 @@ if (!user) {
   console.error('No user is currently logged in.');
   return;
 }
-
   const updates = {
     username: username.trim() ? username : undefined, // Don't update if the string is empty
     email: email.trim() ? email : undefined,
@@ -91,7 +95,6 @@ if (!user) {
     gender: gender.trim() ? gender : undefined,
     password: password.trim() ? password:undefined
   };
-
 
   const validUpdates = Object.entries(updates).reduce((acc, [key, val]) => {
     if (val !== undefined) acc[key] = val;
@@ -114,13 +117,16 @@ if (error) {
 
 };
   return (
-    <div className="text-skin-base">
-      <h2 className="text-2xl font-bold mb-4">Settings</h2>
+    <div className="text-skin-base px-4 py-6">
+      <h2 className="text-2xl font-bold mb-6">Settings</h2>
+      
       {showSuccessMessage && (
-        <div className="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
+        <div className="p-4 mb-6 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
           Account information updated successfully!
         </div>
       )}
+      
+      
       <ul className="list-inside space-y-4">
         <li>
           <h3 className="font-semibold mb-2">Data & Privacy</h3>
@@ -160,8 +166,8 @@ if (error) {
         {/* Account */}
         <li>
         <h3 className="text-xl font-bold mb-4">Account</h3>
-      <form className="space-y-4" onSubmit={handleUpdateAccount}>
-        <div className="flex flex-col mb-4">
+      <form className="space-y  -4" onSubmit={handleUpdateAccount}>
+        <div className="flex flex-c ol mb-4">
           <label htmlFor="username" className="mb-2 font-semibold">Change username:</label>
           <input  
             id="username"
@@ -211,8 +217,7 @@ if (error) {
             value={gender}
             onChange={(e) => setGender(e.target.value)}
             onBlur={GenderChange}
-            className="px-3 py-2 border-2 border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-          >
+            className="px-3 py-2 border-2 border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
             <option value="male">Male</option>
             <option value="female">Female</option>
             <option value="other">Other</option>
@@ -227,7 +232,44 @@ if (error) {
             </div>
           </form>
         </li>       
-        {/* ... other settings items ... */}
+        {/* Mirror Settings */}
+        <li>
+          <h3 className="text-xl font-bold mb-4">Mirror Settings</h3>
+          <ul className="list-disc pl-5">
+            <li className="flex items-center justify-between mb-1">
+              <span>Keep Mirror On Permanently</span>
+              <Switch
+                    checked={mirrorAlwaysOn}
+                    onCheckedChange={handleMirrorAlwaysOnToggle}
+                    className="relative inline-flex items-center h-6 rounded-full w-11 bg-skin-button-muted"
+                  >
+                    <span
+                      className={`${
+                        mirrorAlwaysOn ? 'translate-x-6' : 'translate-x-1'
+                      } inline-block w-4 h-4 transform bg-skin-button-accent rounded-full shadow-lg transition-transform`}
+                    />
+                  </Switch>
+            </li>
+            {!mirrorAlwaysOn && (
+              <li className="flex items-center justify-between mt-2">
+                <label htmlFor="sleepTimer" className="block text-sm font-medium">
+                  Set Sleep Timer (minutes)
+                </label>
+                <select
+                  id="sleepTimer"
+                  value={sleepTimer}
+                  onChange={(e) => setSleepTimer(e.target.value)}
+                  className="px-3 py-2 border-2 border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"     
+                >
+                  <option value="30">30</option>
+                  <option value="60">60</option>
+                  <option value="120">120</option>
+                </select>
+              </li>
+            )}
+          </ul>
+        </li>
+        {/* ...other settings items... */}
       </ul>
     </div>
   );
