@@ -89,13 +89,16 @@ type Props = {
           //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`
           var authorizationUrl = 'https://www.fitbit.com/oauth2/authorize?client_id=23RKLS&response_type=code&code_challenge=' + codeChallenge + '&code_challenge_method=S256&scope=activity%20heartrate%20location%20nutrition%20oxygen_saturation%20profile%20respiratory_rate%20settings%20sleep%20social%20temperature%20weight';
 
-          window.location.replace(authorizationUrl);     
+          //window.location.replace(authorizationUrl);     
+          window.location.href = authorizationUrl;
   }
 
   // Get code verifier, parse auth code, get token: step 2 - TODI
   // If we get sent to this screen from home, automatically parse the url and store it
   // TODO get rid of sync buttons
+
   const getAccessToken = async (userId:string, clientId:string, clientSecret:string, codeParam:string, codeVerifier:string) => {
+    
     //console.log(code)   
     if(!userId){
         console.log("Error: User is not signed in");
@@ -125,8 +128,8 @@ type Props = {
             
 
             if (!authResponse.ok) {
-              throw new Error(`Authentication failed with status: ${authResponse.status}`);
-              console.log("error")
+              //throw new Error(`Authentication failed with status: ${authResponse.status}`);
+              console.log("Authentication failed with status: " + authResponse.status);
             }
             else{
               const authData = await authResponse.json();
@@ -190,52 +193,6 @@ type Props = {
         }
         
         }>Click to authorize fitbit</button>
-
-
-      <h2 className="fitbit-sync">Sync</h2>
-      <button onClick={async () => {
-        
-      
-        const authCode = new URLSearchParams(location.search).get("code");
-        const userId = user?.id;
-
-        if (authCode && userId) {
-            let codeVerifier: any;
-            const response = await getSuper(userId, 'code_verifier');
-    
-            if(response !== null){
-                codeVerifier = response[0]?.code_verifier;
-            }
-            else{
-                console.log("Error: cv is null");
-            }
-
-           if(authCode !== null){
-            initTokenAuth(userId, authCode, codeVerifier);
-            /*
-            // TODO REMOVE HARD CODED BS
-            const clientId = "23RKLS";
-            const clientSecret = "2c3743a22c9be82c95f1b9a615e11580";
-            if(clientId && clientSecret){
-              console.log("success, client id + clientsecret attached");
-              getAccessToken(userId, clientId, clientSecret, authCode, codeVerifier);
-            }
-            else{
-              console.log("Error: no clientid or clientsecret")
-            }
-            //getAccessToken(userId, clientId, clientSecret, authCode, codeVerifier);
-            */
-           }
-          
-        }
-}
-  }>Click to sync fitbit</button>
-  
- <div>
-        <button onClick={notify}>Notify !</button>
-        <ToastContainer />
-      </div>
-
     </>
     
   );

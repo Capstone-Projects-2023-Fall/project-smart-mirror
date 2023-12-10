@@ -16,7 +16,7 @@ export default function Home({ user }: Props) {
       position: toast.POSITION.BOTTOM_RIGHT,
       autoClose: 2000,
       pauseOnFocusLoss: false,
-
+      toastId: "authenticated"
     });
   }
 
@@ -37,7 +37,9 @@ export default function Home({ user }: Props) {
           }
     
          if(authCode !== null){
+          console.log(userId + " "+ authCode+ " "+ codeVerifier)
           initTokenAuth(userId, authCode, codeVerifier);
+          notify();
       }
     }
     };
@@ -48,14 +50,8 @@ export default function Home({ user }: Props) {
 
 
   return (
-    
     <>
       <Clock />
-      <div>
-        <button onClick={notify}>Notify !</button>
-        <ToastContainer />
-      </div>
-
     </>
   );
 }
