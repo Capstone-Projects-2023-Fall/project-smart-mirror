@@ -13,7 +13,7 @@ export default function Hero({}: Props) {
         animate={{ opacity: [0, 1], transition: { duration: 2 } }}
       >
         <h1 className="font-bold text-[5vw] lg:text-6xl">
-          Welcome to <span className="text-skin-inverted">Project Lumina</span>.
+          Welcome to <span className="text-skin-accent">Project Lumina</span>.
         </h1>
         <h2 className="font-bold text-[5vw] lg:text-4xl">
           The Interactive Mirror
