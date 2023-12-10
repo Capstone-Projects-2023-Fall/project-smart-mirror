@@ -55,7 +55,7 @@ export default function Mirror({}: Props) {
     localStorage.setItem('widgetPositions', JSON.stringify(updatedPositions));
   };
 
-  const loggedin = true;
+  const loggedin = false;
 
   if(loggedin){
     return (
@@ -91,7 +91,7 @@ export default function Mirror({}: Props) {
     return (
       <div className="ui-container">
         <div className="QRCode">
-          <QRCodeSVG value={"https://www.youtube.com"} size={256} />
+          <QRCodeSVG value={"http://10.0.0.225:3000"} size={256} />
         </div>
         <div className="qr-code-text">
           Please scan QR Code on Project Lumina App
