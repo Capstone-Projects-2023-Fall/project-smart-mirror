@@ -17,7 +17,6 @@ const DateDisplay: React.FC = () => {
 
     return () => clearInterval(intervalId);
   }, []);
-  console.log(currentDate);
   return <div className="date text-white font-light mt-40 text-5xl">
     {currentDate}
   </div>
