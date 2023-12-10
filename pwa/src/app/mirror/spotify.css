@@ -1,0 +1,53 @@
+.root{
+    font-family: 'Exo', sans-serif;
+}
+
+  .spotify-widget {
+    position: absolute;
+    padding: 8px; 
+    border-radius: 6px;
+    max-width: 50%; 
+    height: 100%;
+    right: 0%;
+    text-align: center;
+    display: inline-block; 
+    top: 0%;
+  }
+  .nowplaying{
+    top: 12%;
+    position: absolute;
+    width: 100%;
+    vertical-align: text-bottom;
+    left: 32%;
+    font-size: 1.5rem;
+    font-family: 'Exo', sans-serif;
+    font-weight: 500;
+
+  }
+  .spotify-logobox{
+    top: -70%;
+    position: absolute;
+    left: 0%;
+    height: 100%;
+    width: 50%;
+  }
+  /* Track Name */
+  .spotify-widget .track-name {
+    font-size: 0.8em; 
+    margin-top: 3px; 
+  }
+  
+  /* Artist Name */
+  .spotify-widget .artist-name {
+    font-size: 0.7em; 
+    margin-top: 2px; 
+  }
+  
+  /* Album Cover */
+  .spotify-widget .album-cover {
+    width: 70%; 
+    height: auto; 
+    border-radius: 4px;
+    margin: 4px auto; 
+  }
+  
