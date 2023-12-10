@@ -11,8 +11,7 @@ export default function SettingsPage() {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [birthday, setBirthday] = useState('');
-  const [gender, setGender] = useState('');
-
+  const [gender, setGender] = useState('')
 /*For toggle check*/
   const LocationToggle = (checked) => setLocationEnabled(checked);
   const TrackingToggle = (checked) => setTrackingEnabled(checked);
