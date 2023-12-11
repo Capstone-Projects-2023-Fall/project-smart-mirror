@@ -15,7 +15,7 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // Get data from a given fitbitURL and requestToken
 // Refresh tokens if they have ran out
-const getFitbitData = async (url: string, requestToken: string, refreshTokenId: string) => {
+export const getFitbitData = async (url: string, requestToken: string, refreshTokenId: string) => {
   try {
     const authResponse = await fetch(url, {
       method: 'GET',
@@ -42,7 +42,7 @@ const getFitbitData = async (url: string, requestToken: string, refreshTokenId: 
 };
 
 // Get a value in Fitbit Table
-const getFitBitValue = async (userId: string, value: string) => {
+export const getFitBitValue = async (userId: string, value: string) => {
    // Construct the URL with parameters
    const url = new URL('http://localhost:3000/api/fitbit');
    url.searchParams.append('id', userId);
@@ -66,7 +66,7 @@ const getFitBitValue = async (userId: string, value: string) => {
 
 // Update Data in fitbittable
 // Refresh tokens if they have ran out
-const PostFitbitData = async (url: string, requestToken: string,) => {
+export const PostFitbitData = async (url: string, requestToken: string,) => {
   try {
     const authResponse = await fetch(url, {
       method: 'POST',
@@ -88,7 +88,7 @@ const PostFitbitData = async (url: string, requestToken: string,) => {
 };
 
 // find a value in a nested json object
-function findValueByKey(obj: Record<string, any>, keyToFind: string): any | undefined {
+export function findValueByKey(obj: Record<string, any>, keyToFind: string): any | undefined {
   let result: any;
 
   function traverse(o: any) {
@@ -109,7 +109,7 @@ function findValueByKey(obj: Record<string, any>, keyToFind: string): any | unde
 }
 
 // Exchange refreshToken for AccessToken if ours is expired
-const refreshToken = async (clientId:string, clientSecret:string, refreshToken:string, userId:string) => {
+export const refreshToken = async (clientId:string, clientSecret:string, refreshToken:string, userId:string) => {
 
   console.log("refreshing token: ");
   const authResponse = await fetch('https://api.fitbit.com/oauth2/token', {
@@ -150,7 +150,7 @@ const refreshToken = async (clientId:string, clientSecret:string, refreshToken:s
 };
 
  // Upsert data into supa db
- const upsertSupa = async (userId: string, table: string, data: Record<string, string>) => {
+ export const upsertSupa = async (userId: string, table: string, data: Record<string, string>) => {
   //console.log(userId + ' ' + table + ' ' + column + ' ' + value);
   if (userId && table && data) {
     const { error } = await supabase
@@ -168,7 +168,7 @@ const refreshToken = async (clientId:string, clientSecret:string, refreshToken:s
 
 
   // Get data from fitbit table
-  const getSuper = async (userId: string, field: string) => {
+  export const getSuper = async (userId: string, field: string) => {
     if(userId && field){
         const { data, error } = await supabase
         .from('fitbit')
