@@ -288,10 +288,16 @@ export default function FitbitDataComponent( { id } : Props) {
   };
 
   return (
-    <div style={whiteTextStyle}>
-      <h2>Fitbit Data:</h2>
+    <div className="fitbit-container">
+      <h2 className="fitbit-title">Fitbit Data:</h2>
       {fitbitData ? (
-        <pre>{JSON.stringify(fitbitData, null, 2)}</pre>
+        <div className="fitbit-data">
+          <p>Steps: {fitbitData.steps}</p>
+          <p>Step Goal: {fitbitData.stepGoal}</p>
+          <p>Calorie Goal: {fitbitData.calorieGoal}</p>
+          <p>Sleep: {fitbitData.sleep} hours</p>
+          <p>Sleep Goal: {fitbitData.sleepGoals} hours</p>
+        </div>
       ) : (
         <p>Loading Fitbit data...</p>
       )}
