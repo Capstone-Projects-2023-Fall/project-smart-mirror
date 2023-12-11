@@ -58,7 +58,7 @@ export default function Navbar({}: Props) {
           lumina
         </NavigationMenu.Item>
       </NavigationMenu.List>
-      <NavigationMenu.List className="flex flex-row">
+      <NavigationMenu.List className="flex flex-col space-y-4 md:space-y-0 md:flex-row">
         <NavigationMenu.Item className="px-4 cursor-pointer hover:text-secondary duration-300 ease-in-out">
           <Link href="/">home</Link>
         </NavigationMenu.Item>
@@ -69,7 +69,7 @@ export default function Navbar({}: Props) {
           <Link href="/#about">about us</Link>
         </NavigationMenu.Item>
       </NavigationMenu.List>
-      <NavigationMenu.List className="flex flex-row">
+      <NavigationMenu.List className="flex flex-row md:flex-row">
         {!userFound ? (
           <>
             <NavigationMenu.Item className="px-4 cursor-pointer hover:text-secondary duration-300 ease-in-out">
