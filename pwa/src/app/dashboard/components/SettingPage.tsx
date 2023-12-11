@@ -361,7 +361,7 @@ export default function SettingsPage() {
             type="submit"
             className="px-4 py-2 bg-red-700 text-white rounded hover:bg-blue-500 focus:outline-none"
           >
-            Sign Out
+            Unlink mirror
           </button>
         </div>
 
