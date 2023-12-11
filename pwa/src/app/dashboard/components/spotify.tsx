@@ -3,14 +3,10 @@ import { supabase } from "@/app/utils/supabase-client";
 
 // Constants for Spotify's configuration
 const SPOTIFY_CLIENT_ID = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID;
-const SPOTIFY_REDIRECT_URI =
-  process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT_URI ||
-  "http://projectlumina.app/dashboard";
+const SPOTIFY_REDIRECT_URI =process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT_URI || "https://www.projectlumina.app/dashboard";
 
 const SPOTIFY_SCOPES = ["user-read-currently-playing"];
-const SPOTIFY_AUTH_URL = `https://accounts.spotify.com/authorize?client_id=${SPOTIFY_CLIENT_ID}&redirect_uri=${encodeURIComponent(
-  SPOTIFY_REDIRECT_URI!
-)}&scope=${SPOTIFY_SCOPES.join(" ")}&response_type=token&show_dialog=true`;
+const SPOTIFY_AUTH_URL = `https://accounts.spotify.com/authorize?client_id=${SPOTIFY_CLIENT_ID}&redirect_uri=${encodeURIComponent(SPOTIFY_REDIRECT_URI!)}&scope=${SPOTIFY_SCOPES.join(" ")}&response_type=token&show_dialog=true`;
 
 const SpotifyAuth = () => {
   const [spotifyAccessToken, setSpotifyAccessToken] = useState(
