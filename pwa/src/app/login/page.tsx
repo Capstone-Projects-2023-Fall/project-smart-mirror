@@ -4,7 +4,7 @@ import * as Form from "@radix-ui/react-form";
 import { supabase } from "../utils/supabase-client";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { useRouter,useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 type Props = {};
 
@@ -35,23 +35,25 @@ export default function Login({}: Props) {
     }
   };
   const router = useRouter();
-  const passedId = useSearchParams().get("mirrorID") || -1
+  const passedId = useSearchParams().get("mirrorID") || -1;
   const handleLoginWithGoogle = async () => {
-    await supabase.auth.signInWithOAuth({
+    const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
         redirectTo: `https://projectlumina.app/dashboard?mirrorID=${passedId}`,
       },
     });
+
+    console.log(error);
   };
 
   useEffect(() => {
     if (error === null) {
-      console.log(`Moving domains: ID PASSED ${passedId}`)
+      console.log(`Moving domains: ID PASSED ${passedId}`);
       router.push(`/dashboard?mirrorID=${passedId}`);
       router.refresh();
     }
-  }, [error, router]);
+  }, [error, passedId, router]);
   return (
     <>
       <section className="w-full h-full flex flex-col items-center jusify-center text-base space-y-3">
