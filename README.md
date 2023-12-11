@@ -11,7 +11,7 @@
 
 
 ## Keywords
-Section 003, hardware, web application, Raspberry PI, TypeScript, HTML/CSS, Java
+Section 003, Hardware, Web Application, Raspberry PI, TypeScript, HTML/CSS, Python
 
 ## Project Abstract
 Traditional mirrors serve a singular purpose: reflecting our physical appearances. However, they remain underutilized in providing value beyond this basic function. In an increasingly connected world, individuals seek efficient and personalized ways to access information and streamline their daily routines. The absence of smart, interactive mirrors in our homes represents an untapped potential for enhancing daily life. As a solution, such mirrors already exist.
@@ -39,7 +39,7 @@ The Smart Mirror project is similar to other tools such as [MagicMirror](https:/
 - Two-Way Mirror
 - Next.js
 - Python
-- Possible use of ScyllaDB
+- Supabase
 
 ## Collaborators
 
