@@ -15,19 +15,19 @@ export default function SettingsPage() {
   const [birthday, setBirthday] = useState('');
   const [gender, setGender] = useState('')
 /*For toggle check*/
-  const LocationToggle = (checked) => setLocationEnabled(checked);
-  const TrackingToggle = (checked) => setTrackingEnabled(checked);
-  const AnalyticsToggle = (checked) => setAnalyticsEnabled(checked);
+  const LocationToggle = (checked: boolean | ((prevState: boolean) => boolean)) => setLocationEnabled(checked);
+  const TrackingToggle = (checked: boolean | ((prevState: boolean) => boolean)) => setTrackingEnabled(checked);
+  const AnalyticsToggle = (checked: boolean | ((prevState: boolean) => boolean)) => setAnalyticsEnabled(checked);
   const [sleepTimer, setSleepTimer] = useState('30'); // Example default value
   /*--------MirrorSetting--------*/
-const handleMirrorAlwaysOnToggle = (checked) => {
+const handleMirrorAlwaysOnToggle = (checked: boolean | ((prevState: boolean) => boolean)) => {
   setMirrorAlwaysOn(checked);
 };
 
 
 /*For location*/
 const [toggleLocationSharing, setToggleLocationSharing] = useState(false)
-const handleLocationToggle = async (checked) => {
+const handleLocationToggle = async (checked: boolean | ((prevState: boolean) => boolean)) => {
   setLocationEnabled(checked); // Update the switch's state
   const { data: { user }, error: userError } = await supabase.auth.getUser();
   
@@ -71,17 +71,18 @@ const handleLocationToggle = async (checked) => {
     if (error) {
       console.error(error);
     }
-  }
+  } 
 };
 /*----------------------------------------------------------------------------------------------*/
-const UsernameChange = (event) => { /* ... */ };
-const PasswordChange = (event) => { /* ... */ };
-const EmailChange = (event) => { /* ... */ };
-const BirthdayChange = (event) => { /* ... */ };
-const GenderChange = (event) => { /* ... */ };
+const UsernameChange = (event: any) => { /* ... */ };
+const PasswordChange = (event: any) => { /* ... */ };
+const EmailChange = (event: any) => { /* ... */ };
+const BirthdayChange = (event: any) => { /* ... */ };
+const GenderChange = (event: any) => { /* ... */ };
+
 
 const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-const handleUpdateAccount = async (event) => {
+const handleUpdateAccount = async (event: { preventDefault: () => void; }) => {
   event.preventDefault(); // Prevent the default form submit action
 
   const { data: { user }, error: userError } = await supabase.auth.getUser();
@@ -89,18 +90,13 @@ if (!user) {
   console.error('No user is currently logged in.');
   return;
 }
-  const updates = {
+  const updates= {
     username: username.trim() ? username : undefined, // Don't update if the string is empty
     email: email.trim() ? email : undefined,
     birthday: birthday.trim() ? birthday : undefined,
     gender: gender.trim() ? gender : undefined,
     password: password.trim() ? password:undefined
   };
-
-  const validUpdates = Object.entries(updates).reduce((acc, [key, val]) => {
-    if (val !== undefined) acc[key] = val;
-    return acc;
-  }, {});
 
   const { error } = await supabase
   .from('profiles')
