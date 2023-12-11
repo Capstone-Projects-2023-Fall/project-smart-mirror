@@ -3,8 +3,8 @@ import { supabase } from "@/app/utils/supabase-client";
 
 // Constants for Spotify's configuration
 const SPOTIFY_CLIENT_ID = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID;
-const SPOTIFY_REDIRECT_URI =
-  process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT_URI ||
+const SPOTIFY_REDIRECT_URI = "https://projectlumina.app/dashboard";
+process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT_URI ||
   "http://projectlumina.app/dashboard";
 
 const SPOTIFY_SCOPES = ["user-read-currently-playing"];
