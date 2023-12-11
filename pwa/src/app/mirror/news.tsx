@@ -56,7 +56,6 @@ const NewsComponent = () => {
                 width={25} // Use the width from the WeatherSVG object
                 height={25} // Use the height from the WeatherSVG object
             />   
-            <img src={NewsSVG} alt="News Icon" className="news-icon" />
             <div className="news-content">
             <p className="description">{data.snippet}</p>
             </div>
