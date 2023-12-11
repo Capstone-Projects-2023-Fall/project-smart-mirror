@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { User } from "@supabase/auth-helpers-nextjs";
-import { supabase } from "~/lib/supabase-client";
+import { supabase } from "@/app/utils/supabase-client";
 import { motion } from "framer-motion";
 import { useEffect } from 'react';
 import crypto from 'crypto';

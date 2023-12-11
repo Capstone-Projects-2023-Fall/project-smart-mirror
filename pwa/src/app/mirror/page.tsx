@@ -14,7 +14,7 @@ export default function Mirror({}: Props) {
   const [widgetVisibility, setWidgetVisibility] = useState({
     Weather: true,
     Calendar: true,
-    News: true
+    News: true,
     Fitbit: true
   });
 
