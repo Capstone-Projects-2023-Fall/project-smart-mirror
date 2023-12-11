@@ -13,8 +13,11 @@ export default function Dashboard({}: Props) {
   const router = useRouter();
   const passedId = useSearchParams().get("mirrorID") || -1;
 
-  if (passedId !== -1) {
     useEffect(() => {
+      if (passedId == -1) {
+        return
+      }
+
       const fetchData = async () => {
         const {
           data: { user },
@@ -43,7 +46,6 @@ export default function Dashboard({}: Props) {
 
 
     });
-  }
 
   return (
     <section className="flex h-full w-full">

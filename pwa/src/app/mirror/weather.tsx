@@ -10,7 +10,7 @@ import RainSVG from "./svg/cloud-rain-svgrepo-com.svg";
 import Image from 'next/image';
 import './weather.css';
 
-const weatherCodeToSVG = {
+const weatherCodeToSVG: { [key: number]: any }= {
   0: SunSVG,
   1: SunSVG,
   2: CloudSunAltSVG,
@@ -36,7 +36,7 @@ const weatherCodeToSVG = {
   99: CloudBoltSVG
 };
 
-const getWeatherSVG = (weatherCode) => {
+const getWeatherSVG = (weatherCode:number) => {
   return weatherCodeToSVG[weatherCode] || CloudsSVG;
 };
 
@@ -69,7 +69,7 @@ const TemperatureDisplay = () => {
           weatherCode: data.weatherCode,
           weatherDescription: data.weatherDescription
         });
-      } catch (error) {
+      } catch (error: any) {
         setError(error.toString());
       } finally {
         setIsLoading(false);
@@ -83,10 +83,6 @@ const TemperatureDisplay = () => {
  
   const WeatherSVG = getWeatherSVG(weatherData.weatherCode);
 
-
-  if (showWeeklyForecast) {
-    return isLoading ? <div className="loading-box">Loading Weekly Forecast...</div> : <WeeklyForecast />;
-  }
 
   if (error) {
     return <div className="error-box">Error: {error}</div>;

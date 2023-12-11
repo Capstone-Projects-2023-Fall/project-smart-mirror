@@ -2,20 +2,31 @@ import React, { useState, useEffect } from 'react';
 import './spotify.css';
 import SpotifySVG from "./svg/spotify.svg";
 import Image from 'next/image';
-const Spotify = () => {
-  const [currentTrack, setCurrentTrack] = useState(null);
+
+type Props = {
+    id: string | null;
+};
+
+export default function Spotify( { id } : Props) {
+  const [currentTrack, setCurrentTrack] = useState<any>(null);
   // Ensure this access token is valid and replace it with a new one if it has expired.
-  const accessToken = 'BQAXll0rLuRzI4P4DIOCvm2ljHkdUmhwqBpzt0o9GYQCbd2qOSR6hWqjkbOcPThM_4vKTMRcscgQ-IzC9ErwJv-O_ZwH-IzcYXmNt2vHd7LU_1PhsR9MzfVUBeq0zD2QcjUTlIjQsWq-QGJOPeZJU2PJPUoLp1qgQ0M7RWH3WNPZpldVvT1eM_TyAJgDAqSc2OkAj-ku';
+  const accessToken = 'eyJhbGciOiJIUzI1NiIsImtpZCI6IjgveGRoY0ZEY3hVME56VUwiLCJ0eXAiOiJKV1QifQ.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzAyMjU1ODAyLCJpYXQiOjE3MDIyNTIyMDIsImlzcyI6Imh0dHBzOi8vc2FxemdkaW5wc2J4amR6aGdmdWUuc3VwYWJhc2UuY28vYXV0aC92MSIsInN1YiI6ImE2ZTJjOTM0LTU0MWMtNDkwNS04NTQxLWIwNDk2NjJmODdmMiIsImVtYWlsIjoidG9ueXRyYW40MEBnbWFpbC5jb20iLCJwaG9uZSI6IiIsImFwcF9tZXRhZGF0YSI6eyJwcm92aWRlciI6ImVtYWlsIiwicHJvdmlkZXJzIjpbImVtYWlsIl19LCJ1c2VyX21ldGFkYXRhIjp7InVzZXJuYW1lIjoiS2luZCBFbGVwaGFudCJ9LCJyb2xlIjoiYXV0aGVudGljYXRlZCIsImFhbCI6ImFhbDEiLCJhbXIiOlt7Im1ldGhvZCI6InBhc3N3b3JkIiwidGltZXN0YW1wIjoxNzAyMjUyMjAyfV0sInNlc3Npb25faWQiOiI5MzUxYThiYS1hZTg3LTQ1ZGUtOTFmMy0yN2Y2YTUyNjBiZWIifQ.QOegshE2fqXhGgTZ1s0XrD0SC27PE3Y-GuvwDFewczA';
 
   useEffect(() => {
     const fetchCurrentTrack = async () => {
+        const settings = {
+            headers: {'Authorization': 'Bearer ' + accessToken}
+         }
+        const response = await fetch('https://api.spotify.com/v1/me', settings);
+        const data = await response.json()
         try {
           const response = await fetch('https://api.spotify.com/v1/me/player/currently-playing', {
+            method: "GET",
             headers: {
-              'Authorization': `Bearer ${accessToken}`
+                Authorization: `Bearer ${accessToken}`
             },
           });
-      
+
           // Check if the response has content before parsing it as JSON
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -73,7 +84,7 @@ const Spotify = () => {
             {currentTrack ? (
             <div>
                 <h2 className="track-name">{currentTrack.name}</h2> {}
-                <p className="artist-name">{currentTrack.artists.map(artist => artist.name).join(', ')}</p> {}
+                <p className="artist-name">{currentTrack.artists.map((artist: { name: any; }) => artist.name).join(', ')}</p> {}
                 {}
                 {currentTrack.album && currentTrack.album.images && currentTrack.album.images.length > 0 && (
                 <img className="album-cover" src={currentTrack.album.images[0].url} alt={`Album cover for ${currentTrack.name}`} />
@@ -86,5 +97,3 @@ const Spotify = () => {
     </>
   );
 }
-  
-export default Spotify;

@@ -8,6 +8,7 @@ import './spotify.css';
 import Spotify from './spotify';
 import TemperatureDisplay from './weather';
 import NewsDisplay from './news'
+import MarketDisplay from './stocks';
 import FitbitDataComponent from './fitbit';
 import { QRCodeSVG } from 'qrcode.react';
 import { supabase } from "../utils/supabase-client";
@@ -17,6 +18,8 @@ let firstRun = false;
 let refresh = false;
 
 type Props = {};
+
+
 
 export default function Mirror({}: Props) {
   const [widgetVisibility, setWidgetVisibility] = useState({
@@ -55,7 +58,7 @@ export default function Mirror({}: Props) {
         } else {
           console.log('No user found with the specified mirrorID');
         }
-      } catch (error) {
+      } catch (error:any) {
         console.error('Error fetching users:', error.message);
       }
     };
@@ -149,6 +152,7 @@ export default function Mirror({}: Props) {
               <NewsDisplay />
             </motion.div>
           )}
+          
           {widgetVisibility.Spotify && (
             <motion.div 
               className="spotify-box"
@@ -163,7 +167,7 @@ export default function Mirror({}: Props) {
               onDragEnd={(event, info) => handleDragEnd(event, info, 'spotifyBox')}
               dragElastic={0}
             >
-            <Spotify />
+            <Spotify id={userId} />
             </motion.div>
           )}
           {widgetVisibility.Fitbit && (
@@ -180,7 +184,7 @@ export default function Mirror({}: Props) {
               onDragEnd={(event, info) => handleDragEnd(event, info, 'fitbitBox')}
               dragElastic={0}
             >
-              <FitbitDataComponent />
+            <FitbitDataComponent id={userId} />
             </motion.div>
           )}
       </motion.div>
