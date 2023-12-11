@@ -12,24 +12,23 @@ export default function Sidebar({ state, getState }: Props) {
   const routes = [
     { name: "home", state: "home" },
     { name: "module view", state: "moduleView" },
-    { name: "notifications", state: "notifications" },
-    { name: "settings", state: "settings" },
+    { name: "Settings", state: "settings" },
   ];
 
   const [hovered, setHovered] = useState<string | null>();
 
   return (
     <>
-      <section className="md:w-1/5 md:h-full w-screen h-1/6 border-[1px] border-white bg-skin-button-accent-secondary rounded mx-2 border-opacity-10">
+      <section className="px-2 md:px-0 sticky top-0 md:w-1/5 md:h-full w-full h-1/8 border-[1px] border-white bg-skin-button-accent-secondary rounded mx-2 border-opacity-10">
         <NavigationMenu.Root
-          className="h-full w-full flex flex-col items-center space-x-3 mt-6"
+          className="h-full w-full flex md:flex-col flex-row items-center space-x-3 md:mt-6"
           orientation="vertical"
         >
-          <NavigationMenu.List className="w-full h-full bg-skin-accent">
+          <NavigationMenu.List className="w-full h-full bg-skin-accent flex md:block">
             {routes.map((item) => (
               <NavigationMenu.Item
                 key={item.state}
-                className="rounded-md w-[20vw] h-12 flex justify-center items-center cursor-pointer relative"
+                className="rounded-md md:w-[20vw] w-32 h-12 flex justify-center items-center cursor-pointer relative"
                 onMouseEnter={() => setHovered(item.state)}
                 onClick={() => getState(item.state)}
               >
@@ -38,7 +37,7 @@ export default function Sidebar({ state, getState }: Props) {
                 </motion.span>
                 {hovered === item.state && (
                   <motion.div
-                    className="accent bg-skin-button-accent-secondary-hover absolute w-full h-10"
+                    className="rounded accent bg-skin-button-accent-secondary-hover absolute w-full h-10"
                     layoutId="accent"
                     animate={{
                       transition: {
@@ -51,7 +50,7 @@ export default function Sidebar({ state, getState }: Props) {
                 )}
                 {state === item.state && (
                   <motion.div
-                    className="selected absolute w-full h-10 border-r-2 border-skin-base z-[2]"
+                    className="selected absolute w-full h-10 md:border-r-2 md:border-b-0 border-b-2 border-skin-base z-[2]"
                     layoutId="selected"
                     animate={{
                       transition: {
