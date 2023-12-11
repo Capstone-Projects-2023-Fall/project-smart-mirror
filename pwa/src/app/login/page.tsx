@@ -36,12 +36,8 @@ export default function Login({}: Props) {
   };
 
   const handleLoginWithGoogle = async () => {
-    await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: "https://projectlumina.app/dashboard",
-      },
-    });
+    const { data } = await supabase.auth.getUser();
+    console.log(data);
   };
 
   const router = useRouter();
