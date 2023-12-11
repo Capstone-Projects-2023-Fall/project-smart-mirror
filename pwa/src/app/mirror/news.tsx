@@ -20,7 +20,7 @@ const NewsComponent = () => {
     async function fetchNews() {
       setIsLoading(true);
       try {
-        const response = await fetch("tes"); //https://api.thenewsapi.com/v1/news/top?api_token=aAOeIjcNpmqiEh0KrZQQbTUNpQu1Sdz3UaNdxKiV&locale=us&limit=3
+        const response = await fetch("https://api.thenewsapi.com/v1/news/top?api_token=aAOeIjcNpmqiEh0KrZQQbTUNpQu1Sdz3UaNdxKiV&locale=us&limit=3"); //
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
