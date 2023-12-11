@@ -6,7 +6,7 @@ import {
   refreshToken,
   upsertSupa,
   getSuper,
-} from './fitbit';
+} from '../fitbit';
 
 describe('Fitbit API Tests', () => {
   // Mocking fetch for unit tests
