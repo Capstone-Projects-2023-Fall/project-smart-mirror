@@ -1,9 +1,8 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { Switch } from '@radix-ui/react-switch';
 import { supabase } from "@/app/utils/supabase-client";
 import { Form } from '@radix-ui/react-form';
-import Spotify from './spotify';
-
+import SpotifyAuth from './spotify';
 
 export default function SettingsPage() {
   const [locationEnabled, setLocationEnabled] = useState(false);
@@ -15,7 +14,6 @@ export default function SettingsPage() {
   const [email, setEmail] = useState('');
   const [birthday, setBirthday] = useState('');
   const [gender, setGender] = useState('')
-
 /*For toggle check*/
   const LocationToggle = (checked) => setLocationEnabled(checked);
   const TrackingToggle = (checked) => setTrackingEnabled(checked);
@@ -26,10 +24,6 @@ const handleMirrorAlwaysOnToggle = (checked) => {
   setMirrorAlwaysOn(checked);
 };
 
-/*----Spotify----*/
-const handleSpotifyAuth = () => {
-  window.location = SPOTIFY_AUTH_URL;
-}
 
 /*For location*/
 const [toggleLocationSharing, setToggleLocationSharing] = useState(false)
@@ -284,10 +278,11 @@ return (
       <div className="mb-6">
         <h3 className="text-xl font-bold mb-4">Authorized Apps</h3>
         {/* List of Authorized Apps */}
-        <Spotify/>
+        <SpotifyAuth/>
+
+      </div>
       </div>
     </div>
-  </div>
-);
+  );
 
-    }
+      }

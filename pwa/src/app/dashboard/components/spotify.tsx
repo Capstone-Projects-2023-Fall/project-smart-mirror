@@ -1,35 +1,72 @@
-// Spotify.js
-import React from 'react';
+// SpotifyAuth.js (client-side)
+import React, { useState, useEffect } from 'react';
 
-const SPOTIFY_CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
-const SPOTIFY_REDIRECT_URI = process.env.REACT_APP_SPOTIFY_REDIRECT_URI;
-const SPOTIFY_SCOPES = [
-  "user-read-currently-playing",
-  "user-read-playback-state"
-];
-const AUTH_URL = `https://accounts.spotify.com/authorize?client_id=${SPOTIFY_CLIENT_ID}&redirect_uri=${encodeURIComponent(SPOTIFY_REDIRECT_URI)}&scope=${SPOTIFY_SCOPES.join('%20')}&response_type=token&show_dialog=true`;
-if (typeof SPOTIFY_REDIRECT_URI === 'undefined') {
-    console.error('The SPOTIFY_REDIRECT_URI environment variable is not set.');
-    // Handle the missing environment variable appropriately, perhaps by setting a default
-    // or by not rendering the component that depends on it.
-  } else {
-    // Now you can safely use SPOTIFY_REDIRECT_URI as it's guaranteed to be a string
-    const AUTH_URL = `https://accounts.spotify.com/authorize?client_id=${process.env.REACT_APP_SPOTIFY_CLIENT_ID}&redirect_uri=${encodeURIComponent(SPOTIFY_REDIRECT_URI)}&scope=${SPOTIFY_SCOPES.join('%20')}&response_type=token&show_dialog=true`;
-    // ... rest of your code
-  }
+const SPOTIFY_CLIENT_ID = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID;
+const SPOTIFY_REDIRECT_URI = process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT_URI;
+const SPOTIFY_SCOPES = ["user-read-currently-playing"];
+const SPOTIFY_AUTH_URL = `https://accounts.spotify.com/authorize?client_id=${SPOTIFY_CLIENT_ID}&redirect_uri=${encodeURIComponent(SPOTIFY_REDIRECT_URI)}&scope=${SPOTIFY_SCOPES.join('%20')}&response_type=token&show_dialog=true`;
 
-const Spotify = () => {
-  const handleLogin = () => {
-    window.location.href = AUTH_URL;
+const SpotifyAuth = () => {
+  const [spotifyAccessToken, setSpotifyAccessToken] = useState(null);
+  const [currentlyPlaying, setCurrentlyPlaying] = useState(null);
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const params = new URLSearchParams(hash.substring(1));
+      const accessToken = params.get('access_token');
+      if (accessToken) {
+        setSpotifyAccessToken(accessToken);
+        window.location.hash = ''; // Clear the access token from the URL
+
+        // Get the user's currently playing track using the access token
+        getCurrentlyPlaying(accessToken);
+      }
+    }
+  }, []);
+
+  const getCurrentlyPlaying = (accessToken) => {
+    fetch('https://api.spotify.com/v1/me/player/currently-playing', {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`
+      }
+    })
+    .then(response => {
+      if(response.status === 204) {
+        console.log("No content, nothing is currently playing.");
+        return null;
+      }
+      return response.json();
+    })
+    .then(data => {
+      if(data) {
+        setCurrentlyPlaying(data);
+        console.log(data);
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching currently playing:', error);
+    });
+  };
+
+  const handleAuth = () => {
+    window.location.href = SPOTIFY_AUTH_URL;
   };
 
   return (
-    <div className="spotify-auth">
-      <button onClick={handleLogin} className="spotify-login-button">
-        Login to Spotify
+    <div>
+      <button onClick={handleAuth} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Authorize Spotify
       </button>
+      {currentlyPlaying && (
+        <div>
+          <h3>Currently Playing Track:</h3>
+          <p>Artist: {currentlyPlaying.item.artists[0].name}</p>
+          <p>Track: {currentlyPlaying.item.name}</p>
+        </div>
+      )}
     </div>
   );
 };
 
-export default Spotify;
+export default SpotifyAuth;
