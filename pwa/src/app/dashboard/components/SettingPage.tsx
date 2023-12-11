@@ -3,6 +3,7 @@ import { Switch } from "@radix-ui/react-switch";
 import { supabase } from "@/app/utils/supabase-client";
 import { Form } from "@radix-ui/react-form";
 import SpotifyAuth from "./spotify";
+import { useRouter } from "next/navigation";
 
 export default function SettingsPage() {
   const [locationEnabled, setLocationEnabled] = useState(false);
@@ -139,17 +140,17 @@ export default function SettingsPage() {
       setTimeout(() => setShowSuccessMessage(false), 5000); // Hide message after 5 seconds
       // Perform additional actions on successful update
     }
+  };
 
-    const handleSignOut = () => {
-      const signOut = async () => {
-        const { error } = await supabase.auth.signOut();
-        if (error) {
-          console.log(error);
-        } else {
-          signOut();
-        }
-      };
+  const router = useRouter();
+
+  const handleSignOut = () => {
+    const signOut = async () => {
+      const { error } = await supabase.auth.signOut();
+      console.log(error);
     };
+    signOut();
+    router.push("/");
   };
   return (
     <div className="text-skin-base px-848 py-703 w-full max-w-full">
@@ -294,6 +295,7 @@ export default function SettingsPage() {
                 Save Changes
               </button>
               <button
+                onClick={handleSignOut}
                 type="submit"
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
               >
