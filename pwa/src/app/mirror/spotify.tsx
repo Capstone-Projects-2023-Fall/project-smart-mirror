@@ -4,7 +4,11 @@ import SpotifySVG from "./svg/spotify.svg";
 import Image from 'next/image';
 import { supabase } from "@/app/utils/supabase-client";
 
-export default function Spotify() {
+type Props = {
+  id: string | null;
+};
+
+export default function Spotify( { id } : Props) {
     const [currentTrack, setCurrentTrack] = useState<any>(null);
 
     // Function to fetch the access token from Supabase
