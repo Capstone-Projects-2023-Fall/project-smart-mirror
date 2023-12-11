@@ -64,8 +64,6 @@ const SpotifyAuth = () => {
       </button>
       {spotifyAccessToken && (
         <div>
-          <h3>Your Spotify Access Token:</h3>
-          <p>{spotifyAccessToken}</p>
         </div>
       )}
     </div>
