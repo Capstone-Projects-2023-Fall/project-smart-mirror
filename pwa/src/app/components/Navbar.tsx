@@ -60,7 +60,7 @@ export default function Navbar({}: Props) {
             lumina
           </NavigationMenu.Item>
         </NavigationMenu.List>
-        <NavigationMenu.List className="flex flex-row">
+        <NavigationMenu.List className="flex flex-col space-y-4 md:space-y-0 md:flex-row">
           <NavigationMenu.Item className="px-4 cursor-pointer hover:text-secondary duration-300 ease-in-out">
             <Link href="/">home</Link>
           </NavigationMenu.Item>
@@ -71,14 +71,20 @@ export default function Navbar({}: Props) {
             <Link href="/#about">about us</Link>
           </NavigationMenu.Item>
         </NavigationMenu.List>
-        <NavigationMenu.List className="flex flex-row">
-          {!userFound && (
+        <NavigationMenu.List className="flex flex-row md:flex-row">
+          {!userFound ? (
             <>
               <NavigationMenu.Item className="px-4 cursor-pointer hover:text-secondary duration-300 ease-in-out">
                 <Link href={`/signup`}>sign up</Link>
               </NavigationMenu.Item>
               <NavigationMenu.Item className="px-4 py-1 rounded-md bg-skin-button-accent cursor-pointer text-white">
                 <Link href={`/login`}>login</Link>
+              </NavigationMenu.Item>
+            </>
+          ) : (
+            <>
+              <NavigationMenu.Item className="px-4 py-1 rounded-md bg-skin-button-accent cursor-pointer text-white">
+                <Link href={`/dashboard`}>Visit Dashboard</Link>
               </NavigationMenu.Item>
             </>
           )}
@@ -119,5 +125,5 @@ export default function Navbar({}: Props) {
         </NavigationMenu.List>
       </NavigationMenu.Root>
     );
-  };
+  }
 }

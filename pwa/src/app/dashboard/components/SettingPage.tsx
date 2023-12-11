@@ -1,5 +1,5 @@
-import { useState,useEffect } from 'react';
-import { Switch } from '@radix-ui/react-switch';
+import { FormEventHandler, useState,useEffect } from "react";
+import { Switch } from "@radix-ui/react-switch";
 import { supabase } from "@/app/utils/supabase-client";
 import { Form } from '@radix-ui/react-form';
 import SpotifyAuth from './spotify';

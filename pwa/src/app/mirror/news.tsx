@@ -11,7 +11,7 @@ const NewsComponent = () => {
     padding: '10px',
   };
 
-  const [newsData, setNewsData] = useState([]);
+  const [newsData, setNewsData] = useState<any>([]);
 
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -27,7 +27,7 @@ const NewsComponent = () => {
         }
         const data = await response.json();
         setNewsData(data.data);
-      } catch (error) {
+      } catch (error: any) {
         setError(error.message);
       } finally {
         setIsLoading(false);
@@ -48,7 +48,7 @@ const NewsComponent = () => {
   return (
     <div className="news">
       <h2 className="underlined-heading">Top Stories</h2>
-      {newsData.map((data) => (
+      {newsData.map((data: { id: React.Key | null | undefined; snippet: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined; }) => (
         <div key={data.id} className="news-item">
             <Image 
                 src={NewsSVG.src} // Use the src from the WeatherSVG object
@@ -56,7 +56,6 @@ const NewsComponent = () => {
                 width={25} // Use the width from the WeatherSVG object
                 height={25} // Use the height from the WeatherSVG object
             />   
-            <img src={NewsSVG} alt="News Icon" className="news-icon" />
             <div className="news-content">
             <p className="description">{data.snippet}</p>
             </div>

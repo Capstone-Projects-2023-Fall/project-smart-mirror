@@ -7,10 +7,6 @@
   align-items: center;
 }
 
-.temperature-display p:first-child {
-
-}
-
 .temperature-display p.temperature {
   font-size: 2rem;
   font-weight: 600;
@@ -21,9 +17,6 @@
   opacity: 70%;
   right: 9%;
   position: absolute;
-}
-
-.temperature-display .uv-index {
 }
 
 

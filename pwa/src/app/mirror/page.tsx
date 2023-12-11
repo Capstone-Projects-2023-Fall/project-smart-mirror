@@ -8,13 +8,20 @@ import './spotify.css';
 import Spotify from './spotify';
 import TemperatureDisplay from './weather';
 import NewsDisplay from './news'
+import MarketDisplay from './stocks';
 import FitbitDataComponent from './fitbit';
 import { QRCodeSVG } from 'qrcode.react';
+import { supabase } from "../utils/supabase-client";
+import { useRouter } from "next/navigation";
+import { GoTrueClient } from "@supabase/supabase-js";
+let firstRun = false;
+let refresh = false;
 
 type Props = {};
 
-export default function Mirror({}: Props) {
 
+
+export default function Mirror({}: Props) {
   const [widgetVisibility, setWidgetVisibility] = useState({
     Weather: true,
     Calendar: true,
@@ -22,6 +29,46 @@ export default function Mirror({}: Props) {
     Fitbit: true,
     Spotify: true
   });
+
+  const [userId,setUserId] = useState<string | null>(null);
+  const router = useRouter();
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const { data: users, error } = await supabase
+          .from('profiles') // Replace with your actual user table name
+          .select('*');
+
+        if (error) {
+          console.error('Error fetching users:', error.message);
+          return;
+        }
+
+        // Find the user with the matching mirrorID
+        const userWithMirrorID = users.find(user => user.mirrorID === '67ce79e9-b846-464c-bb44-1be8e0c9509a');
+
+        if (userWithMirrorID) {
+          console.log('User with matching mirrorID:', userWithMirrorID);
+          if(refresh== false){
+            refresh = true;
+            router.refresh()
+            // refreshj here 
+          }
+          setUserId(userWithMirrorID)
+        } else {
+          console.log('No user found with the specified mirrorID');
+        }
+      } catch (error:any) {
+        console.error('Error fetching users:', error.message);
+      }
+    };
+    const intervalId = setInterval(fetchUserData, 15000);
+    if(!firstRun){
+      firstRun = true; 
+      fetchUserData();
+    }
+    return () => clearInterval(intervalId);
+  }, [userId]); // Make sure to include any dependencies if needed
 
   useEffect(() => {
     const fetchWidgetVisibility = async () => {
@@ -62,8 +109,7 @@ export default function Mirror({}: Props) {
     localStorage.setItem('widgetPositions', JSON.stringify(updatedPositions));
   };
 
-  const loggedin = false;
-
+  const loggedin = userId != null;
   if(loggedin){
     return (
     <>
@@ -106,6 +152,7 @@ export default function Mirror({}: Props) {
               <NewsDisplay />
             </motion.div>
           )}
+          
           {widgetVisibility.Spotify && (
             <motion.div 
               className="spotify-box"
@@ -120,7 +167,7 @@ export default function Mirror({}: Props) {
               onDragEnd={(event, info) => handleDragEnd(event, info, 'spotifyBox')}
               dragElastic={0}
             >
-            <Spotify />
+            <Spotify id={userId} />
             </motion.div>
           )}
           {widgetVisibility.Fitbit && (
@@ -137,7 +184,7 @@ export default function Mirror({}: Props) {
               onDragEnd={(event, info) => handleDragEnd(event, info, 'fitbitBox')}
               dragElastic={0}
             >
-              <FitbitDataComponent />
+            <FitbitDataComponent id={userId} />
             </motion.div>
           )}
       </motion.div>
@@ -148,7 +195,7 @@ export default function Mirror({}: Props) {
     return (
       <div className="ui-container">
         <div className="QRCode">
-          <QRCodeSVG value={"http://10.0.0.225:3000/mirrorID-UNIQUE123"} size={256} />
+          <QRCodeSVG value={"http://10.0.0.225:3000/login?mirrorID=67ce79e9-b846-464c-bb44-1be8e0c9509a"} size={256} />
         </div>
         <div className="qr-code-text">
           Please scan QR Code on Project Lumina App

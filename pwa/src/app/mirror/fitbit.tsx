@@ -41,6 +41,29 @@ const getFitbitData = async (url: string, requestToken: string, refreshTokenId: 
   
 };
 
+// Get a value in Fitbit Table
+const getFitBitValue = async (userId: string, value: string) => {
+   // Construct the URL with parameters
+   const url = new URL('http://localhost:3000/api/fitbit');
+   url.searchParams.append('id', userId);
+   url.searchParams.append('field', value);
+
+   try {
+     // Make the GET request
+     const response = await fetch(url.toString());
+ 
+     if (!response.ok) {
+       throw new Error(`HTTP error! Status: ${response.status}`);
+     }
+ 
+     // Parse and return the JSON response
+     return await response.json();
+   } catch (error) {
+     console.error('Error fetching data:', error);
+     throw error; // Re-throw the error for the calling code to handle
+   }
+}
+
 // Update Data in fitbittable
 // Refresh tokens if they have ran out
 const PostFitbitData = async (url: string, requestToken: string,) => {
@@ -164,14 +187,28 @@ const refreshToken = async (clientId:string, clientSecret:string, refreshToken:s
     return null;
   }
 
-const FitbitDataComponent = () => {
-  const [fitbitData, setFitbitData] = useState([]);
+type Props = {
+    id: string | null;
+};
+
+export default function FitbitDataComponent( { id } : Props) {
+  const [fitbitData, setFitbitData] = useState({
+    steps: 0,
+    stepGoal: 0,
+    calorieGoal: 0,
+    sleep: 0,
+    sleepGoals: 0
+  });
 
   useEffect(() => {
     const fetchData = async () => {
-
-      const userId = "8089166a-3db2-4b56-b1c7-ac3b188829a4"
-      
+      if(id != null){
+        return
+      }
+      const userId = id;
+      if(userId == undefined){
+        return
+      }
       const clientId = "23RKLS";
       const clientSecret = "2c3743a22c9be82c95f1b9a615e11580";
 
@@ -191,9 +228,8 @@ const FitbitDataComponent = () => {
       
       // Get activity data
       if(aTokenResponse && rTokenResponse){
-        aToken = aTokenResponse[0]?.access_token;
-        rToken = rTokenResponse[0]?.refresh_token;
-
+        aToken = (aTokenResponse[0] as any)?.access_token;
+        rToken = (rTokenResponse[0] as any)?.refresh_token;
         // Check if user has a fitbit connected
         if (typeof aToken === 'string' && typeof rToken === 'string') {
           // get activity data
@@ -263,4 +299,3 @@ const FitbitDataComponent = () => {
   );
 };
 
-export default FitbitDataComponent;
