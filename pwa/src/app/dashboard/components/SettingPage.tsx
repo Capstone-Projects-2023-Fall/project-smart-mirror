@@ -32,11 +32,11 @@ const handleLocationToggle = async (checked) => {
   const { data: { user }, error: userError } = await supabase.auth.getUser();
   
   // Check if the user data and ID are defined
-  if (userError || !user || !user.id) {
-    console.error(userError || 'User not found or user ID is undefined.');
-    setToggleLocationSharing(false);
-    return;
-  }
+    if (userError || !user || !user.id) {
+      console.error(userError || 'User not found or user ID is undefined.');
+      setToggleLocationSharing(false);
+      return;
+    }
 
   // If the toggle is turned on, get and update the location
   if (checked) {
