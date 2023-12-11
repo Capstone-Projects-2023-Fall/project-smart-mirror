@@ -20,12 +20,10 @@ chromium-browser --kiosk --disable-infobars --incognito http://localhost:8000/ &
 
 echo "Installing packages"
 cd /home/smartmirror/Desktop/project-smart-mirror/frontend/mirror-frontend
-npm i
 
 echo "Starting mirror"
-npm run dev &
-
-while ! ncat -z localhost 5173; do
+python ./flask_weather.py &
+while ! ncat -z localhost 5000; do
   sleep 1
 done
 
@@ -35,7 +33,7 @@ kill $PID &
 cd /home/smartmirror/Desktop/project-smart-mirror/backend/
 python3 Camera.py & 
 
-chromium-browser --kiosk --disable-infobars --incognito --hide-scrollbars http://localhost:5173/
+chromium-browser --kiosk --disable-infobars --incognito --hide-scrollbars http://www.projectlumina.app/mirror
 
 echo "System initialized"
 echo "Opening browser"
