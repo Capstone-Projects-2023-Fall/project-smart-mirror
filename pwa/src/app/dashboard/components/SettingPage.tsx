@@ -4,6 +4,7 @@ import { supabase } from "@/app/utils/supabase-client";
 import { Form } from "@radix-ui/react-form";
 import SpotifyAuth from "./spotify";
 import { useRouter } from "next/navigation";
+import { userInfo } from "os";
 
 export default function SettingsPage() {
   const [locationEnabled, setLocationEnabled] = useState(false);
@@ -152,6 +153,17 @@ export default function SettingsPage() {
     signOut();
     router.push("/");
   };
+
+  const handleMirrorDisconnect = () => {
+    const disconnect = async () => {
+      const id = (await supabase.auth.getUser()).data?.user?.id;
+      const { error } = await supabase
+        .from("profiles")
+        .update({ mirorID: "" })
+        .eq("id", id);
+    };
+  };
+
   return (
     <div className="text-skin-base px-848 py-703 w-full max-w-full">
       <h2 className="text-2xl font-bold mb-6">Settings</h2>
@@ -287,7 +299,7 @@ export default function SettingsPage() {
                 <option value="other">Other</option>
               </select>
             </div>
-            <div className="flex justify-end mt-4">
+            <div className="flex flex-col justify-end mt-4 space-y-4">
               <button
                 type="submit"
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
@@ -344,6 +356,13 @@ export default function SettingsPage() {
               </li>
             )}
           </ul>
+          <button
+            onClick={handleMirrorDisconnect}
+            type="submit"
+            className="px-4 py-2 bg-red-700 text-white rounded hover:bg-blue-500 focus:outline-none"
+          >
+            Sign Out
+          </button>
         </div>
 
         {/* Section for Authorized Apps */}
