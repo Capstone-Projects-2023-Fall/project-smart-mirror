@@ -279,7 +279,6 @@ return (
         <h3 className="text-xl font-bold mb-4">Authorized Apps</h3>
         {/* List of Authorized Apps */}
         <SpotifyAuth/>
-
       </div>
       </div>
     </div>

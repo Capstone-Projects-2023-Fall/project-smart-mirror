@@ -1,6 +1,8 @@
 // SpotifyAuth.js (client-side)
 import React, { useState, useEffect } from 'react';
+import { supabase } from "@/app/utils/supabase-client";
 
+// Constants for Spotify's configuration
 const SPOTIFY_CLIENT_ID = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID;
 const SPOTIFY_REDIRECT_URI = process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT_URI;
 const SPOTIFY_SCOPES = ["user-read-currently-playing"];
@@ -17,36 +19,46 @@ const SpotifyAuth = () => {
       const accessToken = params.get('access_token');
       if (accessToken) {
         setSpotifyAccessToken(accessToken);
+        // Upsert the access token to the Supabase database
+        upsertSpotifyAccessToken(accessToken);
         window.location.hash = ''; // Clear the access token from the URL
 
-        // Get the user's currently playing track using the access token
-        getCurrentlyPlaying(accessToken);
+        // Optionally, get the user's currently playing track using the access token
+        // getCurrentlyPlaying(accessToken);
       }
     }
   }, []);
 
-  const getCurrentlyPlaying = (accessToken) => {
-    fetch('https://api.spotify.com/v1/me/player/currently-playing', {
-      headers: {
-        'Authorization': `Bearer ${accessToken}`
-      }
-    })
-    .then(response => {
-      if(response.status === 204) {
-        console.log("No content, nothing is currently playing.");
-        return null;
-      }
-      return response.json();
-    })
-    .then(data => {
-      if(data) {
-        setCurrentlyPlaying(data);
-        console.log(data);
-      }
-    })
-    .catch(error => {
-      console.error('Error fetching currently playing:', error);
-    });
+  // Function to save the Spotify access token to Supabase
+  const upsertSpotifyAccessToken = async (accessToken) => {
+    try {
+        let { data: user, error: userError } = await supabase.auth.getUser();
+      
+        if (userError) {
+          throw userError;
+        }
+      
+        if (!user) {
+          throw new Error('No active user session found.');
+        }
+      
+        const updates = {
+          id: user.id, // Make sure this is the primary key in your table
+          spotify_access_token: accessToken,
+          updated_at: new Date(),
+        };
+  
+      // Corrected upsert without the 'returning' option
+      let { error } = await supabase.from('profiles').upsert(updates, {
+        onConflict: 'id' // Assuming 'id' is the primary key of the 'profiles' table
+      });
+  
+      if (error) throw error;
+  
+      console.log('Spotify access token upserted successfully.');
+    } catch (error) {
+      console.error('Error upserting the Spotify access token:', error.message);
+    }
   };
 
   const handleAuth = () => {
@@ -58,6 +70,10 @@ const SpotifyAuth = () => {
       <button onClick={handleAuth} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
         Authorize Spotify
       </button>
+      {/* 
+        CurrentlyPlaying component or logic can be placed here if needed.
+        Remove the following code if you plan to display the currently playing track elsewhere.
+      */}
       {currentlyPlaying && (
         <div>
           <h3>Currently Playing Track:</h3>
