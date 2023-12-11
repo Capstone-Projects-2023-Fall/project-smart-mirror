@@ -6,7 +6,7 @@ cd /home/smartmirror/Desktop/project-smart-mirror
 git stash
 git pull origin main
 
-cd /home/smartmirror/Desktop/project-smart-mirror/src/backend/LoadingScreen
+cd /home/smartmirror/Desktop/project-smart-mirror/backend/LoadingScreen
 
 echo "Loading screen"
 
@@ -19,11 +19,6 @@ export DISPLAY=:0
 chromium-browser --kiosk --disable-infobars --incognito http://localhost:8000/ & PID=$!
 
 echo "Installing packages"
-cd /home/smartmirror/Desktop/project-smart-mirror/frontend/progressive-app
-#npm update
-npm i
-npm run dev &
-
 cd /home/smartmirror/Desktop/project-smart-mirror/frontend/mirror-frontend
 npm i
 
@@ -33,13 +28,13 @@ npm run dev &
 while ! ncat -z localhost 5173; do
   sleep 1
 done
-# Once the server is ready, open Chromium in kiosk mode
+
 export DISPLAY=:0
-# sudo unclutter -idle 0 &
+
 kill $PID &
-cd /home/smartmirror/Desktop/project-smart-mirror/src/backend/
-python3 Camera.py & #> "$LOG_FILE" 2>&1 &
-cd /home/smartmirror/Desktop/project-smart-mirror/frontend/mirror-frontend
+cd /home/smartmirror/Desktop/project-smart-mirror/backend/
+python3 Camera.py & 
+
 chromium-browser --kiosk --disable-infobars --incognito --hide-scrollbars http://localhost:5173/
 
 echo "System initialized"
