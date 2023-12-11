@@ -57,7 +57,7 @@ const TemperatureDisplay = () => {
       setIsLoading(true);
       setError(null);
       try {
-        const response = await fetch("http://projectlumina.app/weather/19128");
+        const response = await fetch("http://localhost:5000/weather/19128");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
