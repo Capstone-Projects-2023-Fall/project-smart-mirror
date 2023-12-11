@@ -68,7 +68,7 @@ export default function Mirror({}: Props) {
       fetchUserData();
     }
     return () => clearInterval(intervalId);
-  }, [userId]); // Make sure to include any dependencies if needed
+  }, [userId, router]); // Make sure to include any dependencies if needed
 
   useEffect(() => {
     const fetchWidgetVisibility = async () => {
