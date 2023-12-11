@@ -37,17 +37,12 @@ export default function Login({}: Props) {
   const router = useRouter();
   const passedId = useSearchParams().get("mirrorID") || -1
   const handleLoginWithGoogle = async () => {
-<<<<<<< HEAD
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
         redirectTo: `https://projectlumina.app/dashboard?mirrorID=${passedId}`,
       },
     });
-=======
-    const { data } = await supabase.auth.getUser();
-    console.log(data);
->>>>>>> 7da25c375e108b6b3484a602f754fffc2b8662a7
   };
 
   useEffect(() => {
