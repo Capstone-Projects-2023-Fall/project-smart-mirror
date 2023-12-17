@@ -27,12 +27,16 @@ Figure 2 shows a class diagram of the front end of the companion app.
 
 ## Sequence Diagrams
 
-**Use Case #1 Custom Widgets**: The user wants to view a custom widget on their current mirror layout so that they can view current stock quotes when they look at the mirror in the morning.
+**Use Case #1 Custom Widgets**: 
+![Use Case 1 - Custom Widgets](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/123747098/77f4e202-5f4a-4507-b4a8-98698a2a7d83)
+
 <details>
 <summary>
 Custom Widgets Description
 </summary>
-  
+
+**Custom Widgets**: The user wants to view a custom widget on their current mirror layout so that they can view current stock quotes when they look at the mirror in the morning.
+
 The user:
 1. Opens the companion app.
 2. Navigates to the Widget section of the app.
@@ -42,18 +46,19 @@ The user:
 6. Saves their progress.
 7. Walks up to the mirror to turn the mirror on.
 8. Observes the mirror reflecting the user's changes.
-
-![Use Case 1 - Custom Widgets](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/123747098/77f4e202-5f4a-4507-b4a8-98698a2a7d83)
-
 </details>
 
-**Use Case #2 Custom Alerts**: The user wants to view a custom widget on their current mirror layout so that they can view current stock quotes when they look at the mirror in the morning.
+**Use Case #2 Custom Alerts**:
+![usecase2](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/73204434/187b613b-5e3d-4ae1-8dc6-060b94a3231d)
 
 <details>
 <summary>
 Custom Alerts Description
 </summary>
 
+**Custom Alerts**: The user wants to view a custom widget on their current mirror layout so that they can view current stock quotes when they look at the mirror in the morning.
+
+The user:
 1. Opens the companion app.
 2. Navigates to the Reminder section of the app.
 3. Presses the New Reminder button.
@@ -61,17 +66,20 @@ Custom Alerts Description
 5. Clicks on the time field to input the date and time that the timer should go off.
 6. Saves their progress.
 7. When the date and time of the reminder matches the current date and time, is alerted by the mirror turning on its screen, displaying the title, time and date of the alarm for 10 seconds, and playing a soft sound.
-![CustomAlerts](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/112418620/70902a24-e404-4c36-bd77-646c16b8507f)
-  
+
 </details>
 
-**Use Case #3 Sub-profiles**: A user wants to create a sub-profile for someone else who also uses the mirror at 5pm on Sundays.
+**Use Case #3 Sub-profiles**:
+![usecase3 (1)](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/73204434/daa0f988-3913-49a6-9acc-33f4effb2f30)
 
 <details>
 <summary>
 Sub-profiles Description
 </summary>
 
+**Sub-profiles**: A user wants to create a sub-profile for someone else who also uses the mirror at 5pm on Sundays.
+
+The user:
 1. Opens the companion app.
 2. Navigates to the Sub-Profile section of the app.
 3. Clicks on the Create Sub-Profile button.
@@ -80,17 +88,19 @@ Sub-profiles Description
 6. Inputs Sunday and 5pm into the Scheduled Switching field.
 7. Saves their progress.
 8. Is able to view their sub-profile on the mirror at 5pm on Sundays.
-![usecase3](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/73204434/64ed78b2-2b71-4e37-a506-89d6d6119470)
-
 </details>
 
-**Use Case #4 Height/Weight Tracking**: A user wants to set a weight goal from scratch and track their height and weight so they will have an easy way to access the knowledge needed to work towards their ideal weight.
+**Use Case #4 Height/Weight Tracking**:
+![usecase4](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/73204434/e297b603-0426-44df-be86-6c3a5704f2a4) 
 
 <details>
 <summary>
 Height/Weight Tracking Description
 </summary>
 
+**Height/Weight Tracking**: A user wants to set a weight goal from scratch and track their height and weight so they will have an easy way to access the knowledge needed to work towards their ideal weight.
+
+The user: 
 1. Opens the companion app.
 2. Navigates to the Health section of the app.
 3. Presses the Add Weight Goal button.
@@ -100,48 +110,53 @@ Height/Weight Tracking Description
 7. May update their height and weight when they wish.
 9. Adds the built-in health widget to their sub-profile.
 8. Is able to view their weight goal and weight history.
-![Height_Weight Tracking](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/112418620/db79c4be-2220-4459-b44f-fa02a9755224)  
-  
 </details>
 
-**Use Case #5 Rainy Day**: A user that wants to be informed on what to wear throughout the day as they are rushing to get ready to leave the house for work.
+**Use Case #5 Rainy Day**:
+![sequence diagram](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/70285068/14a00b33-b869-43c2-982b-b520063bfc68)
+
 <details>
 <summary>
 Rainy Day Description
 </summary>
 
+**Rainy Day**: A user that wants to be informed on what to wear throughout the day as they are rushing to get ready to leave the house for work.
+
+The user:
 1. They step in front of the mirror as they do their daily morning routine in the bathroom.
 2. The camera detects the user’s face with the camera and turns on the screen display behind the 2 way mirror.
 3. The mirror's Rasberry Pi retrieves data from the Open Weather API.
 3. The mirrors widget display shows a heavy rain forecast icon in the afternoon despite being currently clear as day.
 4. The user remembers to grab their raincoat and umbrella and goes about their day avoiding the uncomfortableness of cold rain.
-![sequence diagram](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/70285068/14a00b33-b869-43c2-982b-b520063bfc68)
-
 </details>
 
 
-**Use Case #6 ToDo List**: A user that has a busy day full of important tasks to do wants to reference his Todo list on the cloud when they’re at home
+**Use Case #6 To-Do List**:
+![Use case 6](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/74268497/3af74675-8621-435a-96a1-2f9e3bbda73b)
 <details>
 <summary>
-ToDo List Description
+To-Do List Description
 </summary>
 
+**To-Do List**: A user that has a busy day full of important tasks to do wants to reference his Todo list on the cloud when they’re at home
+
+The user:
 1. The user opens up the smart mirror companion app and fills out his important task of checking in with his family member weekly after work.
 2. The user goes about his normal routine, gets back home later on and views their mirror which reminds them of their task.
 3. After being reminded, they call their family members and see how they are doing.
 4. When the call is finished they open the companion app and check off their task for this week.
-
-![Use case 6](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/74268497/3af74675-8621-435a-96a1-2f9e3bbda73b)
-
 </details>
 
-**Use Case #7  Scheduling Assistant**: A user that has a strict schedule of appointments with their clients wants to view their schedule at their workshop.
+**Use Case #7  Scheduling Assistant**:
+![Alt text](image.png)
 <details>
 <summary>
 Scheduling Assistant Description
 </summary>
 
+**Scheduling Assistant**: A user that has a strict schedule of appointments with their clients wants to view their schedule at their workshop.
 
+The user: 
 1. The user steps in front of their mirror at their workshop.
 2. The camera detects the user’s face with the camera and turns on the screen display behind the 2 way mirror.
 3. User glances at the calendar display widget on the screen and sees that their next appointment is in 20 minutes.
@@ -150,9 +165,6 @@ Scheduling Assistant Description
 6. They open their google calendar app and denote the information for this event.
 7. They will click submit and the event will appear on their smart mirror the day of the event.
 8. On the day of the next event, the event shows on the display.
-
-![Alt text](image.png)
-
 </details>
 
 
