@@ -40,6 +40,7 @@ The user:
 6. Saves their progress.
 7. Walks up to the mirror to turn the mirror on.
 8. Observes the mirror reflecting the user's changes.
+
 </details>
 
 **Use Case #2 Custom Alerts**:
@@ -83,6 +84,7 @@ The user:
 6. Inputs Sunday and 5pm into the Scheduled Switching field.
 7. Saves their progress.
 8. Is able to view their sub-profile on the mirror at 5pm on Sundays.
+
 </details>
 
 **Use Case #4 Height/Weight Tracking**:
@@ -105,6 +107,7 @@ The user:
 7. May update their height and weight when they wish.
 9. Adds the built-in health widget to their sub-profile.
 8. Is able to view their weight goal and weight history.
+
 </details>
 
 **Use Case #5 Rainy Day**:
@@ -123,6 +126,7 @@ The user:
 3. The mirror's Rasberry Pi retrieves data from the Open Weather API.
 3. The mirrors widget display shows a heavy rain forecast icon in the afternoon despite being currently clear as day.
 4. The user remembers to grab their raincoat and umbrella and goes about their day avoiding the uncomfortableness of cold rain.
+
 </details>
 
 
@@ -141,6 +145,7 @@ The user:
 2. The user goes about his normal routine, gets back home later on and views their mirror which reminds them of their task.
 3. After being reminded, they call their family members and see how they are doing.
 4. When the call is finished they open the companion app and check off their task for this week.
+
 </details>
 
 **Use Case #7  Scheduling Assistant**:
@@ -161,6 +166,7 @@ The user:
 6. They open their google calendar app and denote the information for this event.
 7. They will click submit and the event will appear on their smart mirror the day of the event.
 8. On the day of the next event, the event shows on the display.
+
 </details>
 
 
