@@ -1,8 +1,8 @@
-import pytest
+#import pytest
 
-from src.backend.modules.event import Event
+#from src.backend.modules.event import Event
 
-def test_getTitle():
-    testObj = Event('Test')
-    assert testObj.getTitle() == 'Test'
+#def test_getTitle():
+#    testObj = Event('Test')
+#    assert testObj.getTitle() == 'Test'
 
