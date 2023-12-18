@@ -6,24 +6,18 @@ sidebar_position: 1
 
 The Design Document - Part I Architecture describes the software architecture and how the requirements are mapped into the design. This document will be a combination of diagrams and text that describes what the diagrams are showing.
 
-## Compenents
+## Components
 
-### Mirror Backend
-![Alt text](image-2.png)
-***Figure 1 - Raspberry Pi Backend***
+### Mirror
+![Mirror Class Diagram](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/123747098/91f96b41-9c39-415c-a9e3-899e8199d895)
+***Figure 1 - Mirror***
+Figure 1 shows a class diagram of the components of the mirror.
 
-Figure 1 shows a class diagram of the backend system that is on the mirror. 
-- The backend system is hosted on a Raspberry Pi.
-- The User interfaces directly with the Mirror
-- The mirror system will consistently poll for updates, and update the respective onboard systems based on the information
+### Progressive Web App
+![PWA Class Diagram](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/123747098/6ddb71c0-8c7a-44dc-9a22-5ecb1bb54983)
+***Figure 2 - Progressive Web App***
 
-## Mirror Frontend
-
-![frontend diagram](frontend.png)
-***Figure 2 - Frontend***
-
-Figure 2 shows a class diagram of the front end of the companion app.
-
+Figure 2 shows a class diagram of the front end companion app.
 
 ## Sequence Diagrams
 
@@ -49,7 +43,7 @@ The user:
 </details>
 
 **Use Case #2 Custom Alerts**:
-![usecase2](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/73204434/187b613b-5e3d-4ae1-8dc6-060b94a3231d)
+![custom_alerts](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/123747098/cf5c65fb-6911-4288-ba3b-690ccff1ba17)
 
 <details>
 <summary>
@@ -70,7 +64,8 @@ The user:
 </details>
 
 **Use Case #3 Sub-profiles**:
-![usecase3 (1)](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/73204434/daa0f988-3913-49a6-9acc-33f4effb2f30)
+![sub-profiles](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/123747098/4b023b85-80e9-49d5-b5a8-1a768fa66110)
+
 
 <details>
 <summary>
@@ -91,7 +86,7 @@ The user:
 </details>
 
 **Use Case #4 Height/Weight Tracking**:
-![usecase4](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/73204434/e297b603-0426-44df-be86-6c3a5704f2a4) 
+ ![height_weight_tracking](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/123747098/8655b091-f76e-413a-a765-ffa2ff184ea6)
 
 <details>
 <summary>
@@ -113,7 +108,7 @@ The user:
 </details>
 
 **Use Case #5 Rainy Day**:
-![sequence diagram](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/70285068/14a00b33-b869-43c2-982b-b520063bfc68)
+![rainy_day](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/123747098/2dd0c66b-48c8-4f37-a481-a707eb9947ee)
 
 <details>
 <summary>
@@ -132,7 +127,8 @@ The user:
 
 
 **Use Case #6 To-Do List**:
-![Use case 6](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/74268497/3af74675-8621-435a-96a1-2f9e3bbda73b)
+![to_do_list](https://github.com/Capstone-Projects-2023-Fall/project-smart-mirror/assets/123747098/f73ab6e3-cdc9-452e-949a-0a06f6a2e17b)
+
 <details>
 <summary>
 To-Do List Description
