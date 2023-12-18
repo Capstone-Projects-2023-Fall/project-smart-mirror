@@ -603,10 +603,15 @@ Delete Weather alerts
 }
 ```
 
-**Failed call:**
-```json
-{
-    "status": 400,
-    "body": "Invalid request body."
-}
-```
+## Fitbit API
+**Description:**    
+The Fitbit API provides functionality to retrieve Fitbit information from the user's Fitbit account for the mirror to display.
+
+### GET/api/fitbit/
+
+**Parameters:**
+Name | Description
+--- | ---
+id | ID of the fitbit user.
+field | Name of the field to fetch data from.
+
